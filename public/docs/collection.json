@@ -1,0 +1,961 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "https:\/\/onlineschool-production.up.railway.app"
+        }
+    ],
+    "info": {
+        "name": "Laravel",
+        "_postman_id": "32f08348-0121-423a-9f3f-a8becab2ae14",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
+                {
+                    "name": "Show the form for creating a new resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/blogs",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/blogs"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"title\":\"ex\",\"description\":\"alias\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/blogs",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/blogs"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"current_page\":1,\"data\":[{\"id\":1,\"title\":\"fdgdfg\",\"description\":\"fgdfgdf\",\"ImagePath\":\"https:\\\/\\\/i.postimg.cc\\\/jjfjwTWs\\\/image.png\",\"created_at\":\"2024-08-26T19:41:38.000000Z\",\"updated_at\":\"2024-08-27T14:47:47.000000Z\"},{\"id\":2,\"title\":\"hhh\",\"description\":\"first by postman\",\"ImagePath\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/storage\\\/blogs\\\/1724705235.jpg\",\"created_at\":\"2024-08-26T20:47:15.000000Z\",\"updated_at\":\"2024-08-26T20:47:15.000000Z\"},{\"id\":3,\"title\":\"mmm\",\"description\":\"first by postman\",\"ImagePath\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/storage\\\/blogs\\\/1724705869.jpg\",\"created_at\":\"2024-08-26T20:57:49.000000Z\",\"updated_at\":\"2024-08-26T20:57:49.000000Z\"},{\"id\":4,\"title\":\"kkk\",\"description\":\"first by postman\",\"ImagePath\":\"uploads\\\/images\\\/blogs\\\/1724743149.jpg\",\"created_at\":\"2024-08-27T07:19:09.000000Z\",\"updated_at\":\"2024-08-27T07:19:09.000000Z\"},{\"id\":5,\"title\":\"kkk\",\"description\":\"first by postman\",\"ImagePath\":\"uploads\\\/images\\\/blogs\\\/1724746595.jpg\",\"created_at\":\"2024-08-27T08:16:35.000000Z\",\"updated_at\":\"2024-08-27T08:16:35.000000Z\"}],\"first_page_url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/blogs?page=1\",\"from\":1,\"last_page\":2,\"last_page_url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/blogs?page=2\",\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/blogs?page=1\",\"label\":\"1\",\"active\":true},{\"url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/blogs?page=2\",\"label\":\"2\",\"active\":false},{\"url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/blogs?page=2\",\"label\":\"Next &raquo;\",\"active\":false}],\"next_page_url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/blogs?page=2\",\"path\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/blogs\",\"per_page\":5,\"prev_page_url\":null,\"to\":5,\"total\":9}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/blogs\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/blogs\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "error",
+                                    "description": "The ID of the blog."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"title\":\"gaxdezpuzycfev\",\"description\":\"ducimus\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/blogs",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/blogs"
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/subscribers",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/subscribers",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/subscribers"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"lkrajcik@example.net\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/subscribers",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/subscribers"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"current_page\":1,\"data\":[{\"id\":1,\"email\":\"obedag@gmail.com\",\"created_at\":\"2024-08-27T13:33:47.000000Z\",\"updated_at\":\"2024-08-27T13:33:47.000000Z\"},{\"id\":3,\"email\":\"obedahh@gmail.com\",\"created_at\":\"2024-08-27T13:46:33.000000Z\",\"updated_at\":\"2024-08-27T13:46:33.000000Z\"},{\"id\":4,\"email\":\"obedag1@gmail.com\",\"created_at\":\"2024-08-27T14:51:10.000000Z\",\"updated_at\":\"2024-08-27T14:51:10.000000Z\"},{\"id\":5,\"email\":\"obedahh11111111111@gmail.com\",\"created_at\":\"2024-08-27T15:11:45.000000Z\",\"updated_at\":\"2024-08-27T15:11:45.000000Z\"},{\"id\":6,\"email\":\"obedag111111111111111111111111@gmail.com\",\"created_at\":\"2024-08-27T15:12:49.000000Z\",\"updated_at\":\"2024-08-27T15:12:49.000000Z\"},{\"id\":7,\"email\":\"aaa@gmail.com\",\"created_at\":\"2024-08-27T17:05:40.000000Z\",\"updated_at\":\"2024-08-27T17:05:40.000000Z\"},{\"id\":8,\"email\":\"aaaaa@gmail.com\",\"created_at\":\"2024-08-27T17:16:02.000000Z\",\"updated_at\":\"2024-08-27T17:16:02.000000Z\"},{\"id\":9,\"email\":\"aaabbb@gmail.com\",\"created_at\":\"2024-08-27T17:17:57.000000Z\",\"updated_at\":\"2024-08-27T17:17:57.000000Z\"},{\"id\":10,\"email\":\"aannnna@gmail.com\",\"created_at\":\"2024-08-27T17:21:19.000000Z\",\"updated_at\":\"2024-08-27T17:21:19.000000Z\"},{\"id\":11,\"email\":\"obedahh12@gmail.com\",\"created_at\":\"2024-08-28T06:27:58.000000Z\",\"updated_at\":\"2024-08-28T06:27:58.000000Z\"}],\"first_page_url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/subscribers?page=1\",\"from\":1,\"last_page\":2,\"last_page_url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/subscribers?page=2\",\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/subscribers?page=1\",\"label\":\"1\",\"active\":true},{\"url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/subscribers?page=2\",\"label\":\"2\",\"active\":false},{\"url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/subscribers?page=2\",\"label\":\"Next &raquo;\",\"active\":false}],\"next_page_url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/subscribers?page=2\",\"path\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/subscribers\",\"per_page\":10,\"prev_page_url\":null,\"to\":10,\"total\":19}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/subscribers\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/subscribers\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "quaerat",
+                                    "description": "The ID of the subscriber."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"quae\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/subscribers",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/subscribers"
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Show the form for creating a new resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/courses",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/courses"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"title\":\"consequuntur\",\"description\":\"ea\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/courses",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/courses"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "[{\"status\":\"success\",\"data\":{\"current_page\":1,\"data\":[],\"first_page_url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/courses?page=1\",\"from\":null,\"last_page\":1,\"last_page_url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/courses?page=1\",\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/courses?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"next_page_url\":null,\"path\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/courses\",\"per_page\":5,\"prev_page_url\":null,\"to\":null,\"total\":0}}]",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/courses\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/courses\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "tempora",
+                                    "description": "The ID of the course."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"title\":\"psxtwauaow\",\"description\":\"veritatis\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/courses",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/courses"
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Show the form for creating a new resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/courses_time",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/courses_time"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"course_id\":\"qui\",\"courseMonth\":\"id\",\"start_time\":\"inventore\",\"end_time\":\"dignissimos\",\"day_of_month\":\"quam\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/courses_time",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/courses_time"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 500,
+                            "body": "{\n    \"message\": \"Server Error\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/courses_time\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/courses_time\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "quidem",
+                                    "description": "The ID of the courses time."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/courses_time",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/courses_time"
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Show the form for creating a new resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/guest_users",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/guest_users"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"courseId\":\"magnam\",\"firstName\":\"quam\",\"lastName\":\"sit\",\"age\":\"aut\",\"email\":\"gcronin@example.org\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/guest_users",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/guest_users"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "[{\"status\":\"success\",\"data\":{\"current_page\":1,\"data\":[],\"first_page_url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/guest_users?page=1\",\"from\":null,\"last_page\":1,\"last_page_url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/guest_users?page=1\",\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/guest_users?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"next_page_url\":null,\"path\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/guest_users\",\"per_page\":5,\"prev_page_url\":null,\"to\":null,\"total\":0}}]",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/guest_users\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/guest_users\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "rerum",
+                                    "description": "The ID of the guest user."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"courseId\":\"maxime\",\"firstName\":\"adipisci\",\"lastName\":\"quia\",\"age\":\"sed\",\"email\":\"gutkowski.elenor@example.com\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/guest_users",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/guest_users"
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"id\":\"quam\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Show the form for creating a new resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/free_lessons",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/free_lessons"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"userId\":19,\"courseId\":2,\"numberOfMonth\":19,\"dayOfMonth\":16,\"startTime\":\"00:23:36\",\"endTime\":\"00:23:36\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/free_lessons",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/free_lessons"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 500,
+                            "body": "{\n    \"message\": \"Server Error\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/free_lessons\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/free_lessons\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "modi",
+                                    "description": "The ID of the free lesson."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"numberOfMonth\":\"quibusdam\",\"dayOfMonth\":\"ut\",\"startTime\":\"in\",\"endTime\":\"explicabo\",\"meetUrl\":\"autem\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/free_lessons",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/free_lessons"
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"id\":\"voluptas\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/create_event",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/create_event",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/create_event"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "content-type",
+                                    "value": "text\/html; charset=UTF-8"
+                                },
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "https:\/\/meet.google.com\/mft-oddf-wse",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "bearer",
+        "bearer": [
+            {
+                "key": "key",
+                "type": "string"
+            }
+        ]
+    }
+}
