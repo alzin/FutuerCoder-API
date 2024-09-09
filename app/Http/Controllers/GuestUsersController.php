@@ -46,10 +46,11 @@ class GuestUsersController extends Controller
     public function create(Request $request)
     {
         $request->validate([
+            'courseId' => 'required',
             'firstName' => 'required',
             'lastName' => 'required',
             'age' => 'required',
-            'email' => 'required|email|unique:guest_users'
+            'email' => 'required|email'
         ]);
         $verificationToken = Str::random(32);
         
@@ -61,7 +62,7 @@ class GuestUsersController extends Controller
             'verification_token' => $verificationToken
         ]);
           // إعداد رابط التحقق
-          $verificationUrl = url("/api/verify-guest-email/{$verificationToken}");
+          $verificationUrl = url("/api/verify-email/{$verificationToken}");
     
           // إرسال البريد الإلكتروني
           Mail::to($guestUser->email)->send(new VerifyEmail($verificationUrl));
