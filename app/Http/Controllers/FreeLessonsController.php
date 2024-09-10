@@ -184,16 +184,13 @@ class FreeLessonsController extends Controller
     {
         // التحقق من المدخلات
         $request->validate([
-            'FirstName' => 'required',
-            'LastName' => 'required',
-            'Age' => 'required',
-            'Email' => 'required',
             'CourseId' => 'required',
             'SessionTimings' => 'required',
+            'guestUserId'=>'required'
         ]);
         
         // إنشاء مستخدم ضيف جديد
-        $guestUser = GuestUsers::find($request->userId);
+        $guestUser = GuestUsers::find($request->guestUserId);
 
         if($guestUser->email_verified==1)
         {

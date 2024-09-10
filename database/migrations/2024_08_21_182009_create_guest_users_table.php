@@ -20,6 +20,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->text('verification_token')->nullable();
             $table->tinyInteger('email_verified')->default(0);
+            $table->string('timeZone')->nullable();
             $table->timestamps();
         });
     }

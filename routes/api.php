@@ -9,6 +9,8 @@ use App\Http\Controllers\CourcesController;
 use App\Http\Controllers\CourcesTimeController;
 use App\Http\Controllers\GuestUsersController;
 use App\Http\Controllers\FreeLessonsController;
+use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\UserController;
 use Spatie\GoogleCalendar\Event;
 use App\Http\Middleware\VerifyCsrfToken;
 
@@ -28,7 +30,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('subscribers')->group(function () {
         Route::post('/', [SubscribersController::class, 'create']);
-       
         Route::get('/', [SubscribersController::class, 'index']);
         Route::put('/{id}', [SubscribersController::class, 'update']);
         Route::delete('/', [SubscribersController::class, 'destroy']);
@@ -44,9 +45,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('courses_time')->group(function () {
         Route::post('/', [CourcesTimeController::class, 'create']);
-        Route::get('/', [CourcesTimeController::class, 'index']);
-        Route::get('/courseDays/{id}', [CourcesTimeController::class, 'getDaysByCourseId']);
-        Route::get('/availableTimes/{course_id}/{day_of_month}', [CourcesTimeController::class, 'getAvailableTimes']);
+        Route::get('/{userId}', [CourcesTimeController::class, 'index']);
+        Route::get('/courseDays/{id}/{courseId}', [CourcesTimeController::class, 'getDaysByCourseId']);
+        Route::get('/availableTimes/{course_id}/{sessionTimie}/{userId}', [CourcesTimeController::class, 'getAvailableTimes']);
         Route::put('/{id}', [CourcesTimeController::class, 'update']);
         Route::delete('/', [CourcesTimeController::class, 'destroy']);
     });
@@ -58,17 +59,30 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/', [GuestUsersController::class, 'destroy']);
     });
 
-    Route::prefix('free_lessons')->group(function () {
+        Route::prefix('free_lessons')->group(function () {
         Route::post('/', [FreeLessonsController::class, 'create']);
-        Route::post('/createSession', [FreeLessonsController::class, 'createSession']);
+        Route::post('/createSession', [FreeLessonsController::class,'createSession']);
         Route::get('/', [FreeLessonsController::class, 'index']);
         Route::put('/{id}', [FreeLessonsController::class, 'update']);
         Route::delete('/', [FreeLessonsController::class, 'destroy']);
+    });
+        Route::prefix('Testimonial')->group(function () {
+        Route::post('/', [GuestUsersController::class, 'create']);
+        Route::get('/', [GuestUsersController::class, 'index']);
+        Route::put('/{id}', [GuestUsersController::class, 'update']);
+        Route::delete('/', [GuestUsersController::class, 'destroy']);
+    });
+    Route::group(['prefix' => 'users'], function () {
+        Route::get('/', [UserController::class, 'index']);         // /users
+        Route::get('/{id}', [UserController::class, 'show']);      // /users/{id}
+        Route::post('/', [UserController::class, 'store']);        // /users
+        Route::put('/{id}', [UserController::class, 'update']);    // /users/{id}
+        Route::delete('/{id}', [UserController::class, 'destroy']); // /users/{id}
     });
     Route::get('create_event',[FreeLessonsController::class,'createEvent']);
    
 });
 
-Route::get('/verify-email/{token}', [SubscribersController::class, 'verify']);
-Route::get('/verify-email/{token}', [GuestUsersController::class, 'verify']);
+Route::get('/verify-subscriber-email/{token}', [SubscribersController::class, 'verify']);
+Route::get('/verify-guest-email/{token}', [GuestUsersController::class, 'verify']);
        

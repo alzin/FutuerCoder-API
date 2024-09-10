@@ -5,7 +5,7 @@ use Google\Client;
 use Google\Service\Calendar;
 
 class GoogleMeetService
-{
+{/*
     public function createMeet($summary, $startTime, $endTime)
     {
         $client = new Client();
@@ -26,5 +26,5 @@ class GoogleMeetService
         // استخراج رابط الاجتماع من استجابة الإدراج
         $hangoutLink = $event->getHangoutLink();
         return $hangoutLink;
-    }
+    }*/
 }
