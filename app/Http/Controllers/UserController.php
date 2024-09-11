@@ -28,18 +28,24 @@ class UserController extends Controller
     }
 
     // إنشاء مستخدم جديد
-    public function store(Request $request)
+    public function create(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
+            'firstName' => 'required|string|max:255',
+            'lastName' => 'required|string|max:255',
+            'age'=>'required',
+            'timeZone'=>'required',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
         ]);
 
         $user = User::create([
-            'name' => $validatedData['name'],
+            'firstName' => $validatedData['firstName'],
+            'lastName' => $validatedData['lastName'],
+            'age'=> $validatedData['age'],
+            'timeZone'=> $validatedData['timeZone'],
             'email' => $validatedData['email'],
-            'password' => Hash::make($validatedData['password']), // تشفير كلمة المرور
+            'password' => Hash::make($validatedData['password']),
         ]);
 
         return response()->json($user, 201);

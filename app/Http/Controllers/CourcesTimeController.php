@@ -14,46 +14,46 @@ class CourcesTimeController extends Controller
      * Display a listing of the resource.
      */
     public function index($user_id)
-{
-    // الحصول على المستخدم
-    $user = GuestUsers::find($user_id);
+    {
+        // الحصول على المستخدم
+        $user = GuestUsers::find($user_id);
 
-    // التحقق من وجود المستخدم والمنطقة الزمنية
-    if (!$user || !$user->timeZone) {
-        return response()->json(['message' => 'User or time zone not found'], 404);
+        // التحقق من وجود المستخدم والمنطقة الزمنية
+        if (!$user || !$user->timeZone) {
+            return response()->json(['message' => 'User or time zone not found'], 404);
+        }
+
+        // عرض جميع الكورسات مع استخدام paginate(5)
+        $courses = Cources::paginate(5);
+
+        // جلب تواريخ وأوقات الكورسات
+        $coursesData = $courses->map(function ($course) use ($user) {
+            $courseTimes = Cources_time::where('courseId', $course->id)->get();
+
+            return [
+                'courseName' => $course->title,
+                'courseId' => $course->id,
+                'courseTimes' => $courseTimes->map(function ($time) use ($user) {
+                    return [
+                        'id' => $time->id,
+                        'date' => Carbon::parse($time->SessionTimings, 'UTC')->setTimezone($user->timeZone)->toDateString(),
+                        'startTime' => Carbon::parse($time->startTime, 'UTC')->setTimezone($user->timeZone)->toTimeString(),
+                        'endTime' => Carbon::parse($time->endTime, 'UTC')->setTimezone($user->timeZone)->toTimeString(),
+                    ];
+                })
+            ];
+        });
+
+        return response()->json([
+            'courses' => $coursesData,
+            'pagination' => [
+                'total' => $courses->total(),
+                'currentPage' => $courses->currentPage(),
+                'lastPage' => $courses->lastPage(),
+                'perPage' => $courses->perPage(),
+            ]
+        ]);
     }
-
-    // عرض جميع الكورسات مع استخدام paginate(5)
-    $courses = Cources::paginate(5);
-
-    // جلب تواريخ وأوقات الكورسات
-    $coursesData = $courses->map(function ($course) use ($user) {
-        $courseTimes = Cources_time::where('courseId', $course->id)->get();
-
-        return [
-            'courseName' => $course->title,
-            'courseId' => $course->id,
-            'courseTimes' => $courseTimes->map(function ($time) use ($user) {
-                return [
-                    'id' => $time->id,
-                    'date' => Carbon::parse($time->SessionTimings, 'UTC')->setTimezone($user->timeZone)->toDateString(),
-                    'startTime' => Carbon::parse($time->startTime, 'UTC')->setTimezone($user->timeZone)->toTimeString(),
-                    'endTime' => Carbon::parse($time->endTime, 'UTC')->setTimezone($user->timeZone)->toTimeString(),
-                ];
-            })
-        ];
-    });
-
-    return response()->json([
-        'courses' => $coursesData,
-        'pagination' => [
-            'total' => $courses->total(),
-            'currentPage' => $courses->currentPage(),
-            'lastPage' => $courses->lastPage(),
-            'perPage' => $courses->perPage(),
-        ]
-    ]);
-}
 
 
        
@@ -70,11 +70,10 @@ class CourcesTimeController extends Controller
             'startTime' => 'required',
             'endTime' => 'required',
         ]);
-        $sessionDate = Carbon::parse($request->input('SessionTimings'), 'Asia/Tokyo');
+        $sessionDateUTC = Carbon::parse($request->input('SessionTimings'), 'UTC');
         $startTime = Carbon::parse($request->input('startTime'), 'Asia/Tokyo');
         $endTime = Carbon::parse($request->input('endTime'), 'Asia/Tokyo');
-        $sessionDateUTC = $sessionDate->setTimezone('UTC');
-         $startTimeUTC = $startTime->setTimezone('UTC');
+        $startTimeUTC = $startTime->setTimezone('UTC');
         $endTimeUTC = $endTime->setTimezone('UTC');
 
         $course_time=Cources_time::create([
@@ -198,20 +197,20 @@ class CourcesTimeController extends Controller
     }*/
     public function getAvailableTimes($course_id, $sessionTimings, $user_id)
     {
-    
         $user = GuestUsers::find($user_id);
-
+    
         // التحقق من وجود المستخدم والمنطقة الزمنية
         if (!$user || !$user->timeZone) {
             return response()->json(['message' => 'User or time zone not found'], 404);
         }
-
+    
         // الحصول على الوقت الحالي وتحويله إلى UTC
         $nowUTC = Carbon::now('UTC');
-
+    
         // تحويل sessionTimings إلى UTC للمقارنة مع البيانات المخزنة
-        $sessionTimingsUTC = Carbon::parse($sessionTimings, $user->timeZone)->setTimezone('UTC');
-
+        // نظرًا لأن التواريخ مخزنة بتوقيت UTC، نقوم بتحليل المدخل باستخدام UTC مباشرة
+        $sessionTimingsUTC = Carbon::parse($sessionTimings, 'UTC');
+    
         // إضافة شروط للتحقق من أن التاريخ والوقت لم ينقضيا بعد
         $availableTimes = Cources_time::where('courseId', $course_id)
             ->where('SessionTimings', $sessionTimingsUTC->toDateString()) // مقارنة SessionTimings بتوقيت UTC
@@ -226,7 +225,7 @@ class CourcesTimeController extends Controller
                     });
             })
             ->get(['startTime', 'endTime', 'studentsCount', 'id']);
-
+    
         // تحويل الأوقات المتاحة إلى المنطقة الزمنية الخاصة بالمستخدم
         $availableTimesInUserTimeZone = $availableTimes->map(function ($time) use ($user) {
             return [
@@ -236,9 +235,10 @@ class CourcesTimeController extends Controller
                 'id' => $time->id
             ];
         });
-
+    
         return response()->json(["message" => "successful", "data" => $availableTimesInUserTimeZone]);
     }
+    
 
 
 

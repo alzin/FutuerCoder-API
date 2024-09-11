@@ -46,11 +46,11 @@ class GuestUsersController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'courseId' => 'required',
             'firstName' => 'required',
             'lastName' => 'required',
             'age' => 'required',
-            'email' => 'required|email'
+            'email' => 'required|email',
+            'timeZone'=>'required'
         ]);
         $verificationToken = Str::random(32);
         
@@ -59,6 +59,7 @@ class GuestUsersController extends Controller
             'lastName' => $request->lastName,
             'age' => $request->age,
             'email' => $request->email,
+            'timeZone'=>$request->timeZone,
             'verification_token' => $verificationToken
         ]);
           // إعداد رابط التحقق
