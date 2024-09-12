@@ -35,6 +35,7 @@ class Kernel extends HttpKernel
            //\App\Http\Middleware\VerifyCsrfToken::class,
            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
            //\App\Http\Middleware\StartSession::class,
+           
         ],
     ];
 
@@ -46,7 +47,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        // Add route specific middleware here
+        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
     ];
 
 

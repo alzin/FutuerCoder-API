@@ -46,20 +46,20 @@ class GuestUsersController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'courseId' => 'required',
             'firstName' => 'required',
             'lastName' => 'required',
             'age' => 'required',
-            'email' => 'required|email'
+            'email' => 'required|email',
+            'timeZone'=>'required'
         ]);
         $verificationToken = Str::random(32);
         
         $guestUser=GuestUsers::create([
-            'courseId' => $request->courseId,
             'firstName' => $request->firstName,
             'lastName' => $request->lastName,
             'age' => $request->age,
             'email' => $request->email,
+            'timeZone'=>$request->timeZone,
             'verification_token' => $verificationToken
         ]);
           // إعداد رابط التحقق
@@ -71,7 +71,7 @@ class GuestUsersController extends Controller
         return response()->json([
             'message' => 'user created successfully',
             'id'=>$guestUser->id,
-            ,'data'=>$guestUser
+            'data'=>$guestUser
             ]);
     }
 
@@ -137,6 +137,7 @@ class GuestUsersController extends Controller
                 'verification_token' => null,
                 'email_verified' => 1
             ]);
+            $guestUser->save();
 
             return response()->json(['message' => 'Email verified successfully.']);
         }

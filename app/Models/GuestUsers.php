@@ -14,6 +14,10 @@ class GuestUsers extends Model
         'lastName',
         'age',
         'email',
+        'verification_token',
+        'email_verified_at',
+        'email_verified',
+        'timeZone'
     ];
 
 }

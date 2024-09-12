@@ -184,16 +184,13 @@ class FreeLessonsController extends Controller
     {
         // التحقق من المدخلات
         $request->validate([
-            'FirstName' => 'required',
-            'LastName' => 'required',
-            'Age' => 'required',
-            'Email' => 'required',
             'CourseId' => 'required',
             'SessionTimings' => 'required',
+            'guestUserId'=>'required'
         ]);
         
         // إنشاء مستخدم ضيف جديد
-        $guestUser = GuestUsers::find($request->userId);
+        $guestUser = GuestUsers::find($request->guestUserId);
 
         if($guestUser->email_verified==1)
         {
@@ -262,8 +259,8 @@ class FreeLessonsController extends Controller
     {   
        
             $client = new Client();
-            $accessToken = 'ya29.a0AcM612wUWgn4-ArH741RZPwYriE32czUGfDmspMdVtD03adfGrgneK21_i7sN3GBo3rTWXxu4dKqG2StZCsvREApegQK2i4jOgXcwJcPQbwe2bNo1O0z-57jzDmiu_r6YlfykBKgdR8r1eqs5Fj-FKOf6kwszNEc-TCSylbjaCgYKAdoSARESFQHGX2MiPAoPmcC6kQs7hZM662sVvg0175';
-            $refreshToken='1//05QHzwDV5Mu9tCgYIARAAGAUSNwF-L9IrO3tJOVVyk3BU3ivZLh_Hmiz_EvMdQu7dsWb_p9Sh8jyPGxrvbNZNCav7ZW21zuG0FRQ';
+            $accessToken = 'ya29.a0AcM612xp3WCOiwYKUNi2AgxmySj7v6J4kKAukqHAlrctLRrL8F3orf9rB689JxT_EWNR9F73D1xIAxn7Vyb4EugMVMWT1WEGS2zCt8eGNb_crfDAYpUGL6pvhuFYo2_SHQx-yBYmMojbtmcBd0pe-LukDc_3470rO_rqHuvKaCgYKAYYSARESFQHGX2MizPZa108mL8wXYga4xLvl1A0175';
+            $refreshToken='1//01xwXMk7x9ho2CgYIARAAGAESNwF-L9IrepOR90LGN8haT7sp-R1g91mmhYdyvy3oORUF5grMxUAPD9rX27Y-gUdMz6fl08P19jo';
             $client->setAccessToken([
                 'access_token' => $accessToken,
                 'refresh_token' => $refreshToken,

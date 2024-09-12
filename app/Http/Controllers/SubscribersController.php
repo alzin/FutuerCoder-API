@@ -66,7 +66,7 @@ class SubscribersController extends Controller
             $subscriber->save();
     
             // إعداد رابط التحقق
-            $verificationUrl = url("/api/verify-email/{$verificationToken}");
+            $verificationUrl = url("/api/verify-subscriber-email/{$verificationToken}");
     
             // إرسال البريد الإلكتروني
             Mail::to($subscriber->email)->send(new VerifyEmail($verificationUrl));
@@ -129,11 +129,13 @@ class SubscribersController extends Controller
                 'verification_token' => null,
                 'email_verified'=>1
             ]);
+            $subscriber->save();
 
             return response()->json(['message' => 'Email verified successfully.']);
         }
-
-        return response()->json(['message' => 'Invalid or expired verification token.'], 400);
+        else{
+            return response()->json(['message' => 'sorry Invalid or expired verification token.'], 400);
+        }
     }
 
     /**
