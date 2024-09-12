@@ -13,6 +13,12 @@ use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\UserController;
 use Spatie\GoogleCalendar\Event;
 use App\Http\Middleware\VerifyCsrfToken;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\EmailVerificationNotificationController;
+use App\Http\Controllers\Auth\NewPasswordController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\VerifyEmailController;
 
 
 
@@ -75,14 +81,31 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::group(['prefix' => 'users'], function () {
         Route::get('/', [UserController::class, 'index']);    
         Route::get('/{id}', [UserController::class, 'show']); 
-        Route::post('/', [UserController::class, 'create']);    
+        Route::post('/signIn', [UserController::class, 'create']);    
         Route::put('/{id}', [UserController::class, 'update']);
         Route::delete('/{id}', [UserController::class, 'destroy']);
     });
+
+
+    /*Route::post('/email/resend', 'VerificationController@resend')
+        ->middleware('throttle:6,1')
+        ->name('verification.resend');*/
+
     Route::get('create_event',[FreeLessonsController::class,'createEvent']);
    
 });
 
+Route::post('register1', [RegisteredUserController::class, 'store'])
+->middleware('guest')
+->name('register1');
+
+Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
+        ->middleware(['signed'])
+        ->name('verification.verify');
+
+
+
+
+
 Route::get('/verify-subscriber-email/{token}', [SubscribersController::class, 'verify']);
 Route::get('/verify-guest-email/{token}', [GuestUsersController::class, 'verify']);
-       
