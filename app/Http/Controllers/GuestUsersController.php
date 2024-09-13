@@ -7,9 +7,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Mail\VerifyEmail;
 use Illuminate\Support\Facades\Mail;
+use App\Services\GuestUserService;
 
 class GuestUsersController extends Controller
 {
+    protected $guestUserService;
+
+    public function __construct(GuestUserService $guestUserService)
+    {
+        $this->guestUserService = $guestUserService;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -52,27 +59,13 @@ class GuestUsersController extends Controller
             'email' => 'required|email',
             'timeZone'=>'required'
         ]);
-        $verificationToken = Str::random(32);
-        
-        $guestUser=GuestUsers::create([
-            'firstName' => $request->firstName,
-            'lastName' => $request->lastName,
-            'age' => $request->age,
-            'email' => $request->email,
-            'timeZone'=>$request->timeZone,
-            'verification_token' => $verificationToken
-        ]);
-          // إعداد رابط التحقق
-          $verificationUrl = url("/api/verify-email/{$verificationToken}");
-    
-          // إرسال البريد الإلكتروني
-          Mail::to($guestUser->email)->send(new VerifyEmail($verificationUrl));
-        
+        $guestUser = $this->guestUserService->createGuestUser($request->all());
+
         return response()->json([
-            'message' => 'user created successfully',
-            'id'=>$guestUser->id,
-            'data'=>$guestUser
-            ]);
+            'message' => 'User created successfully',
+            'id' => $guestUser->id,
+            'data' => $guestUser
+        ]);
     }
 
     /**
@@ -127,18 +120,7 @@ class GuestUsersController extends Controller
     }
     public function verify($token)
     {
-        // البحث عن المستخدم الضيف باستخدام رمز التحقق
-        $guestUser = GuestUsers::where('verification_token', $token)->first();
-
-        if ($guestUser) {
-            // تأكيد البريد الإلكتروني
-            $guestUser->update([
-                'email_verified_at' => now(),
-                'verification_token' => null,
-                'email_verified' => 1
-            ]);
-            $guestUser->save();
-
+        if ($this->guestUserService->verifyGuestUser($token)) {
             return response()->json(['message' => 'Email verified successfully.']);
         }
 

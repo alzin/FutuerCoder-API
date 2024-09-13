@@ -17,24 +17,20 @@ class BlogsController extends Controller
     public function index(Request $request)
         {   
             if ($request->has('id')) {
-                // إذا كان هناك قيمة لـ id
                 $blog = Blogs::find($request->id);
             
                 if ($blog) {
-                    // إذا وجدت المدونة
                     $jsonData = [
                         'status' => 'success',
                         'data' => $blog,
                     ];
                 } else {
-                    // إذا لم توجد المدونة
                     $jsonData = [
                         'status' => 'error',
                         'message' => 'المدونة غير موجودة',
                     ];
                 }
             } else {
-                // إذا لم يتم تمرير أي قيمة لـ id
                 $blog = Blogs::paginate(5);
                 $jsonData = [
                     'status' => 'success',
@@ -59,7 +55,6 @@ class BlogsController extends Controller
         ]);
         /*
         if ($request->hasFile('image')) {
-            // تحديد المسار النسبي داخل مجلد التخزين
             $directory = 'uploads';
             if (!Storage::disk('public')->exists($directory)) {
                 Storage::disk('public')->makeDirectory($directory);
@@ -67,14 +62,10 @@ class BlogsController extends Controller
             if (Storage::disk('public')->exists($directory)) {
                 echo 'file exists';
             }
-            // الحصول على الملف من الطلب
             $image = $request->file('image');
         
-            // تحديد اسم الملف
             $fileName = time() . '.' . $image->getClientOriginalExtension();
-            // إنشاء المسار الكامل داخل مجلد التخزين
             $path = $directory . '/' . $fileName;
-            // حفظ الصورة في المجلد المحدد داخل التخزين باستخدام Storage facade
             Storage::disk('public')->put($path, file_get_contents($image));}
         /*
         if ($request->hasFile('image')) {
@@ -95,7 +86,6 @@ class BlogsController extends Controller
         /*$file_extension = $request->file('image')->getClientOriginalExtension();
         $file_name = time() . '.' . $file_extension;
         $path = 'blogs/' . $file_name;
-        // استخدام Storage facade لتخزين الصورة
         Storage::disk('public')->put($path, file_get_contents($request->file('image')));
         */
         
@@ -104,7 +94,7 @@ class BlogsController extends Controller
             'description' => $request->description,
             'ImagePath' => $request->imagePath,
         ]);
-        return response()->json(['message' => 'blog createc successfully']);
+        return response()->json(['message' => 'blog created successfully']);
     }
 
 
@@ -118,19 +108,16 @@ class BlogsController extends Controller
 
      public function store(Request $request)
      {
-         // التحقق من صحة الطلب
          $request->validate([
              'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
          ]);
  
-         // رفع الصورة وتخزينها في المسار المحدد
          if ($request->file('image')) {
              $image = $request->file('image');
              $imageName = time() . '.' . $image->getClientOriginalExtension();
              $ImagePath = $image->storeAs('blogs', $imageName, 'uploads');
              $url = Storage::disk('uploads')->url($ImagePath);
  
-             // حفظ بيانات الصورة في قاعدة البيانات
              $blog = new Blogs();
              $blog->title = $request->title;
              $blog->description= $request->description;
@@ -171,10 +158,9 @@ class BlogsController extends Controller
     {   
         $blog = Blogs::find($id);
         if (!$blog) {
-            return response()->json(['message' => 'لم يتم العثور على المدونة'], 404);
+            return response()->json(['message' => 'Blog not found'], 404);
         }
 
-        // التحقق من صحة البيانات الواردة
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required',
@@ -184,12 +170,11 @@ class BlogsController extends Controller
             Storage::disk('public')->delete('blogs/' . $blog->ImagePath);
         }
 
-        // حفظ الصورة الجديدة (إذا تم تحميل صورة جديدة)
+
         if ($request->hasFile('image')) {
             $path = 'blogs/' . time() . '.' . $request->image->getClientOriginalExtension();
             Storage::disk('public')->put($path, $request->image);
     
-            // تحديث مسار الصورة في قاعدة البيانات
         $blog->ImagePath =Storage::disk('public')->url($path);
         }
         */
@@ -198,9 +183,8 @@ class BlogsController extends Controller
         $blog->description = $request->description;
     
         $blog->save();
-        // إرجاع استجابة JSON تحتوي على البيانات المحدثة للمدونة
         return response()->json([
-            'message' => 'تم تحديث المدونة بنجاح',
+            'message' => 'Blog updated successfully',
             'blog' => $blog
         ]);
     }
@@ -212,15 +196,15 @@ class BlogsController extends Controller
          */
         public function destroy(Request $request)
         {
-            // التحقق من وجود المدونة
+
             $blog = Blogs::find($request->id);
             if (!$blog) {
-                return response()->json(['message' => 'المدونة غير موجودة'], 404);
+                return response()->json(['message' => 'Blog not exsists'], 404);
             }
 
             // حذف المدونة
             $blog->forceDelete();
 
-            return response()->json(['message' => 'تم حذف المدونة بنجاح']);
+            return response()->json(['message' => 'Blog deleted successfully']);
         }
 }
