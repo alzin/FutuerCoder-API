@@ -60,32 +60,7 @@ class SubscribersController extends Controller
             return response()->json(['message' => 'Subscriber created successfully. Please check your email to verify your account.']);
         }
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store()
-    {   
-        
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(subscribers $subscribers)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(subscribers $subscribers)
-    {
-        //
-    }
-
-    
+    //this function reffered to validate subscriber service
     public function verify($token)
     {
         if ($this->subscriberService->verifySubscriber($token)) {

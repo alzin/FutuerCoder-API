@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    // جلب جميع المستخدمين
     public function index()
     {   
         $users = User::paginate(5);
@@ -27,7 +26,6 @@ class UserController extends Controller
         return response()->json($user);
     }
 
-    // إنشاء مستخدم جديد
     public function create(Request $request)
     {
         $validatedData = $request->validate([
@@ -51,7 +49,6 @@ class UserController extends Controller
         return response()->json($user, 201);
     }
 
-    // تحديث بيانات مستخدم
     public function update(Request $request, $id)
     {
         $user = User::find($id);
@@ -75,7 +72,6 @@ class UserController extends Controller
         return response()->json($user);
     }
 
-    // حذف مستخدم
     public function destroy($id)
     {
         $user = User::find($id);
