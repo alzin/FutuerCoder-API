@@ -9,6 +9,7 @@ use App\Models\GuestUsers;
 use App\Models\Cources;
 use App\Models\Cources_time;
 use App\Services\GoogleCalendarService;
+use Google\Service\Batch\Script;
 use Illuminate\Http\Request;
 
 class FreeLessonsController extends Controller
@@ -92,7 +93,7 @@ class FreeLessonsController extends Controller
         $user=GuestUsers::find($request->userId);
         $course=Cources::find($request->courseId);
         $time=Cources_time::find($request->time);
-        $eventDetails = $calendarService->createEvent($user->email, $time->startTime, $time->endTime, $time->SessionTimings, 0);
+        $eventDetails = $calendarService->createEvent($user->email, $time->startTime, $time->endTime, $time->SessionTimings, 0,$user->timeZone);
         
         $freeLesson = FreeLessons::create([
             'userId' => $user->id,
@@ -150,8 +151,9 @@ class FreeLessonsController extends Controller
         $request->validate([
             'CourseId' => 'required',
             'SessionTimings' => 'required',
-            'guestUserId'=>'required'
+            'guestUserId'=>'required',
         ]);
+        
         
         $guestUser = GuestUsers::find($request->guestUserId);
 
@@ -176,14 +178,14 @@ class FreeLessonsController extends Controller
                 $startTime = $existingtime->startTime;
                 $endTime = $existingtime->endTime;
                 $date = $existingtime->SessionTimings;
-                $eventDetails = $this->calendarService->createEvent($guestUser->email, $startTime, $endTime, $date, $eventId);
+                $eventDetails = $this->calendarService->createEvent($guestUser->email, $startTime, $endTime, $date, $eventId,$guestUser->timeZone);
                 $existingtime->increment('studentsCount');
                 //if we not found a previos session we will create a new session
             } else {
                 $startTime = $existingtime->startTime;
                 $endTime = $existingtime->endTime;
                 $date = $existingtime->SessionTimings;
-                $eventDetails = $this->calendarService->createEvent($guestUser->email, $startTime, $endTime, $date, $eventId = 0);
+                $eventDetails = $this->calendarService->createEvent($guestUser->email, $startTime, $endTime, $date, $eventId = 0,$guestUser->timeZone);
                 $eventId = $eventDetails['eventId'];
                 $meetUrl = $eventDetails['meetUrl'];
                 $existingtime->increment('studentsCount');

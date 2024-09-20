@@ -22,11 +22,11 @@ use Google\Service\Calendar\ConferenceSolutionKey;
 
 class GoogleCalendarService
 {
-    public function createEvent($email, $startTime, $endTime, $date, $eventId)
+    public function createEvent($email, $startTime, $endTime, $date, $eventId,$userTimezone)
     {
         $client = new Google_Client();
-        $accessToken = 'ya29.a0AcM612zS78gduxAwE1iM-k4G5A2DIjIMI0p8ADE1_Ethe5XmIYmjriCxFiE1RMv4YqSLJ-Z4r4Ig-zAKpMZoFFh9RpW30Nk0fwVhFgJaSVoLeAeXHNhtGgD4_HbYPOEiG-xiDC8ZoFPRj-4oavBAnGQ617jZDZ6wD22E_BQNaCgYKAegSARESFQHGX2MiD5g2hIddvP6D4PbFbMsK0w0175';
-        $refreshToken = '1//01-oystroJIVBCgYIARAAGAESNwF-L9IruGzKvf8sDB6KiygN4XO-P7r68VrYKu0Hkyd9Fzq_uJ4fJpp8O_P83hYKhxp8bmM1mUg';
+        $accessToken = env('GOOGLEACCESSTOKEN');
+        $refreshToken = env('GOOGLEREFRESHTOKEN');
         $client->setAccessToken([
             'access_token' => $accessToken,
             'refresh_token' => $refreshToken,
@@ -57,35 +57,55 @@ class GoogleCalendarService
         if ($eventId == 0) {
             $event = new Google_Service_Calendar_Event();
             $event->setSummary('NEW EVENT');
+            
             $event->setDescription('Event description');
             $event->setStart(new EventDateTime([
-                'dateTime' => Carbon::parse($date . $startTime)->toRfc3339String(),
-                'timeZone' => 'Asia/Damascus',
+                'dateTime' => Carbon::parse($date . $startTime,'UTC')
+                                        ->addHours(6)
+                                        ->setTimezone($userTimezone)
+                                        ->toRfc3339String(),
+                'timeZone' => $userTimezone,    
             ]));
             $event->setEnd(new EventDateTime([
-                'dateTime' => Carbon::parse($date . $endTime)->toRfc3339String(),
-                'timeZone' => 'Asia/Damascus',
+                'dateTime' => Carbon::parse($date . $endTime,'UTC')
+                                        ->addHours(6)
+                                        ->setTimezone($userTimezone)
+                                        ->toRfc3339String(),
+                'timeZone' => $userTimezone,
             ]));
-            $attendee1 = new Google_Service_Calendar_EventAttendee();
-            $attendee1->setEmail($email);
+            $attendee1 = new EventAttendee();
+            $attendee1->setEmail($email); // البريد الإلكتروني للمدعو
             $event->setAttendees([$attendee1]);
 
+            // إعداد الاجتماع عبر Google Meet
             $conference = new ConferenceData();
             $conferenceRequest = new CreateConferenceRequest();
             $conferenceSolutionKey = new ConferenceSolutionKey();
             $conferenceSolutionKey->setType('hangoutsMeet');
             $conferenceRequest->setConferenceSolutionKey($conferenceSolutionKey);
-            $conferenceRequest->setRequestId('first');
-
+            $conferenceRequest->setRequestId(uniqid()); // معرف فريد للطلب
             $conference->setCreateRequest($conferenceRequest);
             $event->setConferenceData($conference);
 
             $calendarId = 'primary';
-            $event = $service->events->insert($calendarId, $event, ['conferenceDataVersion' => 1]);
 
+            try {
+                // إدراج الحدث مع إرسال الدعوات عبر البريد الإلكتروني
+                $createdEvent = $service->events->insert($calendarId, $event, [
+                    'conferenceDataVersion' => 1,
+                    'sendUpdates' => 'all' // إرسال دعوة إلى جميع الحضور عبر البريد الإلكتروني
+                ]);
+
+                // التأكيد على نجاح الإنشاء وعرض الرابط
+                echo 'Event created: ' . $createdEvent->htmlLink;
+                echo 'Join the meeting: ' . $createdEvent->getHangoutLink();
+
+            } catch (\Exception $e) {
+                echo 'Error creating event: ' . $e->getMessage();
+            }
             return [
-                'eventId' => $event->getId(),
-                'meetUrl' => $event->getHangoutLink(),
+                'eventId' => $createdEvent->getId(),
+                'meetUrl' => $createdEvent->getHangoutLink(),
             ];
         } else {
             $event = $service->events->get('primary', $eventId);

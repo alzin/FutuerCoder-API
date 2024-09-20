@@ -1415,3 +1415,28 @@
 #21 C:\\xampp\\htdocs\\OnlineProgrammingSchool\\artisan(13): Illuminate\\Foundation\\Application->handleCommand(Object(Symfony\\Component\\Console\\Input\\ArgvInput))
 #22 {main}
 "} 
+[2024-09-17 21:18:36] production.ERROR: Command "route:cacge" is not defined.
+
+Did you mean one of these?
+    config:cache
+    event:cache
+    route:cache
+    route:clear
+    route:list
+    view:cache {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"route:cacge\" is not defined.
+
+Did you mean one of these?
+    config:cache
+    event:cache
+    route:cache
+    route:clear
+    route:list
+    view:cache at C:\\xampp\\htdocs\\OnlineProgrammingSchool\\vendor\\symfony\\console\\Application.php:702)
+[stacktrace]
+#0 C:\\xampp\\htdocs\\OnlineProgrammingSchool\\vendor\\symfony\\console\\Application.php(258): Symfony\\Component\\Console\\Application->find('route:cacge')
+#1 C:\\xampp\\htdocs\\OnlineProgrammingSchool\\vendor\\symfony\\console\\Application.php(167): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#2 C:\\xampp\\htdocs\\OnlineProgrammingSchool\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(197): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 C:\\xampp\\htdocs\\OnlineProgrammingSchool\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1203): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 C:\\xampp\\htdocs\\OnlineProgrammingSchool\\artisan(13): Illuminate\\Foundation\\Application->handleCommand(Object(Symfony\\Component\\Console\\Input\\ArgvInput))
+#5 {main}
+"} 

@@ -54,31 +54,53 @@ class CourcesTimeController extends Controller
     {
         $request->validate([
             'courseId' => 'required',
-            'SessionTimings'=>'required',
-            'startTime' => 'required',
-            'endTime' => 'required',
+            'SessionTimings' => 'required|date',
+            'startTime' => 'required|date_format:H:i:s',
+            'endTime' => 'required|date_format:H:i:s',
         ]);
-        //create the time and date and saved it into database with UTC time format
-        $sessionDateUTC = Carbon::parse($request->input('SessionTimings'), 'UTC');
-        $startTime = Carbon::parse($request->input('startTime'), 'Asia/Tokyo');
-        $endTime = Carbon::parse($request->input('endTime'), 'Asia/Tokyo');
-        $startTimeUTC = $startTime->setTimezone('UTC');
-        $endTimeUTC = $endTime->setTimezone('UTC');
 
-        $course_time=Cources_time::create([
+        // Retrieve and combine date and time inputs
+        $sessionDate = $request->input('SessionTimings'); // Format: Y-m-d
+        $startTime = $request->input('startTime'); // Format: H:i:s
+        $endTime = $request->input('endTime'); // Format: H:i:s
+
+        $startTimeFull = $sessionDate . ' ' . $startTime;
+        $endTimeFull = $sessionDate . ' ' . $endTime;
+
+        // Convert startTime and endTime to Carbon objects in Asia/Tokyo timezone and then to UTC
+        $startTimeTokyo = Carbon::createFromFormat('Y-m-d H:i:s', $startTimeFull, 'Asia/Tokyo');
+        $endTimeTokyo = Carbon::createFromFormat('Y-m-d H:i:s', $endTimeFull, 'Asia/Tokyo');
+
+        $startTimeUTC = $startTimeTokyo->setTimezone('UTC');
+        $endTimeUTC = $endTimeTokyo->setTimezone('UTC');
+
+        // Check if the end time has crossed to the next day in UTC
+        if ($startTimeUTC->toDateString() !== $endTimeUTC->toDateString()) {
+            // Adjust SessionTimings if the end time crosses into the next day
+            $sessionDateUTC = $startTimeUTC->toDateString(); // Set the start date in UTC
+        } else {
+            // Keep the original SessionTimings in UTC
+            $sessionDateUTC = $startTimeUTC->toDateString();
+        }
+
+        // Save into database with UTC time
+        $course_time = Cources_time::create([
             'courseId' => $request->courseId,
-            'SessionTimings' => $sessionDateUTC,
-            'startTime' => $startTimeUTC,
-            'endTime' => $endTimeUTC,
+            'SessionTimings' => $sessionDateUTC, // Save SessionTimings in UTC
+            'startTime' => $startTimeUTC->toTimeString(), // Save startTime in UTC
+            'endTime' => $endTimeUTC->toTimeString(), // Save endTime in UTC
         ]);
-        $course=Cources::find($request->courseId);
-        return response()->json([
-                        'message'=>'course time created ',
-                        'course_name'=>$course->title,
-                        'data'=>$course_time
 
+        $course = Cources::find($request->courseId);
+
+        return response()->json([
+            'message' => 'course time created',
+            'course_name' => $course->title,
+            'data' => $course_time
         ]);
     }
+
+    
     /**
      * Update the specified resource in storage.
      */
@@ -174,6 +196,50 @@ class CourcesTimeController extends Controller
     
         return response()->json(["message" => "successful", "data" => $availableTimesInUserTimeZone]);
     }
+    
+    public function getAvailableTimeZone(Request $request)
+    {
+        if (!$request->timezone) {
+            return response()->json(['message' => 'Timezone is required'], 400);
+        }
+
+        $timezone = $request->timezone;
+
+        $nowInRequestedTimeZone = Carbon::now($timezone);
+        $nowUTC = $nowInRequestedTimeZone->copy()->setTimezone('UTC');
+
+        $availableTimes = Cources_time::where('courseId', $request->course_id)
+            ->where('studentsCount', '<', 3)
+            ->where(function ($query) use ($nowUTC) {
+                $query->where('SessionTimings', '>', $nowUTC->toDateString())
+                    ->orWhere(function ($query) use ($nowUTC) {
+                        $query->where('SessionTimings', $nowUTC->toDateString())
+                                ->where('endTime', '>', $nowUTC->toTimeString());
+                    });
+            })
+            ->get(['SessionTimings', 'startTime', 'endTime', 'studentsCount', 'id']);
+
+        $availableTimesInRequestedTimeZone = $availableTimes->map(function ($time) use ($timezone) {
+            // Convert SessionTimings from UTC to the requested timezone
+            $sessionDateInRequestedTimezone = Carbon::parse($time->SessionTimings . ' ' . $time->startTime, 'UTC')->setTimezone($timezone);
+
+            // Convert startTime and endTime from UTC to the requested timezone
+            $startTimeInRequestedTimezone = Carbon::parse($time->startTime, 'UTC')->setTimezone($timezone);
+            $endTimeInRequestedTimezone = Carbon::parse($time->endTime, 'UTC')->setTimezone($timezone);
+
+            return [
+                'SessionTimings' => $sessionDateInRequestedTimezone->toDateString(), // date with time
+                'startTime' => $startTimeInRequestedTimezone->toTimeString(),
+                'endTime' => $endTimeInRequestedTimezone->toTimeString(),
+                'studentsCount' => $time->studentsCount,
+                'id' => $time->id
+            ];
+        });
+
+        return response()->json(["message" => "successful", "data" => $availableTimesInRequestedTimeZone]);
+    }
+
+
     
     /**
      * Remove the specified resource from storage.

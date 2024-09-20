@@ -54,6 +54,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/{userId}', [CourcesTimeController::class, 'index']);
         Route::get('/courseDays/{id}/{courseId}', [CourcesTimeController::class, 'getDaysByCourseId']);
         Route::get('/availableTimes/{course_id}/{sessionTimie}/{userId}', [CourcesTimeController::class, 'getAvailableTimes']);
+        route::post('/timezone',[CourcesTimeController::class,'getAvailableTimeZone']);
         Route::put('/{id}', [CourcesTimeController::class, 'update']);
         Route::delete('/', [CourcesTimeController::class, 'destroy']);
     });
