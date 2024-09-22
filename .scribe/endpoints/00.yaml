@@ -26,7 +26,7 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: ex
+        example: ut
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -35,15 +35,55 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: alias
+        example: et
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      title: ex
-      description: alias
+      title: ut
+      description: et
     fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/blogs/store
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Store a newly created resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      image:
+        name: image
+        description: 'Must be an image. Must not be greater than 2048 kilobytes.'
+        required: true
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters: []
+    fileParameters:
+      image: null
     responses: []
     responseFields: []
     auth: []
@@ -76,8 +116,8 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 200
-        content: '{"current_page":1,"data":[{"id":1,"title":"fdgdfg","description":"fgdfgdf","ImagePath":"https:\/\/i.postimg.cc\/jjfjwTWs\/image.png","created_at":"2024-08-26T19:41:38.000000Z","updated_at":"2024-08-27T14:47:47.000000Z"},{"id":2,"title":"hhh","description":"first by postman","ImagePath":"https:\/\/onlineschool-production.up.railway.app\/storage\/blogs\/1724705235.jpg","created_at":"2024-08-26T20:47:15.000000Z","updated_at":"2024-08-26T20:47:15.000000Z"},{"id":3,"title":"mmm","description":"first by postman","ImagePath":"https:\/\/onlineschool-production.up.railway.app\/storage\/blogs\/1724705869.jpg","created_at":"2024-08-26T20:57:49.000000Z","updated_at":"2024-08-26T20:57:49.000000Z"},{"id":4,"title":"kkk","description":"first by postman","ImagePath":"uploads\/images\/blogs\/1724743149.jpg","created_at":"2024-08-27T07:19:09.000000Z","updated_at":"2024-08-27T07:19:09.000000Z"},{"id":5,"title":"kkk","description":"first by postman","ImagePath":"uploads\/images\/blogs\/1724746595.jpg","created_at":"2024-08-27T08:16:35.000000Z","updated_at":"2024-08-27T08:16:35.000000Z"}],"first_page_url":"https:\/\/onlineschool-production.up.railway.app\/api\/blogs?page=1","from":1,"last_page":2,"last_page_url":"https:\/\/onlineschool-production.up.railway.app\/api\/blogs?page=2","links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https:\/\/onlineschool-production.up.railway.app\/api\/blogs?page=1","label":"1","active":true},{"url":"https:\/\/onlineschool-production.up.railway.app\/api\/blogs?page=2","label":"2","active":false},{"url":"https:\/\/onlineschool-production.up.railway.app\/api\/blogs?page=2","label":"Next &raquo;","active":false}],"next_page_url":"https:\/\/onlineschool-production.up.railway.app\/api\/blogs?page=2","path":"https:\/\/onlineschool-production.up.railway.app\/api\/blogs","per_page":5,"prev_page_url":null,"to":5,"total":9}'
+        status: 401
+        content: '{"message":"Unauthenticated."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -111,13 +151,13 @@ endpoints:
         name: id
         description: 'The ID of the blog.'
         required: true
-        example: error
+        example: tenetur
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      id: error
+      id: tenetur
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -125,7 +165,7 @@ endpoints:
         name: title
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: gaxdezpuzycfev
+        example: emk
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -134,14 +174,14 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: ducimus
+        example: nulla
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      title: gaxdezpuzycfev
-      description: ducimus
+      title: emk
+      description: nulla
     fileParameters: []
     responses: []
     responseFields: []
@@ -205,13 +245,13 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: lkrajcik@example.net
+        example: camilla03@example.com
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      email: lkrajcik@example.net
+      email: camilla03@example.com
     fileParameters: []
     responses: []
     responseFields: []
@@ -245,64 +285,14 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 200
-        content: '{"current_page":1,"data":[{"id":1,"email":"obedag@gmail.com","created_at":"2024-08-27T13:33:47.000000Z","updated_at":"2024-08-27T13:33:47.000000Z"},{"id":3,"email":"obedahh@gmail.com","created_at":"2024-08-27T13:46:33.000000Z","updated_at":"2024-08-27T13:46:33.000000Z"},{"id":4,"email":"obedag1@gmail.com","created_at":"2024-08-27T14:51:10.000000Z","updated_at":"2024-08-27T14:51:10.000000Z"},{"id":5,"email":"obedahh11111111111@gmail.com","created_at":"2024-08-27T15:11:45.000000Z","updated_at":"2024-08-27T15:11:45.000000Z"},{"id":6,"email":"obedag111111111111111111111111@gmail.com","created_at":"2024-08-27T15:12:49.000000Z","updated_at":"2024-08-27T15:12:49.000000Z"},{"id":7,"email":"aaa@gmail.com","created_at":"2024-08-27T17:05:40.000000Z","updated_at":"2024-08-27T17:05:40.000000Z"},{"id":8,"email":"aaaaa@gmail.com","created_at":"2024-08-27T17:16:02.000000Z","updated_at":"2024-08-27T17:16:02.000000Z"},{"id":9,"email":"aaabbb@gmail.com","created_at":"2024-08-27T17:17:57.000000Z","updated_at":"2024-08-27T17:17:57.000000Z"},{"id":10,"email":"aannnna@gmail.com","created_at":"2024-08-27T17:21:19.000000Z","updated_at":"2024-08-27T17:21:19.000000Z"},{"id":11,"email":"obedahh12@gmail.com","created_at":"2024-08-28T06:27:58.000000Z","updated_at":"2024-08-28T06:27:58.000000Z"}],"first_page_url":"https:\/\/onlineschool-production.up.railway.app\/api\/subscribers?page=1","from":1,"last_page":2,"last_page_url":"https:\/\/onlineschool-production.up.railway.app\/api\/subscribers?page=2","links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https:\/\/onlineschool-production.up.railway.app\/api\/subscribers?page=1","label":"1","active":true},{"url":"https:\/\/onlineschool-production.up.railway.app\/api\/subscribers?page=2","label":"2","active":false},{"url":"https:\/\/onlineschool-production.up.railway.app\/api\/subscribers?page=2","label":"Next &raquo;","active":false}],"next_page_url":"https:\/\/onlineschool-production.up.railway.app\/api\/subscribers?page=2","path":"https:\/\/onlineschool-production.up.railway.app\/api\/subscribers","per_page":10,"prev_page_url":null,"to":10,"total":19}'
+        status: 401
+        content: '{"message":"Unauthenticated."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
           vary: Origin
         description: null
         custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - PUT
-    uri: 'api/subscribers/{id}'
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Update the specified resource in storage.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the subscriber.'
-        required: true
-        example: quaerat
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-    cleanUrlParameters:
-      id: quaerat
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      email:
-        name: email
-        description: ''
-        required: true
-        example: quae
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-    cleanBodyParameters:
-      email: quae
-    fileParameters: []
-    responses: []
     responseFields: []
     auth: []
     controller: null
@@ -364,7 +354,7 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: consequuntur
+        example: labore
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -373,14 +363,14 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: ea
+        example: harum
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      title: consequuntur
-      description: ea
+      title: labore
+      description: harum
     fileParameters: []
     responses: []
     responseFields: []
@@ -414,8 +404,47 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 200
-        content: '[{"status":"success","data":{"current_page":1,"data":[],"first_page_url":"https:\/\/onlineschool-production.up.railway.app\/api\/courses?page=1","from":null,"last_page":1,"last_page_url":"https:\/\/onlineschool-production.up.railway.app\/api\/courses?page=1","links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https:\/\/onlineschool-production.up.railway.app\/api\/courses?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"next_page_url":null,"path":"https:\/\/onlineschool-production.up.railway.app\/api\/courses","per_page":5,"prev_page_url":null,"to":null,"total":0}}]'
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/courses/courseById
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'get course by the student Age'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -449,13 +478,13 @@ endpoints:
         name: id
         description: 'The ID of the course.'
         required: true
-        example: tempora
+        example: expedita
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      id: tempora
+      id: expedita
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -463,7 +492,7 @@ endpoints:
         name: title
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: psxtwauaow
+        example: gsnpmaldnrromwg
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -472,14 +501,14 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: veritatis
+        example: laudantium
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      title: psxtwauaow
-      description: veritatis
+      title: gsnpmaldnrromwg
+      description: laudantium
     fileParameters: []
     responses: []
     responseFields: []
@@ -539,57 +568,47 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      course_id:
-        name: course_id
+      courseId:
+        name: courseId
         description: ''
         required: true
-        example: qui
+        example: rerum
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
-      courseMonth:
-        name: courseMonth
-        description: ''
+      SessionTimings:
+        name: SessionTimings
+        description: 'Must be a valid date.'
         required: true
-        example: id
+        example: '2024-09-22T23:04:35'
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
-      start_time:
-        name: start_time
-        description: ''
+      startTime:
+        name: startTime
+        description: 'Must be a valid date in the format <code>H:i:s</code>.'
         required: true
-        example: inventore
+        example: '23:04:35'
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
-      end_time:
-        name: end_time
-        description: ''
+      endTime:
+        name: endTime
+        description: 'Must be a valid date in the format <code>H:i:s</code>.'
         required: true
-        example: dignissimos
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      day_of_month:
-        name: day_of_month
-        description: ''
-        required: true
-        example: quam
+        example: '23:04:35'
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      course_id: qui
-      courseMonth: id
-      start_time: inventore
-      end_time: dignissimos
-      day_of_month: quam
+      courseId: rerum
+      SessionTimings: '2024-09-22T23:04:35'
+      startTime: '23:04:35'
+      endTime: '23:04:35'
     fileParameters: []
     responses: []
     responseFields: []
@@ -601,13 +620,190 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: api/courses_time
+    uri: 'api/courses_time/{userId}'
     metadata:
       groupName: Endpoints
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
+      description: 'this function will display the time of course based on the user timezone'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      userId:
+        name: userId
+        description: ''
+        required: true
+        example: quo
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      userId: quo
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/courses_time/courseDays/{id}/{courseId}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'get all dates for course based in user timezone'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the courseDay.'
+        required: true
+        example: sequi
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      courseId:
+        name: courseId
+        description: ''
+        required: true
+        example: similique
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: sequi
+      courseId: similique
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/courses_time/availableTimes/{course_id}/{sessionTimie}/{userId}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'git all times for a course date (startTime,endTime) based on user timezone'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      course_id:
+        name: course_id
+        description: 'The ID of the course.'
+        required: true
+        example: voluptate
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      sessionTimie:
+        name: sessionTimie
+        description: ''
+        required: true
+        example: in
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      userId:
+        name: userId
+        description: ''
+        required: true
+        example: itaque
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      course_id: voluptate
+      sessionTimie: in
+      userId: itaque
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/courses_time/timezone
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
       description: ''
       authenticated: false
       custom: []
@@ -621,19 +817,7 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses:
-      -
-        status: 500
-        content: |-
-          {
-              "message": "Server Error"
-          }
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
-        custom: []
+    responses: []
     responseFields: []
     auth: []
     controller: null
@@ -661,13 +845,13 @@ endpoints:
         name: id
         description: 'The ID of the courses time.'
         required: true
-        example: quidem
+        example: exercitationem
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      id: quidem
+      id: exercitationem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -731,20 +915,11 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      courseId:
-        name: courseId
-        description: ''
-        required: true
-        example: magnam
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
       firstName:
         name: firstName
         description: ''
         required: true
-        example: quam
+        example: aut
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -753,7 +928,7 @@ endpoints:
         name: lastName
         description: ''
         required: true
-        example: sit
+        example: maiores
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -762,7 +937,7 @@ endpoints:
         name: age
         description: ''
         required: true
-        example: aut
+        example: qui
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -771,17 +946,26 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: gcronin@example.org
+        example: ellsworth37@example.net
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      timeZone:
+        name: timeZone
+        description: ''
+        required: true
+        example: eum
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      courseId: magnam
-      firstName: quam
-      lastName: sit
-      age: aut
-      email: gcronin@example.org
+      firstName: aut
+      lastName: maiores
+      age: qui
+      email: ellsworth37@example.net
+      timeZone: eum
     fileParameters: []
     responses: []
     responseFields: []
@@ -815,8 +999,8 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 200
-        content: '[{"status":"success","data":{"current_page":1,"data":[],"first_page_url":"https:\/\/onlineschool-production.up.railway.app\/api\/guest_users?page=1","from":null,"last_page":1,"last_page_url":"https:\/\/onlineschool-production.up.railway.app\/api\/guest_users?page=1","links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https:\/\/onlineschool-production.up.railway.app\/api\/guest_users?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"next_page_url":null,"path":"https:\/\/onlineschool-production.up.railway.app\/api\/guest_users","per_page":5,"prev_page_url":null,"to":null,"total":0}}]'
+        status: 401
+        content: '{"message":"Unauthenticated."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -850,13 +1034,13 @@ endpoints:
         name: id
         description: 'The ID of the guest user.'
         required: true
-        example: rerum
+        example: omnis
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      id: rerum
+      id: omnis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -864,7 +1048,7 @@ endpoints:
         name: courseId
         description: ''
         required: true
-        example: maxime
+        example: officia
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -873,7 +1057,7 @@ endpoints:
         name: firstName
         description: ''
         required: true
-        example: adipisci
+        example: veritatis
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -882,7 +1066,7 @@ endpoints:
         name: lastName
         description: ''
         required: true
-        example: quia
+        example: ea
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -891,7 +1075,7 @@ endpoints:
         name: age
         description: ''
         required: true
-        example: sed
+        example: accusamus
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -900,17 +1084,17 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: gutkowski.elenor@example.com
+        example: aliza.wiza@example.com
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      courseId: maxime
-      firstName: adipisci
-      lastName: quia
-      age: sed
-      email: gutkowski.elenor@example.com
+      courseId: officia
+      firstName: veritatis
+      lastName: ea
+      age: accusamus
+      email: aliza.wiza@example.com
     fileParameters: []
     responses: []
     responseFields: []
@@ -944,13 +1128,13 @@ endpoints:
         name: id
         description: ''
         required: true
-        example: quam
+        example: laudantium
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      id: quam
+      id: laudantium
     fileParameters: []
     responses: []
     responseFields: []
@@ -984,7 +1168,7 @@ endpoints:
         name: userId
         description: ''
         required: true
-        example: 19
+        example: 8
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -993,54 +1177,84 @@ endpoints:
         name: courseId
         description: ''
         required: true
-        example: 2
+        example: 11
         type: integer
         enumValues: []
         exampleWasSpecified: false
         custom: []
-      numberOfMonth:
-        name: numberOfMonth
+      time:
+        name: time
         description: ''
         required: true
-        example: 19
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      dayOfMonth:
-        name: dayOfMonth
-        description: ''
-        required: true
-        example: 16
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      startTime:
-        name: startTime
-        description: 'Must be a valid date in the format <code>H:i:s</code>.'
-        required: true
-        example: '00:23:36'
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      endTime:
-        name: endTime
-        description: 'Must be a valid date in the format <code>H:i:s</code>.'
-        required: true
-        example: '00:23:36'
+        example: quas
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      userId: 19
-      courseId: 2
-      numberOfMonth: 19
-      dayOfMonth: 16
-      startTime: '00:23:36'
-      endTime: '00:23:36'
+      userId: 8
+      courseId: 11
+      time: quas
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/free_lessons/createSession
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      CourseId:
+        name: CourseId
+        description: ''
+        required: true
+        example: reprehenderit
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      SessionTimings:
+        name: SessionTimings
+        description: ''
+        required: true
+        example: sit
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      guestUserId:
+        name: guestUserId
+        description: ''
+        required: true
+        example: magnam
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      CourseId: reprehenderit
+      SessionTimings: sit
+      guestUserId: magnam
     fileParameters: []
     responses: []
     responseFields: []
@@ -1074,11 +1288,8 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 500
-        content: |-
-          {
-              "message": "Server Error"
-          }
+        status: 401
+        content: '{"message":"Unauthenticated."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -1112,48 +1323,21 @@ endpoints:
         name: id
         description: 'The ID of the free lesson.'
         required: true
-        example: modi
+        example: expedita
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      id: modi
+      id: expedita
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      numberOfMonth:
-        name: numberOfMonth
+      sessionTime:
+        name: sessionTime
         description: ''
         required: true
-        example: quibusdam
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      dayOfMonth:
-        name: dayOfMonth
-        description: ''
-        required: true
-        example: ut
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      startTime:
-        name: startTime
-        description: ''
-        required: true
-        example: in
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      endTime:
-        name: endTime
-        description: ''
-        required: true
-        example: explicabo
+        example: tempore
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -1162,17 +1346,14 @@ endpoints:
         name: meetUrl
         description: ''
         required: true
-        example: autem
+        example: deserunt
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      numberOfMonth: quibusdam
-      dayOfMonth: ut
-      startTime: in
-      endTime: explicabo
-      meetUrl: autem
+      sessionTime: tempore
+      meetUrl: deserunt
     fileParameters: []
     responses: []
     responseFields: []
@@ -1206,13 +1387,93 @@ endpoints:
         name: id
         description: ''
         required: true
+        example: exercitationem
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      id: exercitationem
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/Testimonial
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Show the form for creating a new resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      firstName:
+        name: firstName
+        description: ''
+        required: true
+        example: modi
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      lastName:
+        name: lastName
+        description: ''
+        required: true
+        example: ducimus
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      age:
+        name: age
+        description: ''
+        required: true
+        example: aspernatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: frieda.kutch@example.org
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      timeZone:
+        name: timeZone
+        description: ''
+        required: true
         example: voluptas
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      id: voluptas
+      firstName: modi
+      lastName: ducimus
+      age: aspernatur
+      email: frieda.kutch@example.org
+      timeZone: voluptas
     fileParameters: []
     responses: []
     responseFields: []
@@ -1224,7 +1485,176 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: api/create_event
+    uri: api/Testimonial
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display a listing of the resource.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/Testimonial/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update the specified resource in storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the Testimonial.'
+        required: true
+        example: sit
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: sit
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      courseId:
+        name: courseId
+        description: ''
+        required: true
+        example: ratione
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      firstName:
+        name: firstName
+        description: ''
+        required: true
+        example: inventore
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      lastName:
+        name: lastName
+        description: ''
+        required: true
+        example: id
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      age:
+        name: age
+        description: ''
+        required: true
+        example: sit
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: angeline.kuphal@example.org
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      courseId: ratione
+      firstName: inventore
+      lastName: id
+      age: sit
+      email: angeline.kuphal@example.org
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: api/Testimonial
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Remove the specified resource from storage.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      id:
+        name: id
+        description: ''
+        required: true
+        example: laborum
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      id: laborum
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/users
     metadata:
       groupName: Endpoints
       groupDescription: ''
@@ -1246,11 +1676,509 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 200
-        content: 'https://meet.google.com/mft-oddf-wse'
+        status: 401
+        content: '{"message":"Unauthenticated."}'
         headers:
-          content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/users/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the user.'
+        required: true
+        example: assumenda
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: assumenda
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/users/signIn
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      firstName:
+        name: firstName
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: yiecmafawsnlypt
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      lastName:
+        name: lastName
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: owuh
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      age:
+        name: age
+        description: ''
+        required: true
+        example: magnam
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      timeZone:
+        name: timeZone
+        description: ''
+        required: true
+        example: et
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address. Must not be greater than 255 characters.'
+        required: true
+        example: rebeca28@example.org
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      password:
+        name: password
+        description: 'Must be at least 8 characters.'
+        required: true
+        example: '7|G"Y,V5$7g[o<^p]5X'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      firstName: yiecmafawsnlypt
+      lastName: owuh
+      age: magnam
+      timeZone: et
+      email: rebeca28@example.org
+      password: '7|G"Y,V5$7g[o<^p]5X'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/users/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the user.'
+        required: true
+        example: sint
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: sint
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: fgqybalctvbwzawksswi
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      email:
+        name: email
+        description: ''
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      password:
+        name: password
+        description: 'Must be at least 8 characters.'
+        required: false
+        example: '^8cdozUr%qTr;q?'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      name: fgqybalctvbwzawksswi
+      password: '^8cdozUr%qTr;q?'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/users/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the user.'
+        required: true
+        example: aut
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: aut
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/register1
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Handle an incoming registration request.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      firstName:
+        name: firstName
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: zrthtzhgrqiqi
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      lastName:
+        name: lastName
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: njzpuhrfbvjwizgpmnxyy
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      age:
+        name: age
+        description: 'Must be at least 0.'
+        required: true
+        example: 41
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      timeZone:
+        name: timeZone
+        description: ''
+        required: true
+        example: beatae
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address. Must not be greater than 255 characters.'
+        required: true
+        example: mario.carroll@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      password:
+        name: password
+        description: 'Must be at least 8 characters.'
+        required: true
+        example: )-%)_vClGE5h(p
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      firstName: zrthtzhgrqiqi
+      lastName: njzpuhrfbvjwizgpmnxyy
+      age: 41
+      timeZone: beatae
+      email: mario.carroll@example.com
+      password: )-%)_vClGE5h(p
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/email/verify/{id}/{hash}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: "Mark the authenticated user's email address as verified."
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the verify.'
+        required: true
+        example: impedit
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      hash:
+        name: hash
+        description: ''
+        required: true
+        example: iusto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: impedit
+      hash: iusto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 403
+        content: |-
+          {
+              "message": "Invalid signature."
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/verify-subscriber-email/{token}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      token:
+        name: token
+        description: ''
+        required: true
+        example: reiciendis
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      token: reiciendis
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 400
+        content: '{"message":"Invalid or expired verification token."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/verify-guest-email/{token}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      token:
+        name: token
+        description: ''
+        required: true
+        example: et
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      token: et
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 400
+        content: '{"message":"Invalid or expired verification token."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
           vary: Origin
         description: null
         custom: []

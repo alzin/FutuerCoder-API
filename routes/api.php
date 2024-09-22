@@ -104,9 +104,5 @@ Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke
         ->middleware(['signed'])
         ->name('verification.verify');
 
-
-
-
-
 Route::get('/verify-subscriber-email/{token}', [SubscribersController::class, 'verify']);
 Route::get('/verify-guest-email/{token}', [GuestUsersController::class, 'verify']);
