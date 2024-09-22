@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Cources;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 
 class CourcesController extends Controller
@@ -120,7 +119,6 @@ class CourcesController extends Controller
         ]);
         /*
         if ($request->hasFile('image')) {
-            // حذف الصورة القديمة إذا وجدت
             if ($course->image) {
                 $oldImagePath = public_path('images/courses/' . $course->image);
                 if (file_exists($oldImagePath)) {
@@ -131,13 +129,11 @@ class CourcesController extends Controller
                 }
             }
         }
-            // حفظ الصورة الجديدة
         $file_extintion = $request->image->getClientOriginalExtension();
         $file_name = time() . '.' . $file_extintion;
         $path = 'images/courses';
         Storage::disk('public')->put($path, $request->image);
         */
-            // تحديث مسار الصورة في قاعدة البيانات
         $course->imagePath = $request->imagePath;
         $course->title = $request->title;
         $course->teacher=$request->teacher;
@@ -150,27 +146,24 @@ class CourcesController extends Controller
         $course->max_age=$request->max_age;
     
         $course->save();
-        // إرجاع استجابة JSON تحتوي على البيانات المحدثة للمدونة
         return response()->json([
             'message' => 'course updated',
             'course : ' => $course
         ]);
     }
       /**
-     * الحصول على الكورسات بناءً على العمر المدخل.
+     * get course by the student Age
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function getCoursesByAge(Request $request)
     {
-        // الحصول على العمر من طلب المستخدم
         $age = $request->input('age');
      
         $courses = Cources::where('min_age', '<=', $age)
                          ->where('max_age', '>=', $age)
                          ->get();
-        // إرجاع النتيجة على شكل JSON
         return response()->json($courses);
     }
     /**
