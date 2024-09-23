@@ -32,9 +32,9 @@ class GuestUserService
             'verification_token' => $verificationToken
         ]);
         $courseId=$data['courseId'];
-        $SessionTimings=$data['SessionTimings'];
+        $sessionTimings=$data['sessionTimings'];
 
-        $verificationUrl = url("/api/verify-guest-email/{$verificationToken}/{$courseId}/{$SessionTimings}");
+        $verificationUrl = url("/api/verify-guest-email/{$verificationToken}/{$courseId}/{$sessionTimings}");
         Mail::to($guestUser->email)->send(new VerifyEmail($verificationUrl));
 
         return $guestUser;

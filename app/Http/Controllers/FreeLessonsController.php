@@ -157,8 +157,8 @@ class FreeLessonsController extends Controller
         public function createSession(Request $request)
     {
         $request->validate([
-            'CourseId' => 'required',
-            'SessionTimings' => 'required',
+            'courseId' => 'required',
+            'sessionTimings' => 'required',
             'firstName' => 'required',
             'lastName' => 'required',
             'age' => 'required',
