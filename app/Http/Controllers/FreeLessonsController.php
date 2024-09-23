@@ -166,7 +166,7 @@ class FreeLessonsController extends Controller
             'timeZone' => 'required',
         ]);
 
-        $guestUserData = $request->only(['firstName', 'lastName', 'age', 'email', 'timeZone']);
+        $guestUserData = $request->all();
         $guestUser = $this->guestUserService->createGuestUser($guestUserData);
 
         // التحقق وإنشاء الجلسة
