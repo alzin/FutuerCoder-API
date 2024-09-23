@@ -93,9 +93,9 @@ class GuestUsersController extends Controller
                     'data'=>$gestUser
             ]);
     }
-    public function verify($token)
+    public function verify($token,$courseId,$sessionTimings)
     {
-        if ($this->guestUserService->verifyGuestUser($token)) {
+        if ($this->guestUserService->verifyGuestUser($token,$courseId,$sessionTimings)) {
             return response()->json(['message' => 'Email verified successfully.']);
         }
 

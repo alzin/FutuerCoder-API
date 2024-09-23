@@ -105,4 +105,4 @@ Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke
         ->name('verification.verify');
 
 Route::get('/verify-subscriber-email/{token}', [SubscribersController::class, 'verify']);
-Route::get('/verify-guest-email/{token}', [GuestUsersController::class, 'verify']);
+Route::get('/verify-guest-email/{token}/{courseId}/{sessionTimings}', [GuestUsersController::class, 'verify']);
