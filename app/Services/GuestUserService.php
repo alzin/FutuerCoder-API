@@ -40,45 +40,68 @@ class GuestUserService
         return $guestUser;
     }
 
-    public function verifyGuestUser($token, $courseId, $sessionTimings)
+        public function verifyGuestUser($token, $courseId, $sessionTimings)
     {
         $guestUser = GuestUsers::where('verification_token', $token)->first();
 
-        if ($guestUser ) {
-            $guestUser->update([
-                'email_verified_at' => now(),
-                'verification_token' => null,
-                'email_verified' => 1
-            ]);
-            $existingtime = Cources_time::where('courseId', $courseId)
-                ->where('id', $sessionTimings)
-                ->where('studentsCount', '<', 3)
-                ->first();
-
-            if (!$existingtime) {
-                return response()->json(['message' => 'No available session time found'], 404);
-            }
-
-            $existingLesson = FreeLessons::where('sessionTime', $existingtime->id)->first();
-
-            if ($existingLesson && $existingtime->studentsCount < 3) {
-                $eventDetails = $this->calendarService->createEvent($guestUser->email, $existingtime->startTime, $existingtime->endTime, $existingtime->SessionTimings, $existingLesson->eventId, $guestUser->timeZone);
-                $existingtime->increment('studentsCount');
-            } else {
-                $eventDetails = $this->calendarService->createEvent($guestUser->email, $existingtime->startTime, $existingtime->endTime, $existingtime->SessionTimings, 0, $guestUser->timeZone);
-                $existingtime->increment('studentsCount');
-            }
-
-            FreeLessons::create([
-                'courseId' => $courseId,
-                'userId' => $guestUser->id,
-                'sessionTime' => $existingtime->id,
-                'meetUrl' => $eventDetails['meetUrl'],
-                'eventId' => $eventDetails['eventId']
-            ]);
-            return true;
+        if (!$guestUser) {
+            return [
+                'status' => 'error',
+                'message' => 'Invalid or expired verification token.',
+                'statusCode' => 400
+            ];
         }
 
-        return false;
+        // تحديث حالة التحقق من البريد الإلكتروني
+        $guestUser->update([
+            'email_verified_at' => now(),
+            'verification_token' => null,
+            'email_verified' => 1
+        ]);
+
+        // البحث عن الوقت المتاح للجلسة
+        $existingtime = Cources_time::where('courseId', $courseId)
+            ->where('id', $sessionTimings)
+            ->where('studentsCount', '<', 3)
+            ->first();
+
+        if (!$existingtime) {
+            return [
+                'status' => 'error',
+                'message' => 'No available session time found.',
+                'statusCode' => 404
+            ];
+        }
+
+        // البحث عن جلسة متاحة للانضمام إليها أو إنشاء جلسة جديدة
+        $existingLesson = FreeLessons::where('sessionTime', $existingtime->id)->first();
+
+        if ($existingLesson && $existingtime->studentsCount < 3) {
+            $eventDetails = $this->calendarService->createEvent($guestUser->email, $existingtime->startTime, $existingtime->endTime, $existingtime->SessionTimings, $existingLesson->eventId, $guestUser->timeZone);
+        } else {
+            $eventDetails = $this->calendarService->createEvent($guestUser->email, $existingtime->startTime, $existingtime->endTime, $existingtime->SessionTimings, 0, $guestUser->timeZone);
+        }
+
+        $existingtime->increment('studentsCount');
+
+        // إنشاء جلسة جديدة
+        $freeLesson = FreeLessons::create([
+            'courseId' => $courseId,
+            'userId' => $guestUser->id,
+            'sessionTime' => $existingtime->id,
+            'meetUrl' => $eventDetails['meetUrl'],
+            'eventId' => $eventDetails['eventId']
+        ]);
+
+        return [
+            'status' => 'success',
+            'guestUser' => $guestUser,
+            'sessionDetails' => [
+                'sessionTime' => $existingtime->SessionTimings,
+                'meetUrl' => $eventDetails['meetUrl'],
+                'eventId' => $eventDetails['eventId']
+            ]
+        ];
     }
+
 }
