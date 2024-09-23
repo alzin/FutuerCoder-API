@@ -95,18 +95,28 @@ class GoogleCalendarService
                     'conferenceDataVersion' => 1,
                     'sendUpdates' => 'all' // إرسال دعوة إلى جميع الحضور عبر البريد الإلكتروني
                 ]);
-
+            
                 // التأكيد على نجاح الإنشاء وعرض الرابط
                 echo 'Event created: ' . $createdEvent->htmlLink;
                 echo 'Join the meeting: ' . $createdEvent->getHangoutLink();
-
+            
+                // في حالة النجاح، نعيد تفاصيل الحدث
+                return [
+                    'eventId' => $createdEvent->getId(),
+                    'meetUrl' => $createdEvent->getHangoutLink(),
+                ];
+            
             } catch (\Exception $e) {
+                // عرض رسالة الخطأ
                 echo 'Error creating event: ' . $e->getMessage();
+            
+                // إعادة رسالة خطأ مفصلة بدلاً من محاولة الوصول إلى $createdEvent
+                return [
+                    'error' => 'Failed to create event',
+                    'message' => $e->getMessage()
+                ];
             }
-            return [
-                'eventId' => $createdEvent->getId(),
-                'meetUrl' => $createdEvent->getHangoutLink(),
-            ];
+            
         } else {
             $event = $service->events->get('primary', $eventId);
             $attendee = new Google_Service_Calendar_EventAttendee();
