@@ -100,7 +100,7 @@ return [
 
         // Set this to true if your API should be authenticated by default. If so, you must also set `enabled` (above) to true.
         // You can then use @unauthenticated or @authenticated on individual endpoints to change their status from the default.
-        'default' => false,
+        'default' => true,
 
         // Where is the auth value meant to be sent in a request?
         // Options: query, body, basic, bearer, header (for custom header)
@@ -115,7 +115,7 @@ return [
 
         // Placeholder your users will see for the auth parameter in the example requests.
         // Set this to null if you want Scribe to use a random value as placeholder instead.
-        'placeholder' => '{YOUR_AUTH_KEY}',
+        'placeholder' => env('SCRIBE_AUTH_KEY'),
 
         // Any extra authentication-related info for your users. Markdown and HTML are supported.
         'extra_info' => 'You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.',

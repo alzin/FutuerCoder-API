@@ -3,18 +3,26 @@
 namespace App\Services;
 
 use App\Models\GuestUsers;
+use App\Models\Cources;
+use App\Models\Cources_time;
+use App\Models\FreeLessons;
 use Illuminate\Support\Facades\Mail;
+use App\Services\GoogleCalendarService;
 use Illuminate\Support\Str;
 use App\Mail\VerifyEmail;
-
 class GuestUserService
 {
+    protected $calendarService;
+
+    public function __construct(GoogleCalendarService $calendarService)
+    {
+        $this->calendarService = $calendarService;
+    }
+
     public function createGuestUser($data)
     {
-        // توليد رمز التحقق
         $verificationToken = Str::random(32);
 
-        // إنشاء المستخدم الضيف
         $guestUser = GuestUsers::create([
             'firstName' => $data['firstName'],
             'lastName' => $data['lastName'],
@@ -24,29 +32,43 @@ class GuestUserService
             'verification_token' => $verificationToken
         ]);
 
-        // إعداد رابط التحقق
         $verificationUrl = url("/api/verify-guest-email/{$verificationToken}");
-
-        // إرسال البريد الإلكتروني
         Mail::to($guestUser->email)->send(new VerifyEmail($verificationUrl));
 
         return $guestUser;
     }
 
-    public function verifyGuestUser($token)
+    public function verifyGuestUser($token, $courseId, $sessionTimings)
     {
-        // البحث عن المستخدم الضيف باستخدام رمز التحقق
         $guestUser = GuestUsers::where('verification_token', $token)->first();
 
-        if ($guestUser) {
-            // تأكيد البريد الإلكتروني
-            $guestUser->update([
-                'email_verified_at' => now(),
-                'verification_token' => null,
-                'email_verified' => 1
-            ]);
+        if ($guestUser && $guestUser->email_verified == 1) {
+            $existingtime = Cources_time::where('courseId', $courseId)
+                ->where('id', $sessionTimings)
+                ->where('studentsCount', '<', 3)
+                ->first();
 
-            return true;
+            if (!$existingtime) {
+                return response()->json(['message' => 'No available session time found'], 404);
+            }
+
+            $existingLesson = FreeLessons::where('sessionTime', $existingtime->id)->first();
+
+            if ($existingLesson && $existingtime->studentsCount < 3) {
+                $eventDetails = $this->calendarService->createEvent($guestUser->email, $existingtime->startTime, $existingtime->endTime, $existingtime->SessionTimings, $existingLesson->eventId, $guestUser->timeZone);
+                $existingtime->increment('studentsCount');
+            } else {
+                $eventDetails = $this->calendarService->createEvent($guestUser->email, $existingtime->startTime, $existingtime->endTime, $existingtime->SessionTimings, 0, $guestUser->timeZone);
+                $existingtime->increment('studentsCount');
+            }
+
+            return FreeLessons::create([
+                'courseId' => $courseId,
+                'userId' => $guestUser->id,
+                'sessionTime' => $existingtime->id,
+                'meetUrl' => $eventDetails['meetUrl'],
+                'eventId' => $eventDetails['eventId']
+            ]);
         }
 
         return false;

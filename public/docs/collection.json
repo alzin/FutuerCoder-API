@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "bc1f122d-e25f-42ae-85df-ec70282785c0",
+        "_postman_id": "626a10f0-dc9c-46f5-b798-aec3c86f0f7c",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,12 +41,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"ut\",\"description\":\"et\"}"
+                            "raw": "{\"title\":\"fugiat\",\"description\":\"hic\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -80,10 +77,7 @@
                                 }
                             ]
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -108,10 +102,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -129,8 +120,8 @@
                                     "value": "Origin"
                                 }
                             ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "code": 200,
+                            "body": "{\"current_page\":1,\"data\":[{\"id\":1,\"title\":\"Blog Titless\",\"description\":\"Blog Description\",\"ImagePath\":\"https:\\\/\\\/i.postimg.cc\\\/jjfjwTWs\\\/image.png\",\"created_at\":\"2024-09-10T10:02:37.000000Z\",\"updated_at\":\"2024-09-16T11:51:09.000000Z\"},{\"id\":3,\"title\":\"blog title\",\"description\":\"blog description\",\"ImagePath\":\"https:\\\/\\\/i.postimg.cc\\\/jjfjwTWs\\\/image.png\",\"created_at\":\"2024-09-22T11:39:46.000000Z\",\"updated_at\":\"2024-09-22T11:39:46.000000Z\"}],\"first_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/blogs?page=1\",\"from\":1,\"last_page\":1,\"last_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/blogs?page=1\",\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/blogs?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"next_page_url\":null,\"path\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/blogs\",\"per_page\":5,\"prev_page_url\":null,\"to\":2,\"total\":2}",
                             "name": ""
                         }
                     ]
@@ -147,7 +138,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "tenetur",
+                                    "value": "accusamus",
                                     "description": "The ID of the blog."
                                 }
                             ]
@@ -165,12 +156,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"emk\",\"description\":\"nulla\"}"
+                            "raw": "{\"title\":\"khepxipqbkwirczzv\",\"description\":\"consequuntur\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -195,10 +183,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -224,12 +209,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"camilla03@example.com\"}"
+                            "raw": "{\"email\":\"erna.herzog@example.net\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -254,10 +236,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -275,8 +254,8 @@
                                     "value": "Origin"
                                 }
                             ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "code": 200,
+                            "body": "{\"current_page\":1,\"data\":[{\"id\":1,\"email\":\"audirezk@gmail.com\",\"email_verified_at\":\"2024-09-10 13:03:16\",\"verification_token\":null,\"email_verified\":1,\"created_at\":\"2024-09-10T10:02:58.000000Z\",\"updated_at\":\"2024-09-10T10:03:16.000000Z\"},{\"id\":2,\"email\":\"obedah9600@gmail.com\",\"email_verified_at\":\"2024-09-12 13:55:02\",\"verification_token\":null,\"email_verified\":1,\"created_at\":\"2024-09-12T10:54:45.000000Z\",\"updated_at\":\"2024-09-12T10:55:02.000000Z\"}],\"first_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/subscribers?page=1\",\"from\":1,\"last_page\":1,\"last_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/subscribers?page=1\",\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/subscribers?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"next_page_url\":null,\"path\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/subscribers\",\"per_page\":10,\"prev_page_url\":null,\"to\":2,\"total\":2}",
                             "name": ""
                         }
                     ]
@@ -302,10 +281,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -331,12 +307,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"labore\",\"description\":\"harum\"}"
+                            "raw": "{\"title\":\"dicta\",\"description\":\"quia\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -361,10 +334,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -382,8 +352,8 @@
                                     "value": "Origin"
                                 }
                             ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "code": 200,
+                            "body": "[{\"status\":\"success\",\"data\":{\"current_page\":1,\"data\":[{\"id\":1,\"title\":\"laravel\",\"teacher\":\"obedah\",\"description\":\"learn laravel 11\",\"imagePath\":\"https:\\\/\\\/i.postimg.cc\\\/jjfjwTWs\\\/image.png\",\"price\":\"1000.00\",\"min_age\":15,\"max_age\":30,\"course_outline\":\"course outline\",\"duration_in_session\":60,\"course_start_date\":\"2024-10-01\",\"created_at\":\"2024-09-10T07:27:37.000000Z\",\"updated_at\":\"2024-09-10T07:27:37.000000Z\"},{\"id\":2,\"title\":\"Course Title\",\"teacher\":\"Course Teacher\",\"description\":\"Course Description\",\"imagePath\":\"https:\\\/\\\/i.postimg.cc\\\/jjfjwTWs\\\/image.png\",\"price\":\"2000.00\",\"min_age\":12,\"max_age\":15,\"course_outline\":\"Course Outline\",\"duration_in_session\":60,\"course_start_date\":\"2024-09-10\",\"created_at\":\"2024-09-10T10:04:10.000000Z\",\"updated_at\":\"2024-09-10T10:04:10.000000Z\"},{\"id\":3,\"title\":\"css\",\"teacher\":\"rezk\",\"description\":\"learn css\",\"imagePath\":\"https:\\\/\\\/i.postimg.cc\\\/jjfjwTWs\\\/image.png\",\"price\":\"1000.00\",\"min_age\":15,\"max_age\":30,\"course_outline\":\"course outline\",\"duration_in_session\":60,\"course_start_date\":\"2024-10-01\",\"created_at\":\"2024-09-15T06:35:48.000000Z\",\"updated_at\":\"2024-09-15T06:35:48.000000Z\"},{\"id\":4,\"title\":\"python\",\"teacher\":\"obedah\",\"description\":\"learn laravel 11\",\"imagePath\":\"https:\\\/\\\/i.postimg.cc\\\/jjfjwTWs\\\/image.png\",\"price\":\"1000.00\",\"min_age\":15,\"max_age\":30,\"course_outline\":\"course outline\",\"duration_in_session\":60,\"course_start_date\":\"2024-10-01\",\"created_at\":\"2024-09-15T10:22:55.000000Z\",\"updated_at\":\"2024-09-15T10:22:55.000000Z\"},{\"id\":5,\"title\":\"js\",\"teacher\":\"obedah\",\"description\":\"learn laravel 11\",\"imagePath\":\"https:\\\/\\\/i.postimg.cc\\\/jjfjwTWs\\\/image.png\",\"price\":\"1000.00\",\"min_age\":15,\"max_age\":30,\"course_outline\":\"course outline\",\"duration_in_session\":60,\"course_start_date\":\"2024-10-01\",\"created_at\":\"2024-09-15T10:23:01.000000Z\",\"updated_at\":\"2024-09-15T10:23:01.000000Z\"}],\"first_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/courses?page=1\",\"from\":1,\"last_page\":2,\"last_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/courses?page=2\",\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/courses?page=1\",\"label\":\"1\",\"active\":true},{\"url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/courses?page=2\",\"label\":\"2\",\"active\":false},{\"url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/courses?page=2\",\"label\":\"Next &raquo;\",\"active\":false}],\"next_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/courses?page=2\",\"path\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/courses\",\"per_page\":5,\"prev_page_url\":null,\"to\":5,\"total\":7}}]",
                             "name": ""
                         }
                     ]
@@ -409,10 +379,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -430,8 +397,8 @@
                                     "value": "Origin"
                                 }
                             ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "code": 500,
+                            "body": "{\n    \"message\": \"Server Error\"\n}",
                             "name": ""
                         }
                     ]
@@ -448,7 +415,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "expedita",
+                                    "value": "et",
                                     "description": "The ID of the course."
                                 }
                             ]
@@ -466,12 +433,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"gsnpmaldnrromwg\",\"description\":\"laudantium\"}"
+                            "raw": "{\"title\":\"vgrjyqnsanyn\",\"description\":\"tempore\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -496,10 +460,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -525,12 +486,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"courseId\":\"rerum\",\"SessionTimings\":\"2024-09-22T23:04:35\",\"startTime\":\"23:04:35\",\"endTime\":\"23:04:35\"}"
+                            "raw": "{\"courseId\":\"reprehenderit\",\"SessionTimings\":\"2024-09-23T01:03:44\",\"startTime\":\"01:03:44\",\"endTime\":\"01:03:44\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -546,7 +504,7 @@
                                 {
                                     "id": "userId",
                                     "key": "userId",
-                                    "value": "quo",
+                                    "value": "debitis",
                                     "description": ""
                                 }
                             ]
@@ -563,10 +521,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "this function will display the time of course based on the user timezone",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "this function will display the time of course based on the user timezone"
                     },
                     "response": [
                         {
@@ -584,8 +539,8 @@
                                     "value": "Origin"
                                 }
                             ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "code": 404,
+                            "body": "{\"message\":\"User or time zone not found\"}",
                             "name": ""
                         }
                     ]
@@ -602,13 +557,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "sequi",
+                                    "value": "quasi",
                                     "description": "The ID of the courseDay."
                                 },
                                 {
                                     "id": "courseId",
                                     "key": "courseId",
-                                    "value": "similique",
+                                    "value": "dignissimos",
                                     "description": ""
                                 }
                             ]
@@ -625,10 +580,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -646,8 +598,8 @@
                                     "value": "Origin"
                                 }
                             ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "code": 404,
+                            "body": "{\"message\":\"User or time zone not found\"}",
                             "name": ""
                         }
                     ]
@@ -664,19 +616,19 @@
                                 {
                                     "id": "course_id",
                                     "key": "course_id",
-                                    "value": "voluptate",
+                                    "value": "error",
                                     "description": "The ID of the course."
                                 },
                                 {
                                     "id": "sessionTimie",
                                     "key": "sessionTimie",
-                                    "value": "in",
+                                    "value": "doloremque",
                                     "description": ""
                                 },
                                 {
                                     "id": "userId",
                                     "key": "userId",
-                                    "value": "itaque",
+                                    "value": "cum",
                                     "description": ""
                                 }
                             ]
@@ -693,10 +645,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -714,8 +663,8 @@
                                     "value": "Origin"
                                 }
                             ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "code": 404,
+                            "body": "{\"message\":\"User or time zone not found\"}",
                             "name": ""
                         }
                     ]
@@ -741,10 +690,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -760,7 +706,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "exercitationem",
+                                    "value": "totam",
                                     "description": "The ID of the courses time."
                                 }
                             ]
@@ -777,10 +723,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -805,10 +748,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -834,12 +774,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"firstName\":\"aut\",\"lastName\":\"maiores\",\"age\":\"qui\",\"email\":\"ellsworth37@example.net\",\"timeZone\":\"eum\"}"
+                            "raw": "{\"firstName\":\"corporis\",\"lastName\":\"officiis\",\"age\":\"assumenda\",\"email\":\"ndibbert@example.org\",\"timeZone\":\"consectetur\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -864,10 +801,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -885,8 +819,8 @@
                                     "value": "Origin"
                                 }
                             ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "code": 200,
+                            "body": "[{\"status\":\"success\",\"data\":{\"current_page\":1,\"data\":[{\"id\":3,\"firstName\":\"ail\",\"lastName\":\"yahea\",\"age\":22,\"email\":\"obedah9600@gmail.com\",\"email_verified_at\":\"2024-09-10 11:29:06\",\"verification_token\":null,\"email_verified\":1,\"timeZone\":\"Asia\\\/Damascus\",\"created_at\":\"2024-09-10T08:27:26.000000Z\",\"updated_at\":\"2024-09-10T08:29:06.000000Z\"},{\"id\":6,\"firstName\":\"sami\",\"lastName\":\"yahea\",\"age\":27,\"email\":\"obedah9600@gmail.com\",\"email_verified_at\":\"2024-09-10 11:57:07\",\"verification_token\":null,\"email_verified\":1,\"timeZone\":\"Asia\\\/Tokyo\",\"created_at\":\"2024-09-10T08:56:39.000000Z\",\"updated_at\":\"2024-09-10T08:57:07.000000Z\"},{\"id\":7,\"firstName\":\"sami\",\"lastName\":\"yahea\",\"age\":27,\"email\":\"obedah90@gmail.com\",\"email_verified_at\":null,\"verification_token\":\"PxnYS821sUxzQVWpq8UQWjevSCD3mMy7\",\"email_verified\":0,\"timeZone\":\"Asia\\\/Tokyo\",\"created_at\":\"2024-09-14T18:08:33.000000Z\",\"updated_at\":\"2024-09-14T18:08:33.000000Z\"},{\"id\":8,\"firstName\":\"Ismaell\",\"lastName\":\"asd\",\"age\":22,\"email\":\"bon1@gamil.com\",\"email_verified_at\":null,\"verification_token\":\"BsGTYNMPhNNM1sJiO1vipfrXxwooDHBe\",\"email_verified\":0,\"timeZone\":\"Asia\\\/Damascus\",\"created_at\":\"2024-09-14T18:19:04.000000Z\",\"updated_at\":\"2024-09-14T18:19:04.000000Z\"},{\"id\":9,\"firstName\":\"Ismaell\",\"lastName\":\"asd\",\"age\":22,\"email\":\"bon1@gamil.com\",\"email_verified_at\":null,\"verification_token\":\"mzDZXPqDC7Kzqq9AT7PrHu2ZxzEwlVpi\",\"email_verified\":0,\"timeZone\":\"Asia\\\/Damascus\",\"created_at\":\"2024-09-14T18:20:23.000000Z\",\"updated_at\":\"2024-09-14T18:20:23.000000Z\"}],\"first_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/guest_users?page=1\",\"from\":1,\"last_page\":3,\"last_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/guest_users?page=3\",\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/guest_users?page=1\",\"label\":\"1\",\"active\":true},{\"url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/guest_users?page=2\",\"label\":\"2\",\"active\":false},{\"url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/guest_users?page=3\",\"label\":\"3\",\"active\":false},{\"url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/guest_users?page=2\",\"label\":\"Next &raquo;\",\"active\":false}],\"next_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/guest_users?page=2\",\"path\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/guest_users\",\"per_page\":5,\"prev_page_url\":null,\"to\":5,\"total\":14}}]",
                             "name": ""
                         }
                     ]
@@ -903,7 +837,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "omnis",
+                                    "value": "numquam",
                                     "description": "The ID of the guest user."
                                 }
                             ]
@@ -921,12 +855,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"courseId\":\"officia\",\"firstName\":\"veritatis\",\"lastName\":\"ea\",\"age\":\"accusamus\",\"email\":\"aliza.wiza@example.com\"}"
+                            "raw": "{\"courseId\":\"ducimus\",\"firstName\":\"rerum\",\"lastName\":\"minus\",\"age\":\"dolorem\",\"email\":\"brannon.hyatt@example.org\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -952,12 +883,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"id\":\"laudantium\"}"
+                            "raw": "{\"id\":\"provident\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -983,12 +911,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"userId\":8,\"courseId\":11,\"time\":\"quas\"}"
+                            "raw": "{\"userId\":5,\"courseId\":3,\"time\":\"molestias\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -1014,12 +939,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"CourseId\":\"reprehenderit\",\"SessionTimings\":\"sit\",\"guestUserId\":\"magnam\"}"
+                            "raw": "{\"CourseId\":\"exercitationem\",\"SessionTimings\":\"et\",\"guestUserId\":\"et\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -1044,10 +966,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -1065,8 +984,8 @@
                                     "value": "Origin"
                                 }
                             ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "code": 200,
+                            "body": "{\"status\":\"success\",\"total\":29,\"data\":[{\"freeLessonId\":2,\"courseName\":\"laravel\",\"guestUserName\":\"ail yahea\",\"userAge\":22,\"userEmail\":\"obedah9600@gmail.com\",\"lessonDate\":\"2024-09-11\",\"lessoStartTime\":\"20:00:00\",\"lessoEndTime\":\"21:00:00\",\"googleMeetUrl\":\"https:\\\/\\\/meet.google.com\\\/stx-cgwe-xet\"},{\"freeLessonId\":3,\"courseName\":\"laravel\",\"guestUserName\":\"sami yahea\",\"userAge\":27,\"userEmail\":\"obedah9600@gmail.com\",\"lessonDate\":\"2024-09-11\",\"lessoStartTime\":\"20:00:00\",\"lessoEndTime\":\"21:00:00\",\"googleMeetUrl\":\"https:\\\/\\\/meet.google.com\\\/stx-cgwe-xet\"},{\"freeLessonId\":4,\"courseName\":\"laravel\",\"guestUserName\":\"sami yahea\",\"userAge\":27,\"userEmail\":\"obedah9600@gmail.com\",\"lessonDate\":\"2024-09-14\",\"lessoStartTime\":\"06:00:00\",\"lessoEndTime\":\"07:00:00\",\"googleMeetUrl\":\"https:\\\/\\\/meet.google.com\\\/brt-gcrj-cav\"},{\"freeLessonId\":5,\"courseName\":\"laravel\",\"guestUserName\":\"ail yahea\",\"userAge\":22,\"userEmail\":\"obedah9600@gmail.com\",\"lessonDate\":\"2024-09-11\",\"lessoStartTime\":\"01:00:00\",\"lessoEndTime\":\"02:00:00\",\"googleMeetUrl\":\"https:\\\/\\\/meet.google.com\\\/aej-jmta-cre\"},{\"freeLessonId\":6,\"courseName\":\"laravel\",\"guestUserName\":\"ail yahea\",\"userAge\":22,\"userEmail\":\"obedah9600@gmail.com\",\"lessonDate\":\"2024-09-14\",\"lessoStartTime\":\"06:00:00\",\"lessoEndTime\":\"07:00:00\",\"googleMeetUrl\":\"https:\\\/\\\/meet.google.com\\\/brt-gcrj-cav\"}]}",
                             "name": ""
                         }
                     ]
@@ -1083,7 +1002,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "expedita",
+                                    "value": "doloribus",
                                     "description": "The ID of the free lesson."
                                 }
                             ]
@@ -1101,12 +1020,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"sessionTime\":\"tempore\",\"meetUrl\":\"deserunt\"}"
+                            "raw": "{\"sessionTime\":\"tempore\",\"meetUrl\":\"ut\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -1132,12 +1048,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"id\":\"exercitationem\"}"
+                            "raw": "{\"id\":\"totam\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -1163,12 +1076,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"firstName\":\"modi\",\"lastName\":\"ducimus\",\"age\":\"aspernatur\",\"email\":\"frieda.kutch@example.org\",\"timeZone\":\"voluptas\"}"
+                            "raw": "{\"firstName\":\"non\",\"lastName\":\"dolores\",\"age\":\"eum\",\"email\":\"garret71@example.com\",\"timeZone\":\"excepturi\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -1193,10 +1103,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -1214,8 +1121,8 @@
                                     "value": "Origin"
                                 }
                             ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "code": 200,
+                            "body": "[{\"status\":\"success\",\"data\":{\"current_page\":1,\"data\":[{\"id\":3,\"firstName\":\"ail\",\"lastName\":\"yahea\",\"age\":22,\"email\":\"obedah9600@gmail.com\",\"email_verified_at\":\"2024-09-10 11:29:06\",\"verification_token\":null,\"email_verified\":1,\"timeZone\":\"Asia\\\/Damascus\",\"created_at\":\"2024-09-10T08:27:26.000000Z\",\"updated_at\":\"2024-09-10T08:29:06.000000Z\"},{\"id\":6,\"firstName\":\"sami\",\"lastName\":\"yahea\",\"age\":27,\"email\":\"obedah9600@gmail.com\",\"email_verified_at\":\"2024-09-10 11:57:07\",\"verification_token\":null,\"email_verified\":1,\"timeZone\":\"Asia\\\/Tokyo\",\"created_at\":\"2024-09-10T08:56:39.000000Z\",\"updated_at\":\"2024-09-10T08:57:07.000000Z\"},{\"id\":7,\"firstName\":\"sami\",\"lastName\":\"yahea\",\"age\":27,\"email\":\"obedah90@gmail.com\",\"email_verified_at\":null,\"verification_token\":\"PxnYS821sUxzQVWpq8UQWjevSCD3mMy7\",\"email_verified\":0,\"timeZone\":\"Asia\\\/Tokyo\",\"created_at\":\"2024-09-14T18:08:33.000000Z\",\"updated_at\":\"2024-09-14T18:08:33.000000Z\"},{\"id\":8,\"firstName\":\"Ismaell\",\"lastName\":\"asd\",\"age\":22,\"email\":\"bon1@gamil.com\",\"email_verified_at\":null,\"verification_token\":\"BsGTYNMPhNNM1sJiO1vipfrXxwooDHBe\",\"email_verified\":0,\"timeZone\":\"Asia\\\/Damascus\",\"created_at\":\"2024-09-14T18:19:04.000000Z\",\"updated_at\":\"2024-09-14T18:19:04.000000Z\"},{\"id\":9,\"firstName\":\"Ismaell\",\"lastName\":\"asd\",\"age\":22,\"email\":\"bon1@gamil.com\",\"email_verified_at\":null,\"verification_token\":\"mzDZXPqDC7Kzqq9AT7PrHu2ZxzEwlVpi\",\"email_verified\":0,\"timeZone\":\"Asia\\\/Damascus\",\"created_at\":\"2024-09-14T18:20:23.000000Z\",\"updated_at\":\"2024-09-14T18:20:23.000000Z\"}],\"first_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/Testimonial?page=1\",\"from\":1,\"last_page\":3,\"last_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/Testimonial?page=3\",\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/Testimonial?page=1\",\"label\":\"1\",\"active\":true},{\"url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/Testimonial?page=2\",\"label\":\"2\",\"active\":false},{\"url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/Testimonial?page=3\",\"label\":\"3\",\"active\":false},{\"url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/Testimonial?page=2\",\"label\":\"Next &raquo;\",\"active\":false}],\"next_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/Testimonial?page=2\",\"path\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/Testimonial\",\"per_page\":5,\"prev_page_url\":null,\"to\":5,\"total\":14}}]",
                             "name": ""
                         }
                     ]
@@ -1232,7 +1139,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "sit",
+                                    "value": "illum",
                                     "description": "The ID of the Testimonial."
                                 }
                             ]
@@ -1250,12 +1157,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"courseId\":\"ratione\",\"firstName\":\"inventore\",\"lastName\":\"id\",\"age\":\"sit\",\"email\":\"angeline.kuphal@example.org\"}"
+                            "raw": "{\"courseId\":\"quod\",\"firstName\":\"at\",\"lastName\":\"doloribus\",\"age\":\"tenetur\",\"email\":\"katelyn.gulgowski@example.net\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -1281,12 +1185,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"id\":\"laborum\"}"
+                            "raw": "{\"id\":\"cumque\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -1311,10 +1212,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -1332,8 +1230,8 @@
                                     "value": "Origin"
                                 }
                             ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "code": 200,
+                            "body": "{\"current_page\":1,\"data\":[{\"id\":1,\"firstName\":\"obedah\",\"lastName\":\"shaban\",\"age\":28,\"timeZone\":\"Asia\\\/Tokyo\",\"email\":\"obedah9600@gmail.com\",\"email_verified_at\":null,\"verification_token\":null,\"created_at\":\"2024-09-10T17:25:22.000000Z\",\"updated_at\":\"2024-09-10T17:25:22.000000Z\"},{\"id\":17,\"firstName\":\"ali\",\"lastName\":\"sh\",\"age\":23,\"timeZone\":\"Asia\\\/Tokyo\",\"email\":\"alialshrany204@gmail.com\",\"email_verified_at\":\"2024-09-11T16:27:05.000000Z\",\"verification_token\":\"154woOBFXaSrRVna2ZABlVUrwI239uK9Sx8w7kXRFQ2WOkvq7wpisgQemiNqKZ9S\",\"created_at\":\"2024-09-11T16:26:44.000000Z\",\"updated_at\":\"2024-09-11T16:27:05.000000Z\"}],\"first_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/users?page=1\",\"from\":1,\"last_page\":1,\"last_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/users?page=1\",\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/users?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"next_page_url\":null,\"path\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/users\",\"per_page\":5,\"prev_page_url\":null,\"to\":2,\"total\":2}",
                             "name": ""
                         }
                     ]
@@ -1350,7 +1248,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "assumenda",
+                                    "value": "1",
                                     "description": "The ID of the user."
                                 }
                             ]
@@ -1367,10 +1265,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -1388,8 +1283,8 @@
                                     "value": "Origin"
                                 }
                             ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "code": 200,
+                            "body": "{\"id\":1,\"firstName\":\"obedah\",\"lastName\":\"shaban\",\"age\":28,\"timeZone\":\"Asia\\\/Tokyo\",\"email\":\"obedah9600@gmail.com\",\"email_verified_at\":null,\"verification_token\":null,\"created_at\":\"2024-09-10T17:25:22.000000Z\",\"updated_at\":\"2024-09-10T17:25:22.000000Z\"}",
                             "name": ""
                         }
                     ]
@@ -1416,12 +1311,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"firstName\":\"yiecmafawsnlypt\",\"lastName\":\"owuh\",\"age\":\"magnam\",\"timeZone\":\"et\",\"email\":\"rebeca28@example.org\",\"password\":\"7|G\\\"Y,V5$7g[o<^p]5X\"}"
+                            "raw": "{\"firstName\":\"dzllfkfmbfpnjwutvgknc\",\"lastName\":\"korwlzoqcardgvssotz\",\"age\":\"temporibus\",\"timeZone\":\"nemo\",\"email\":\"jared.reinger@example.org\",\"password\":\"|p|m~q&h},[EJy%\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -1437,7 +1329,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "sint",
+                                    "value": "1",
                                     "description": "The ID of the user."
                                 }
                             ]
@@ -1455,12 +1347,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"fgqybalctvbwzawksswi\",\"password\":\"^8cdozUr%qTr;q?\"}"
+                            "raw": "{\"name\":\"wlzyqyhrqsduixuknk\",\"password\":\"M}IK2GVIbDS\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -1476,7 +1365,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "aut",
+                                    "value": "1",
                                     "description": "The ID of the user."
                                 }
                             ]
@@ -1493,10 +1382,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -1522,12 +1408,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"firstName\":\"zrthtzhgrqiqi\",\"lastName\":\"njzpuhrfbvjwizgpmnxyy\",\"age\":41,\"timeZone\":\"beatae\",\"email\":\"mario.carroll@example.com\",\"password\":\")-%)_vClGE5h(p\"}"
+                            "raw": "{\"firstName\":\"taurlapgozbcjmjpga\",\"lastName\":\"tzptgnbnkhkxtyxjsatkhttyh\",\"age\":16,\"timeZone\":\"eveniet\",\"email\":\"fiona.schmidt@example.org\",\"password\":\"0sL[n(L%+,\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -1543,13 +1426,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "impedit",
+                                    "value": "a",
                                     "description": "The ID of the verify."
                                 },
                                 {
                                     "id": "hash",
                                     "key": "hash",
-                                    "value": "iusto",
+                                    "value": "voluptates",
                                     "description": ""
                                 }
                             ]
@@ -1566,10 +1449,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -1605,7 +1485,7 @@
                                 {
                                     "id": "token",
                                     "key": "token",
-                                    "value": "reiciendis",
+                                    "value": "aliquid",
                                     "description": ""
                                 }
                             ]
@@ -1622,10 +1502,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -1661,7 +1538,7 @@
                                 {
                                     "id": "token",
                                     "key": "token",
-                                    "value": "et",
+                                    "value": "iusto",
                                     "description": ""
                                 }
                             ]
@@ -1678,10 +1555,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -1712,7 +1586,7 @@
         "type": "bearer",
         "bearer": [
             {
-                "key": "key",
+                "key": "Authorization",
                 "type": "string"
             }
         ]
