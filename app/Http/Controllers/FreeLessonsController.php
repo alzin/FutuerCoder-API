@@ -168,6 +168,7 @@ class FreeLessonsController extends Controller
 
         $guestUserData = $request->all();
         $guestUser = $this->guestUserService->createGuestUser($guestUserData);
+        return response()->json(["status"=>"chek your mailbox to verify your email","data"=>$guestUser]);
     }
 
 }

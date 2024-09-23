@@ -52,14 +52,12 @@ class GuestUserService
             ];
         }
 
-        // تحديث حالة التحقق من البريد الإلكتروني
         $guestUser->update([
             'email_verified_at' => now(),
             'verification_token' => null,
             'email_verified' => 1
         ]);
 
-        // البحث عن الوقت المتاح للجلسة
         $existingtime = Cources_time::where('courseId', $courseId)
             ->where('id', $sessionTimings)
             ->where('studentsCount', '<', 3)
@@ -73,7 +71,6 @@ class GuestUserService
             ];
         }
 
-        // البحث عن جلسة متاحة للانضمام إليها أو إنشاء جلسة جديدة
         $existingLesson = FreeLessons::where('sessionTime', $existingtime->id)->first();
 
         if ($existingLesson && $existingtime->studentsCount < 3) {
@@ -83,8 +80,6 @@ class GuestUserService
         }
 
         $existingtime->increment('studentsCount');
-
-        // إنشاء جلسة جديدة
         $freeLesson = FreeLessons::create([
             'courseId' => $courseId,
             'userId' => $guestUser->id,

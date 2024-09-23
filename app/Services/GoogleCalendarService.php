@@ -74,43 +74,38 @@ class GoogleCalendarService
                 'timeZone' => $userTimezone,
             ]));
             $attendee1 = new EventAttendee();
-            $attendee1->setEmail($email); // البريد الإلكتروني للمدعو
+            $attendee1->setEmail($email); 
             $event->setAttendees([$attendee1]);
 
-            // إعداد الاجتماع عبر Google Meet
+           
             $conference = new ConferenceData();
             $conferenceRequest = new CreateConferenceRequest();
             $conferenceSolutionKey = new ConferenceSolutionKey();
             $conferenceSolutionKey->setType('hangoutsMeet');
             $conferenceRequest->setConferenceSolutionKey($conferenceSolutionKey);
-            $conferenceRequest->setRequestId(uniqid()); // معرف فريد للطلب
+            $conferenceRequest->setRequestId(uniqid());
             $conference->setCreateRequest($conferenceRequest);
             $event->setConferenceData($conference);
 
             $calendarId = 'primary';
 
             try {
-                // إدراج الحدث مع إرسال الدعوات عبر البريد الإلكتروني
                 $createdEvent = $service->events->insert($calendarId, $event, [
                     'conferenceDataVersion' => 1,
-                    'sendUpdates' => 'all' // إرسال دعوة إلى جميع الحضور عبر البريد الإلكتروني
+                    'sendUpdates' => 'all' 
                 ]);
             
-                // التأكيد على نجاح الإنشاء وعرض الرابط
                 echo 'Event created: ' . $createdEvent->htmlLink;
                 echo 'Join the meeting: ' . $createdEvent->getHangoutLink();
             
-                // في حالة النجاح، نعيد تفاصيل الحدث
+              
                 return [
                     'eventId' => $createdEvent->getId(),
                     'meetUrl' => $createdEvent->getHangoutLink(),
                 ];
             
             } catch (\Exception $e) {
-                // عرض رسالة الخطأ
                 echo 'Error creating event: ' . $e->getMessage();
-            
-                // إعادة رسالة خطأ مفصلة بدلاً من محاولة الوصول إلى $createdEvent
                 return [
                     'error' => 'Failed to create event',
                     'message' => $e->getMessage()
