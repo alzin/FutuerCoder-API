@@ -19,6 +19,7 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Services\GuestUserService;
 
 
 
@@ -105,4 +106,6 @@ Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke
         ->name('verification.verify');
 
 Route::get('/verify-subscriber-email/{token}', [SubscribersController::class, 'verify']);
-Route::get('/verify-guest-email/{token}/{courseId}/{sessionTimings}', [GuestUsersController::class, 'verify']);
+
+Route::get('/verify-guest-email/{token}/{courseId}/{sessionTimings}', [GuestUserService::class, 'verifyGuestUser']);
+
