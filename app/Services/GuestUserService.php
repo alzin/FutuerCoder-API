@@ -44,7 +44,12 @@ class GuestUserService
     {
         $guestUser = GuestUsers::where('verification_token', $token)->first();
 
-        if ($guestUser && $guestUser->email_verified == 1) {
+        if ($guestUser ) {
+            $guestUser->update([
+                'email_verified_at' => now(),
+                'verification_token' => null,
+                'email_verified' => 1
+            ]);
             $existingtime = Cources_time::where('courseId', $courseId)
                 ->where('id', $sessionTimings)
                 ->where('studentsCount', '<', 3)
