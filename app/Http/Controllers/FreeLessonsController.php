@@ -170,12 +170,10 @@ class FreeLessonsController extends Controller
         $guestUser = $this->guestUserService->createGuestUser($guestUserData);
 
         // التحقق وإنشاء الجلسة
-        $freeLesson = $this->guestUserService->verifyGuestUser($guestUser->verification_token, $request->CourseId, $request->SessionTimings);
 
         return response()->json([
             'message' => 'Session created successfully',
             'guestUser' => $guestUser,
-            'sessionData' => $freeLesson
         ]);
     }
 

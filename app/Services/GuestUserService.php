@@ -32,7 +32,7 @@ class GuestUserService
             'verification_token' => $verificationToken
         ]);
 
-        $verificationUrl = url("/api/verify-guest-email/{$verificationToken}");
+        $verificationUrl = url("/api/verify-guest-email/{$verificationToken}/{courseId}/{sessionTimings}");
         Mail::to($guestUser->email)->send(new VerifyEmail($verificationUrl));
 
         return $guestUser;
@@ -62,13 +62,14 @@ class GuestUserService
                 $existingtime->increment('studentsCount');
             }
 
-            return FreeLessons::create([
+            FreeLessons::create([
                 'courseId' => $courseId,
                 'userId' => $guestUser->id,
                 'sessionTime' => $existingtime->id,
                 'meetUrl' => $eventDetails['meetUrl'],
                 'eventId' => $eventDetails['eventId']
             ]);
+            return true;
         }
 
         return false;
