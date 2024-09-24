@@ -45,7 +45,7 @@ class TestimonialController extends Controller
             if($user)
             {
                 $testimonial = Testimonial::create([
-                    "userId"=>$user,
+                    "userId"=>$user->id,
                     "description"=> $request->description,
                     "rating"=> $request->rating
                 ]);
