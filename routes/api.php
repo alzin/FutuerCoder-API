@@ -75,10 +75,10 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/', [FreeLessonsController::class, 'destroy']);
     });
         Route::prefix('Testimonial')->group(function () {
-        Route::post('/', [GuestUsersController::class, 'create']);
-        Route::get('/', [GuestUsersController::class, 'index']);
-        Route::put('/{id}', [GuestUsersController::class, 'update']);
-        Route::delete('/', [GuestUsersController::class, 'destroy']);
+        Route::post('/', [TestimonialController::class, 'create']);
+        Route::get('/', [TestimonialController::class, 'index']);
+        Route::put('/{id}', [TestimonialController::class, 'update']);
+        Route::delete('/', [TestimonialController::class, 'destroy']);
     });
     Route::group(['prefix' => 'users'], function () {
         Route::get('/', [UserController::class, 'index']);    
