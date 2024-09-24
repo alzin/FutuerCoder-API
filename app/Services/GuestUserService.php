@@ -88,7 +88,8 @@ class GuestUserService
             'eventId' => $eventDetails['eventId']
         ]);
 
-        return [
+        return redirect()->route('home')
+        ->with([
             'status' => 'success',
             'guestUser' => $guestUser,
             'sessionDetails' => [
@@ -96,7 +97,7 @@ class GuestUserService
                 'meetUrl' => $eventDetails['meetUrl'],
                 'eventId' => $eventDetails['eventId']
             ]
-        ];
+        ]);
     }
 
 }

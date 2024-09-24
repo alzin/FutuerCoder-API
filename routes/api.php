@@ -24,7 +24,7 @@ use App\Services\GuestUserService;
 
 
 
-Route::get('/',function(){return "welcome to our api";});
+Route::get('/home',function(){return "welcome to our api";})->name('home');;
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('blogs')->group(function () {
