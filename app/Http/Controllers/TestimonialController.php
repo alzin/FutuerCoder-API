@@ -41,7 +41,7 @@ class TestimonialController extends Controller
                 "description"=>'required',
                 "rating"=>'required'
             ]);
-            $user=User::find($request->userid);
+            $user=User::find($request->userId);
             if($user)
             {
                 $testimonial = Testimonial::create([
