@@ -83,15 +83,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::group(['prefix' => 'users'], function () {
         Route::get('/', [UserController::class, 'index']);    
         Route::get('/{id}', [UserController::class, 'show']); 
-        Route::post('/signIn', [UserController::class, 'create']);    
+        Route::post('/signIn', [UserController::class, 'create']);
         Route::put('/{id}', [UserController::class, 'update']);
         Route::delete('/{id}', [UserController::class, 'destroy']);
     });
-
-
-    /*Route::post('/email/resend', 'VerificationController@resend')
-        ->middleware('throttle:6,1')
-        ->name('verification.resend');*/
 
     Route::get('create_event',[FreeLessonsController::class,'createEvent']);
    
