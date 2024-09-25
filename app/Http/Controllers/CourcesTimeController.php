@@ -174,7 +174,7 @@ class CourcesTimeController extends Controller
         $sessionTimingsUTC = Carbon::parse($sessionTimings, 'UTC');
         //add a condition to sure that the time not gone yet
         $availableTimes = Cources_time::where('courseId', $course_id)
-            ->where('SessionTimings', $sessionTimingsUTC->toDateString()) // مقارنة SessionTimings بتوقيت UTC
+            ->where('SessionTimings', $sessionTimingsUTC->toDateString()) 
             ->where('studentsCount', '<', 3)
             ->where(function($query) use ($nowUTC) {
                 //add a condition to sure that the date not gone yet

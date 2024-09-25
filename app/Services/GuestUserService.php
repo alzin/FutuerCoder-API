@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Services\GoogleCalendarService;
 use Illuminate\Support\Str;
 use App\Mail\VerifyEmail;
+use Carbon\Carbon;
 class GuestUserService
 {
     protected $calendarService;
@@ -43,7 +44,6 @@ class GuestUserService
         public function verifyGuestUser($token, $courseId, $sessionTimings)
     {
         $guestUser = GuestUsers::where('verification_token', $token)->first();
-
         if (!$guestUser) {
             return [
                 'status' => 'error',
@@ -87,17 +87,24 @@ class GuestUserService
             'meetUrl' => $eventDetails['meetUrl'],
             'eventId' => $eventDetails['eventId']
         ]);
+        $time = Cources_time::find($freeLesson->sessionTime);
+        $timeZone=$guestUser->timeZone;
+        $startDateTime = Carbon::createFromFormat('Y-m-d H:i:s', $time->SessionTimings . ' ' . $time->startTime, 'UTC')
+                            ->setTimezone($timeZone);
+        $endDateTime = Carbon::createFromFormat('Y-m-d H:i:s', $time->SessionTimings . ' ' . $time->endTime, 'UTC')
+                            ->setTimezone($timeZone);
+        return redirect()->route('home') 
+            ->with([
+                'status' => 'success',
+                'guestUser' => $guestUser,
+                'sessionDetails' => [
+                    'sessionStartTime' =>  $startDateTime->format('Y-m-d H:i:s'), 
+                    'sessionEndtTime' =>  $endDateTime->format('Y-m-d H:i:s'),
+                    'meetUrl' => $eventDetails['meetUrl'],
+                    'eventId' => $eventDetails['eventId']
+                ]
+            ]);
 
-        return redirect()->route('home')
-        ->with([
-            'status' => 'success',
-            'guestUser' => $guestUser,
-            'sessionDetails' => [
-                'sessionTime' => $existingtime->SessionTimings,
-                'meetUrl' => $eventDetails['meetUrl'],
-                'eventId' => $eventDetails['eventId']
-            ]
-        ]);
     }
 
 }
