@@ -23,7 +23,22 @@ use App\Services\GuestUserService;
 
 
 
+Route::post('/login', function (Request $request) {
+    $credentials = $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
+    if (Auth::attempt($credentials)) {
+        $user = Auth::user();
+        $token = $user->createToken('API Token')->plainTextToken;
+        return response()->json([
+            'token' => $token,
+            'user' => $user,
+        ]);
+    }
 
+    return response()->json(['error' => 'Unauthorized'], 401);
+});
 //Route::get('/home',function(){return "welcome to our api";})->name('home');;
 Route::middleware('web')->get('/home', function () {
     if (session('status') == 'success') {
@@ -40,7 +55,7 @@ Route::middleware('web')->get('/home', function () {
     } else {
         return "Welcome to our API";
     }
-});
+})->name('home');
 
 
 
@@ -110,9 +125,15 @@ Route::middleware('auth:sanctum')->group(function () {
    
 });
 
-Route::post('register1', [RegisteredUserController::class, 'store'])
+Route::post('register1', [RegisteredUserController::class,'store'])
 ->middleware('guest')
 ->name('register1');
+Route::post('logIn', [RegisteredUserController::class,'login'])
+->middleware('guest')
+->name('logIn');
+Route::post('logOut', [RegisteredUserController::class,'logout'])
+->middleware('guest')
+->name('logOut');
 
 Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
         ->middleware(['signed'])
