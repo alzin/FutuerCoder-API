@@ -55,47 +55,48 @@ class RegisteredUserController extends Controller
     }
 
     public function login(Request $request)
-    {
-        // التحقق من البيانات المدخلة
-        $request->validate([
-            'email'    => 'required|email',
-            'password' => 'required',
-        ]);
+{
+    // Validate the input data
+    $request->validate([
+        'email'    => 'required|email',
+        'password' => 'required',
+    ]);
 
-        // التحقق من صحة بيانات الاعتماد
-        $user = User::where('email', $request->email)->first();
+    // Check the user's credentials
+    $user = User::where('email', $request->email)->first();
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['بيانات الاعتماد غير صحيحة.'],
-            ]);
-        }
-
-        // التحقق من أن البريد الإلكتروني مفعل (إذا كنت تستخدم التحقق)
-        if (!$user->hasVerifiedEmail()) {
-            return response()->json(['message' => 'لم يتم التحقق من البريد الإلكتروني.'], 403);
-        }
-
-        // إنشاء رمز مميز (Token) للمستخدم
-        $token = $user->createToken('auth_token')->plainTextToken;
-
-        // إعادة البيانات في الاستجابة
-        return response()->json([
-            'access_token' => $token,
-            'token_type'   => 'Bearer',
-            'user'         => $user,
-        ], 200);
-    }
-
-    // دالة تسجيل الخروج
-    public function logout(Request $request)
-    {
-        // حذف الرمز المميز الحالي
-        $request->user()->currentAccessToken()->delete();
-
-        return response()->json([
-            'message' => 'تم تسجيل الخروج بنجاح.',
+    if (!$user || !Hash::check($request->password, $user->password)) {
+        throw ValidationException::withMessages([
+            'email' => ['Invalid credentials.'],
         ]);
     }
+
+    // Check if the user's email is verified
+    if (!$user->hasVerifiedEmail()) {
+        return response()->json(['message' => 'Email has not been verified.'], 403);
+    }
+
+    // Create a token for the user
+    $token = $user->createToken('auth_token')->plainTextToken;
+
+    // Return the token and user data in the response
+    return response()->json([
+        'access_token' => $token,
+        'token_type'   => 'Bearer',
+        'user'         => $user,
+    ], 200);
+}
+
+// Logout function
+public function logout(Request $request)
+{
+    // Delete the current token
+    $request->user()->currentAccessToken()->delete();
+
+    return response()->json([
+        'message' => 'Logged out successfully.',
+    ]);
+}
+
 
 }
