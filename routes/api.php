@@ -24,7 +24,25 @@ use App\Services\GuestUserService;
 
 
 
-Route::get('/home',function(){return "welcome to our api";})->name('home');;
+//Route::get('/home',function(){return "welcome to our api";})->name('home');;
+Route::get('/home', function () {
+    if (session('status') == 'success') {
+        $guestUser = session('guestUser'); 
+        $sessionDetails = session('sessionDetails'); 
+
+       
+        return "
+            Guest User: {$guestUser->name} <br>
+            Session Start Time: {$sessionDetails['sessionStartTime']} <br>
+            Session End Time: {$sessionDetails['sessionEndtTime']} <br>
+            Meeting URL: <a href='{$sessionDetails['meetUrl']}'>{$sessionDetails['meetUrl']}</a> <br>
+            Event ID: {$sessionDetails['eventId']}
+        ";
+        } else {
+        return "Welcome to our API";
+    }
+    })->name('home');
+
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('blogs')->group(function () {
