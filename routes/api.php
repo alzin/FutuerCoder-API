@@ -25,12 +25,11 @@ use App\Services\GuestUserService;
 
 
 //Route::get('/home',function(){return "welcome to our api";})->name('home');;
-Route::get('/home', function () {
+Route::middleware('web')->get('/home', function () {
     if (session('status') == 'success') {
-        $guestUser = session('guestUser'); 
-        $sessionDetails = session('sessionDetails'); 
+        $guestUser = session('guestUser');
+        $sessionDetails = session('sessionDetails');
 
-       
         return "
             Guest User: {$guestUser->name} <br>
             Session Start Time: {$sessionDetails['sessionStartTime']} <br>
@@ -38,10 +37,11 @@ Route::get('/home', function () {
             Meeting URL: <a href='{$sessionDetails['meetUrl']}'>{$sessionDetails['meetUrl']}</a> <br>
             Event ID: {$sessionDetails['eventId']}
         ";
-        } else {
+    } else {
         return "Welcome to our API";
     }
-    })->name('home');
+});
+
 
 
 Route::middleware('auth:sanctum')->group(function () {
