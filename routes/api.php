@@ -132,8 +132,10 @@ Route::post('logIn', [RegisteredUserController::class,'login'])
 ->middleware('guest')
 ->name('logIn');
 Route::post('logOut', [RegisteredUserController::class,'logout'])
-->middleware('guest')
+->middleware('auth')
 ->name('logOut');
+Route::post('/forgot-password', [PasswordResetLinkController::class, 'store']);
+Route::post('/reset-password', [NewPasswordController::class, 'store']);
 
 Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
         ->middleware(['signed'])
