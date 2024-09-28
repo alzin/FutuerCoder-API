@@ -77,7 +77,7 @@ class CourcesTimeController extends Controller
         // Check if the end time has crossed to the next day in UTC
         if ($startTimeUTC->toDateString() !== $endTimeUTC->toDateString()) {
             // Adjust SessionTimings if the end time crosses into the next day
-            $sessionDateUTC = $startTimeUTC->toDateString(); // Set the start date in UTC
+            $sessionDateUTC = $endTimeUTC->toDateString(); // Set the end date in UTC
         } else {
             // Keep the original SessionTimings in UTC
             $sessionDateUTC = $startTimeUTC->toDateString();

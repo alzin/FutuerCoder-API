@@ -44,7 +44,6 @@ Route::middleware('web')->get('/home', function () {
     if (session('status') == 'success') {
         $guestUser = session('guestUser');
         $sessionDetails = session('sessionDetails');
-
         return "
             Guest User: {$guestUser->name} <br>
             Session Start Time: {$sessionDetails['sessionStartTime']} <br>

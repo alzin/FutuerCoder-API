@@ -51,24 +51,20 @@ class GoogleCalendarService
         $client->setScopes(Google_Service_Calendar::CALENDAR);
         $client->setAccessType('offline');
         $client->setApprovalPrompt('force');
-
         $service = new Google_Service_Calendar($client);
-
-        if ($eventId == 0) {
+        if ($eventId == 0){
             $event = new Google_Service_Calendar_Event();
             $event->setSummary('NEW EVENT');
             
             $event->setDescription('Event description');
             $event->setStart(new EventDateTime([
                 'dateTime' => Carbon::parse($date . $startTime,'UTC')
-                                        ->addHours(6)
                                         ->setTimezone($userTimezone)
                                         ->toRfc3339String(),
-                'timeZone' => $userTimezone,    
+                'timeZone' => $userTimezone,
             ]));
             $event->setEnd(new EventDateTime([
                 'dateTime' => Carbon::parse($date . $endTime,'UTC')
-                                        ->addHours(6)
                                         ->setTimezone($userTimezone)
                                         ->toRfc3339String(),
                 'timeZone' => $userTimezone,
