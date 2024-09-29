@@ -14,9 +14,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Show the form for creating a new resource.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -28,7 +29,7 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: ex
+        example: fugiat
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -37,18 +38,65 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: alias
+        example: hic
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      title: ex
-      description: alias
+      title: fugiat
+      description: hic
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/blogs/store
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Store a newly created resource in storage.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      image:
+        name: image
+        description: 'Must be an image. Must not be greater than 2048 kilobytes.'
+        required: true
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters: []
+    fileParameters:
+      image: null
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
     controller: null
     method: null
     route: null
@@ -64,9 +112,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -79,7 +128,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"current_page":1,"data":[{"id":1,"title":"fdgdfg","description":"fgdfgdf","ImagePath":"https:\/\/i.postimg.cc\/jjfjwTWs\/image.png","created_at":"2024-08-26T19:41:38.000000Z","updated_at":"2024-08-27T14:47:47.000000Z"},{"id":2,"title":"hhh","description":"first by postman","ImagePath":"https:\/\/onlineschool-production.up.railway.app\/storage\/blogs\/1724705235.jpg","created_at":"2024-08-26T20:47:15.000000Z","updated_at":"2024-08-26T20:47:15.000000Z"},{"id":3,"title":"mmm","description":"first by postman","ImagePath":"https:\/\/onlineschool-production.up.railway.app\/storage\/blogs\/1724705869.jpg","created_at":"2024-08-26T20:57:49.000000Z","updated_at":"2024-08-26T20:57:49.000000Z"},{"id":4,"title":"kkk","description":"first by postman","ImagePath":"uploads\/images\/blogs\/1724743149.jpg","created_at":"2024-08-27T07:19:09.000000Z","updated_at":"2024-08-27T07:19:09.000000Z"},{"id":5,"title":"kkk","description":"first by postman","ImagePath":"uploads\/images\/blogs\/1724746595.jpg","created_at":"2024-08-27T08:16:35.000000Z","updated_at":"2024-08-27T08:16:35.000000Z"}],"first_page_url":"https:\/\/onlineschool-production.up.railway.app\/api\/blogs?page=1","from":1,"last_page":2,"last_page_url":"https:\/\/onlineschool-production.up.railway.app\/api\/blogs?page=2","links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https:\/\/onlineschool-production.up.railway.app\/api\/blogs?page=1","label":"1","active":true},{"url":"https:\/\/onlineschool-production.up.railway.app\/api\/blogs?page=2","label":"2","active":false},{"url":"https:\/\/onlineschool-production.up.railway.app\/api\/blogs?page=2","label":"Next &raquo;","active":false}],"next_page_url":"https:\/\/onlineschool-production.up.railway.app\/api\/blogs?page=2","path":"https:\/\/onlineschool-production.up.railway.app\/api\/blogs","per_page":5,"prev_page_url":null,"to":5,"total":9}'
+        content: '{"current_page":1,"data":[{"id":1,"title":"Blog Titless","description":"Blog Description","ImagePath":"https:\/\/i.postimg.cc\/jjfjwTWs\/image.png","created_at":"2024-09-10T10:02:37.000000Z","updated_at":"2024-09-16T11:51:09.000000Z"},{"id":3,"title":"blog title","description":"blog description","ImagePath":"https:\/\/i.postimg.cc\/jjfjwTWs\/image.png","created_at":"2024-09-22T11:39:46.000000Z","updated_at":"2024-09-22T11:39:46.000000Z"}],"first_page_url":"https:\/\/futuercoder-api-production.up.railway.app\/api\/blogs?page=1","from":1,"last_page":1,"last_page_url":"https:\/\/futuercoder-api-production.up.railway.app\/api\/blogs?page=1","links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https:\/\/futuercoder-api-production.up.railway.app\/api\/blogs?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"next_page_url":null,"path":"https:\/\/futuercoder-api-production.up.railway.app\/api\/blogs","per_page":5,"prev_page_url":null,"to":2,"total":2}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -87,7 +136,10 @@ endpoints:
         description: null
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
     controller: null
     method: null
     route: null
@@ -103,9 +155,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Update the specified resource in storage.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -113,13 +166,13 @@ endpoints:
         name: id
         description: 'The ID of the blog.'
         required: true
-        example: error
+        example: accusamus
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      id: error
+      id: accusamus
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -127,7 +180,7 @@ endpoints:
         name: title
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: gaxdezpuzycfev
+        example: khepxipqbkwirczzv
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -136,18 +189,21 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: ducimus
+        example: consequuntur
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      title: gaxdezpuzycfev
-      description: ducimus
+      title: khepxipqbkwirczzv
+      description: consequuntur
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
     controller: null
     method: null
     route: null
@@ -163,9 +219,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -177,7 +234,10 @@ endpoints:
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
     controller: null
     method: null
     route: null
@@ -193,9 +253,10 @@ endpoints:
       subgroupDescription: ''
       title: ''
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -207,17 +268,20 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: lkrajcik@example.net
+        example: erna.herzog@example.net
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      email: lkrajcik@example.net
+      email: erna.herzog@example.net
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
     controller: null
     method: null
     route: null
@@ -233,9 +297,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -248,7 +313,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"current_page":1,"data":[{"id":1,"email":"obedag@gmail.com","created_at":"2024-08-27T13:33:47.000000Z","updated_at":"2024-08-27T13:33:47.000000Z"},{"id":3,"email":"obedahh@gmail.com","created_at":"2024-08-27T13:46:33.000000Z","updated_at":"2024-08-27T13:46:33.000000Z"},{"id":4,"email":"obedag1@gmail.com","created_at":"2024-08-27T14:51:10.000000Z","updated_at":"2024-08-27T14:51:10.000000Z"},{"id":5,"email":"obedahh11111111111@gmail.com","created_at":"2024-08-27T15:11:45.000000Z","updated_at":"2024-08-27T15:11:45.000000Z"},{"id":6,"email":"obedag111111111111111111111111@gmail.com","created_at":"2024-08-27T15:12:49.000000Z","updated_at":"2024-08-27T15:12:49.000000Z"},{"id":7,"email":"aaa@gmail.com","created_at":"2024-08-27T17:05:40.000000Z","updated_at":"2024-08-27T17:05:40.000000Z"},{"id":8,"email":"aaaaa@gmail.com","created_at":"2024-08-27T17:16:02.000000Z","updated_at":"2024-08-27T17:16:02.000000Z"},{"id":9,"email":"aaabbb@gmail.com","created_at":"2024-08-27T17:17:57.000000Z","updated_at":"2024-08-27T17:17:57.000000Z"},{"id":10,"email":"aannnna@gmail.com","created_at":"2024-08-27T17:21:19.000000Z","updated_at":"2024-08-27T17:21:19.000000Z"},{"id":11,"email":"obedahh12@gmail.com","created_at":"2024-08-28T06:27:58.000000Z","updated_at":"2024-08-28T06:27:58.000000Z"}],"first_page_url":"https:\/\/onlineschool-production.up.railway.app\/api\/subscribers?page=1","from":1,"last_page":2,"last_page_url":"https:\/\/onlineschool-production.up.railway.app\/api\/subscribers?page=2","links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https:\/\/onlineschool-production.up.railway.app\/api\/subscribers?page=1","label":"1","active":true},{"url":"https:\/\/onlineschool-production.up.railway.app\/api\/subscribers?page=2","label":"2","active":false},{"url":"https:\/\/onlineschool-production.up.railway.app\/api\/subscribers?page=2","label":"Next &raquo;","active":false}],"next_page_url":"https:\/\/onlineschool-production.up.railway.app\/api\/subscribers?page=2","path":"https:\/\/onlineschool-production.up.railway.app\/api\/subscribers","per_page":10,"prev_page_url":null,"to":10,"total":19}'
+        content: '{"current_page":1,"data":[{"id":1,"email":"audirezk@gmail.com","email_verified_at":"2024-09-10 13:03:16","verification_token":null,"email_verified":1,"created_at":"2024-09-10T10:02:58.000000Z","updated_at":"2024-09-10T10:03:16.000000Z"},{"id":2,"email":"obedah9600@gmail.com","email_verified_at":"2024-09-12 13:55:02","verification_token":null,"email_verified":1,"created_at":"2024-09-12T10:54:45.000000Z","updated_at":"2024-09-12T10:55:02.000000Z"}],"first_page_url":"https:\/\/futuercoder-api-production.up.railway.app\/api\/subscribers?page=1","from":1,"last_page":1,"last_page_url":"https:\/\/futuercoder-api-production.up.railway.app\/api\/subscribers?page=1","links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https:\/\/futuercoder-api-production.up.railway.app\/api\/subscribers?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"next_page_url":null,"path":"https:\/\/futuercoder-api-production.up.railway.app\/api\/subscribers","per_page":10,"prev_page_url":null,"to":2,"total":2}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -256,57 +321,10 @@ endpoints:
         description: null
         custom: []
     responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - PUT
-    uri: 'api/subscribers/{id}'
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Update the specified resource in storage.'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the subscriber.'
-        required: true
-        example: quaerat
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-    cleanUrlParameters:
-      id: quaerat
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      email:
-        name: email
-        description: ''
-        required: true
-        example: quae
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-    cleanBodyParameters:
-      email: quae
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
     controller: null
     method: null
     route: null
@@ -322,9 +340,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -336,7 +355,10 @@ endpoints:
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
     controller: null
     method: null
     route: null
@@ -352,9 +374,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Show the form for creating a new resource.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -366,7 +389,7 @@ endpoints:
         name: title
         description: ''
         required: true
-        example: consequuntur
+        example: dicta
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -375,18 +398,21 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: ea
+        example: quia
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      title: consequuntur
-      description: ea
+      title: dicta
+      description: quia
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
     controller: null
     method: null
     route: null
@@ -402,9 +428,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -417,7 +444,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '[{"status":"success","data":{"current_page":1,"data":[],"first_page_url":"https:\/\/onlineschool-production.up.railway.app\/api\/courses?page=1","from":null,"last_page":1,"last_page_url":"https:\/\/onlineschool-production.up.railway.app\/api\/courses?page=1","links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https:\/\/onlineschool-production.up.railway.app\/api\/courses?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"next_page_url":null,"path":"https:\/\/onlineschool-production.up.railway.app\/api\/courses","per_page":5,"prev_page_url":null,"to":null,"total":0}}]'
+        content: '[{"status":"success","data":{"current_page":1,"data":[{"id":1,"title":"laravel","teacher":"obedah","description":"learn laravel 11","imagePath":"https:\/\/i.postimg.cc\/jjfjwTWs\/image.png","price":"1000.00","min_age":15,"max_age":30,"course_outline":"course outline","duration_in_session":60,"course_start_date":"2024-10-01","created_at":"2024-09-10T07:27:37.000000Z","updated_at":"2024-09-10T07:27:37.000000Z"},{"id":2,"title":"Course Title","teacher":"Course Teacher","description":"Course Description","imagePath":"https:\/\/i.postimg.cc\/jjfjwTWs\/image.png","price":"2000.00","min_age":12,"max_age":15,"course_outline":"Course Outline","duration_in_session":60,"course_start_date":"2024-09-10","created_at":"2024-09-10T10:04:10.000000Z","updated_at":"2024-09-10T10:04:10.000000Z"},{"id":3,"title":"css","teacher":"rezk","description":"learn css","imagePath":"https:\/\/i.postimg.cc\/jjfjwTWs\/image.png","price":"1000.00","min_age":15,"max_age":30,"course_outline":"course outline","duration_in_session":60,"course_start_date":"2024-10-01","created_at":"2024-09-15T06:35:48.000000Z","updated_at":"2024-09-15T06:35:48.000000Z"},{"id":4,"title":"python","teacher":"obedah","description":"learn laravel 11","imagePath":"https:\/\/i.postimg.cc\/jjfjwTWs\/image.png","price":"1000.00","min_age":15,"max_age":30,"course_outline":"course outline","duration_in_session":60,"course_start_date":"2024-10-01","created_at":"2024-09-15T10:22:55.000000Z","updated_at":"2024-09-15T10:22:55.000000Z"},{"id":5,"title":"js","teacher":"obedah","description":"learn laravel 11","imagePath":"https:\/\/i.postimg.cc\/jjfjwTWs\/image.png","price":"1000.00","min_age":15,"max_age":30,"course_outline":"course outline","duration_in_session":60,"course_start_date":"2024-10-01","created_at":"2024-09-15T10:23:01.000000Z","updated_at":"2024-09-15T10:23:01.000000Z"}],"first_page_url":"https:\/\/futuercoder-api-production.up.railway.app\/api\/courses?page=1","from":1,"last_page":2,"last_page_url":"https:\/\/futuercoder-api-production.up.railway.app\/api\/courses?page=2","links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https:\/\/futuercoder-api-production.up.railway.app\/api\/courses?page=1","label":"1","active":true},{"url":"https:\/\/futuercoder-api-production.up.railway.app\/api\/courses?page=2","label":"2","active":false},{"url":"https:\/\/futuercoder-api-production.up.railway.app\/api\/courses?page=2","label":"Next &raquo;","active":false}],"next_page_url":"https:\/\/futuercoder-api-production.up.railway.app\/api\/courses?page=2","path":"https:\/\/futuercoder-api-production.up.railway.app\/api\/courses","per_page":5,"prev_page_url":null,"to":5,"total":7}}]'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -425,7 +452,56 @@ endpoints:
         description: null
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/courses/courseById
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'get course by the student Age'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 500
+        content: |-
+          {
+              "message": "Server Error"
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
     controller: null
     method: null
     route: null
@@ -441,9 +517,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Update the specified resource in storage.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -451,13 +528,13 @@ endpoints:
         name: id
         description: 'The ID of the course.'
         required: true
-        example: tempora
+        example: et
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      id: tempora
+      id: et
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -465,7 +542,7 @@ endpoints:
         name: title
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: psxtwauaow
+        example: vgrjyqnsanyn
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -474,18 +551,21 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: veritatis
+        example: tempore
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      title: psxtwauaow
-      description: veritatis
+      title: vgrjyqnsanyn
+      description: tempore
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
     controller: null
     method: null
     route: null
@@ -501,9 +581,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -515,7 +596,10 @@ endpoints:
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
     controller: null
     method: null
     route: null
@@ -531,9 +615,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Show the form for creating a new resource.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -541,61 +626,54 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      course_id:
-        name: course_id
+      courseId:
+        name: courseId
         description: ''
         required: true
-        example: qui
+        example: reprehenderit
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
-      courseMonth:
-        name: courseMonth
-        description: ''
+      SessionTimings:
+        name: SessionTimings
+        description: 'Must be a valid date.'
         required: true
-        example: id
+        example: '2024-09-23T01:03:44'
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
-      start_time:
-        name: start_time
-        description: ''
+      startTime:
+        name: startTime
+        description: 'Must be a valid date in the format <code>H:i:s</code>.'
         required: true
-        example: inventore
+        example: '01:03:44'
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
-      end_time:
-        name: end_time
-        description: ''
+      endTime:
+        name: endTime
+        description: 'Must be a valid date in the format <code>H:i:s</code>.'
         required: true
-        example: dignissimos
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      day_of_month:
-        name: day_of_month
-        description: ''
-        required: true
-        example: quam
+        example: '01:03:44'
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      course_id: qui
-      courseMonth: id
-      start_time: inventore
-      end_time: dignissimos
-      day_of_month: quam
+      courseId: reprehenderit
+      SessionTimings: '2024-09-23T01:03:44'
+      startTime: '01:03:44'
+      endTime: '01:03:44'
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
     controller: null
     method: null
     route: null
@@ -603,17 +681,207 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: api/courses_time
+    uri: 'api/courses_time/{userId}'
     metadata:
       groupName: Endpoints
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
-      description: ''
-      authenticated: false
+      description: 'this function will display the time of course based on the user timezone'
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      userId:
+        name: userId
+        description: ''
+        required: true
+        example: debitis
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      userId: debitis
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 404
+        content: '{"message":"User or time zone not found"}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/courses_time/courseDays/{id}/{courseId}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'get all dates for course based in user timezone'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the courseDay.'
+        required: true
+        example: quasi
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      courseId:
+        name: courseId
+        description: ''
+        required: true
+        example: dignissimos
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: quasi
+      courseId: dignissimos
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 404
+        content: '{"message":"User or time zone not found"}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/courses_time/availableTimes/{course_id}/{sessionTimie}/{userId}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'git all times for a course date (startTime,endTime) based on user timezone'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      course_id:
+        name: course_id
+        description: 'The ID of the course.'
+        required: true
+        example: error
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      sessionTimie:
+        name: sessionTimie
+        description: ''
+        required: true
+        example: doloremque
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      userId:
+        name: userId
+        description: ''
+        required: true
+        example: cum
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      course_id: error
+      sessionTimie: doloremque
+      userId: cum
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 404
+        content: '{"message":"User or time zone not found"}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/courses_time/timezone
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -623,21 +891,12 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses:
-      -
-        status: 500
-        content: |-
-          {
-              "message": "Server Error"
-          }
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
-        custom: []
+    responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
     controller: null
     method: null
     route: null
@@ -653,9 +912,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Update the specified resource in storage.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -663,13 +923,13 @@ endpoints:
         name: id
         description: 'The ID of the courses time.'
         required: true
-        example: quidem
+        example: totam
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      id: quidem
+      id: totam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -677,7 +937,10 @@ endpoints:
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
     controller: null
     method: null
     route: null
@@ -693,9 +956,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -707,7 +971,10 @@ endpoints:
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
     controller: null
     method: null
     route: null
@@ -723,9 +990,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Show the form for creating a new resource.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -733,20 +1001,11 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      courseId:
-        name: courseId
-        description: ''
-        required: true
-        example: magnam
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
       firstName:
         name: firstName
         description: ''
         required: true
-        example: quam
+        example: corporis
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -755,7 +1014,7 @@ endpoints:
         name: lastName
         description: ''
         required: true
-        example: sit
+        example: officiis
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -764,7 +1023,7 @@ endpoints:
         name: age
         description: ''
         required: true
-        example: aut
+        example: assumenda
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -773,21 +1032,33 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: gcronin@example.org
+        example: ndibbert@example.org
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      timeZone:
+        name: timeZone
+        description: ''
+        required: true
+        example: consectetur
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      courseId: magnam
-      firstName: quam
-      lastName: sit
-      age: aut
-      email: gcronin@example.org
+      firstName: corporis
+      lastName: officiis
+      age: assumenda
+      email: ndibbert@example.org
+      timeZone: consectetur
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
     controller: null
     method: null
     route: null
@@ -803,9 +1074,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -818,7 +1090,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '[{"status":"success","data":{"current_page":1,"data":[],"first_page_url":"https:\/\/onlineschool-production.up.railway.app\/api\/guest_users?page=1","from":null,"last_page":1,"last_page_url":"https:\/\/onlineschool-production.up.railway.app\/api\/guest_users?page=1","links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https:\/\/onlineschool-production.up.railway.app\/api\/guest_users?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"next_page_url":null,"path":"https:\/\/onlineschool-production.up.railway.app\/api\/guest_users","per_page":5,"prev_page_url":null,"to":null,"total":0}}]'
+        content: '[{"status":"success","data":{"current_page":1,"data":[{"id":3,"firstName":"ail","lastName":"yahea","age":22,"email":"obedah9600@gmail.com","email_verified_at":"2024-09-10 11:29:06","verification_token":null,"email_verified":1,"timeZone":"Asia\/Damascus","created_at":"2024-09-10T08:27:26.000000Z","updated_at":"2024-09-10T08:29:06.000000Z"},{"id":6,"firstName":"sami","lastName":"yahea","age":27,"email":"obedah9600@gmail.com","email_verified_at":"2024-09-10 11:57:07","verification_token":null,"email_verified":1,"timeZone":"Asia\/Tokyo","created_at":"2024-09-10T08:56:39.000000Z","updated_at":"2024-09-10T08:57:07.000000Z"},{"id":7,"firstName":"sami","lastName":"yahea","age":27,"email":"obedah90@gmail.com","email_verified_at":null,"verification_token":"PxnYS821sUxzQVWpq8UQWjevSCD3mMy7","email_verified":0,"timeZone":"Asia\/Tokyo","created_at":"2024-09-14T18:08:33.000000Z","updated_at":"2024-09-14T18:08:33.000000Z"},{"id":8,"firstName":"Ismaell","lastName":"asd","age":22,"email":"bon1@gamil.com","email_verified_at":null,"verification_token":"BsGTYNMPhNNM1sJiO1vipfrXxwooDHBe","email_verified":0,"timeZone":"Asia\/Damascus","created_at":"2024-09-14T18:19:04.000000Z","updated_at":"2024-09-14T18:19:04.000000Z"},{"id":9,"firstName":"Ismaell","lastName":"asd","age":22,"email":"bon1@gamil.com","email_verified_at":null,"verification_token":"mzDZXPqDC7Kzqq9AT7PrHu2ZxzEwlVpi","email_verified":0,"timeZone":"Asia\/Damascus","created_at":"2024-09-14T18:20:23.000000Z","updated_at":"2024-09-14T18:20:23.000000Z"}],"first_page_url":"https:\/\/futuercoder-api-production.up.railway.app\/api\/guest_users?page=1","from":1,"last_page":3,"last_page_url":"https:\/\/futuercoder-api-production.up.railway.app\/api\/guest_users?page=3","links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https:\/\/futuercoder-api-production.up.railway.app\/api\/guest_users?page=1","label":"1","active":true},{"url":"https:\/\/futuercoder-api-production.up.railway.app\/api\/guest_users?page=2","label":"2","active":false},{"url":"https:\/\/futuercoder-api-production.up.railway.app\/api\/guest_users?page=3","label":"3","active":false},{"url":"https:\/\/futuercoder-api-production.up.railway.app\/api\/guest_users?page=2","label":"Next &raquo;","active":false}],"next_page_url":"https:\/\/futuercoder-api-production.up.railway.app\/api\/guest_users?page=2","path":"https:\/\/futuercoder-api-production.up.railway.app\/api\/guest_users","per_page":5,"prev_page_url":null,"to":5,"total":14}}]'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -826,7 +1098,10 @@ endpoints:
         description: null
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
     controller: null
     method: null
     route: null
@@ -842,9 +1117,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Update the specified resource in storage.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -852,13 +1128,13 @@ endpoints:
         name: id
         description: 'The ID of the guest user.'
         required: true
-        example: rerum
+        example: numquam
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      id: rerum
+      id: numquam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -866,7 +1142,7 @@ endpoints:
         name: courseId
         description: ''
         required: true
-        example: maxime
+        example: ducimus
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -875,7 +1151,7 @@ endpoints:
         name: firstName
         description: ''
         required: true
-        example: adipisci
+        example: rerum
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -884,7 +1160,7 @@ endpoints:
         name: lastName
         description: ''
         required: true
-        example: quia
+        example: minus
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -893,7 +1169,7 @@ endpoints:
         name: age
         description: ''
         required: true
-        example: sed
+        example: dolorem
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -902,21 +1178,24 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: gutkowski.elenor@example.com
+        example: brannon.hyatt@example.org
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      courseId: maxime
-      firstName: adipisci
-      lastName: quia
-      age: sed
-      email: gutkowski.elenor@example.com
+      courseId: ducimus
+      firstName: rerum
+      lastName: minus
+      age: dolorem
+      email: brannon.hyatt@example.org
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
     controller: null
     method: null
     route: null
@@ -932,9 +1211,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -946,17 +1226,20 @@ endpoints:
         name: id
         description: ''
         required: true
-        example: quam
+        example: provident
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      id: quam
+      id: provident
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
     controller: null
     method: null
     route: null
@@ -972,9 +1255,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Show the form for creating a new resource.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -986,7 +1270,7 @@ endpoints:
         name: userId
         description: ''
         required: true
-        example: 19
+        example: 5
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -995,58 +1279,95 @@ endpoints:
         name: courseId
         description: ''
         required: true
-        example: 2
+        example: 3
         type: integer
         enumValues: []
         exampleWasSpecified: false
         custom: []
-      numberOfMonth:
-        name: numberOfMonth
+      time:
+        name: time
         description: ''
         required: true
-        example: 19
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      dayOfMonth:
-        name: dayOfMonth
-        description: ''
-        required: true
-        example: 16
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      startTime:
-        name: startTime
-        description: 'Must be a valid date in the format <code>H:i:s</code>.'
-        required: true
-        example: '00:23:36'
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      endTime:
-        name: endTime
-        description: 'Must be a valid date in the format <code>H:i:s</code>.'
-        required: true
-        example: '00:23:36'
+        example: molestias
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      userId: 19
-      courseId: 2
-      numberOfMonth: 19
-      dayOfMonth: 16
-      startTime: '00:23:36'
-      endTime: '00:23:36'
+      userId: 5
+      courseId: 3
+      time: molestias
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/free_lessons/createSession
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      CourseId:
+        name: CourseId
+        description: ''
+        required: true
+        example: exercitationem
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      SessionTimings:
+        name: SessionTimings
+        description: ''
+        required: true
+        example: et
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      guestUserId:
+        name: guestUserId
+        description: ''
+        required: true
+        example: et
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      CourseId: exercitationem
+      SessionTimings: et
+      guestUserId: et
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
     controller: null
     method: null
     route: null
@@ -1062,9 +1383,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -1076,11 +1398,8 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 500
-        content: |-
-          {
-              "message": "Server Error"
-          }
+        status: 200
+        content: '{"status":"success","total":29,"data":[{"freeLessonId":2,"courseName":"laravel","guestUserName":"ail yahea","userAge":22,"userEmail":"obedah9600@gmail.com","lessonDate":"2024-09-11","lessoStartTime":"20:00:00","lessoEndTime":"21:00:00","googleMeetUrl":"https:\/\/meet.google.com\/stx-cgwe-xet"},{"freeLessonId":3,"courseName":"laravel","guestUserName":"sami yahea","userAge":27,"userEmail":"obedah9600@gmail.com","lessonDate":"2024-09-11","lessoStartTime":"20:00:00","lessoEndTime":"21:00:00","googleMeetUrl":"https:\/\/meet.google.com\/stx-cgwe-xet"},{"freeLessonId":4,"courseName":"laravel","guestUserName":"sami yahea","userAge":27,"userEmail":"obedah9600@gmail.com","lessonDate":"2024-09-14","lessoStartTime":"06:00:00","lessoEndTime":"07:00:00","googleMeetUrl":"https:\/\/meet.google.com\/brt-gcrj-cav"},{"freeLessonId":5,"courseName":"laravel","guestUserName":"ail yahea","userAge":22,"userEmail":"obedah9600@gmail.com","lessonDate":"2024-09-11","lessoStartTime":"01:00:00","lessoEndTime":"02:00:00","googleMeetUrl":"https:\/\/meet.google.com\/aej-jmta-cre"},{"freeLessonId":6,"courseName":"laravel","guestUserName":"ail yahea","userAge":22,"userEmail":"obedah9600@gmail.com","lessonDate":"2024-09-14","lessoStartTime":"06:00:00","lessoEndTime":"07:00:00","googleMeetUrl":"https:\/\/meet.google.com\/brt-gcrj-cav"}]}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -1088,7 +1407,10 @@ endpoints:
         description: null
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
     controller: null
     method: null
     route: null
@@ -1104,9 +1426,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Update the specified resource in storage.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -1114,48 +1437,21 @@ endpoints:
         name: id
         description: 'The ID of the free lesson.'
         required: true
-        example: modi
+        example: doloribus
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      id: modi
+      id: doloribus
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      numberOfMonth:
-        name: numberOfMonth
+      sessionTime:
+        name: sessionTime
         description: ''
         required: true
-        example: quibusdam
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      dayOfMonth:
-        name: dayOfMonth
-        description: ''
-        required: true
-        example: ut
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      startTime:
-        name: startTime
-        description: ''
-        required: true
-        example: in
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        custom: []
-      endTime:
-        name: endTime
-        description: ''
-        required: true
-        example: explicabo
+        example: tempore
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -1164,21 +1460,21 @@ endpoints:
         name: meetUrl
         description: ''
         required: true
-        example: autem
+        example: ut
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      numberOfMonth: quibusdam
-      dayOfMonth: ut
-      startTime: in
-      endTime: explicabo
-      meetUrl: autem
+      sessionTime: tempore
+      meetUrl: ut
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
     controller: null
     method: null
     route: null
@@ -1194,9 +1490,10 @@ endpoints:
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -1208,17 +1505,104 @@ endpoints:
         name: id
         description: ''
         required: true
-        example: voluptas
+        example: totam
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      id: voluptas
+      id: totam
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/Testimonial
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Show the form for creating a new resource.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      firstName:
+        name: firstName
+        description: ''
+        required: true
+        example: non
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      lastName:
+        name: lastName
+        description: ''
+        required: true
+        example: dolores
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      age:
+        name: age
+        description: ''
+        required: true
+        example: eum
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: garret71@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      timeZone:
+        name: timeZone
+        description: ''
+        required: true
+        example: excepturi
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      firstName: non
+      lastName: dolores
+      age: eum
+      email: garret71@example.com
+      timeZone: excepturi
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
     controller: null
     method: null
     route: null
@@ -1226,17 +1610,18 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: api/create_event
+    uri: api/Testimonial
     metadata:
       groupName: Endpoints
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
+      title: 'Display a listing of the resource.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -1249,15 +1634,729 @@ endpoints:
     responses:
       -
         status: 200
-        content: 'https://meet.google.com/mft-oddf-wse'
+        content: '[{"status":"success","data":{"current_page":1,"data":[{"id":3,"firstName":"ail","lastName":"yahea","age":22,"email":"obedah9600@gmail.com","email_verified_at":"2024-09-10 11:29:06","verification_token":null,"email_verified":1,"timeZone":"Asia\/Damascus","created_at":"2024-09-10T08:27:26.000000Z","updated_at":"2024-09-10T08:29:06.000000Z"},{"id":6,"firstName":"sami","lastName":"yahea","age":27,"email":"obedah9600@gmail.com","email_verified_at":"2024-09-10 11:57:07","verification_token":null,"email_verified":1,"timeZone":"Asia\/Tokyo","created_at":"2024-09-10T08:56:39.000000Z","updated_at":"2024-09-10T08:57:07.000000Z"},{"id":7,"firstName":"sami","lastName":"yahea","age":27,"email":"obedah90@gmail.com","email_verified_at":null,"verification_token":"PxnYS821sUxzQVWpq8UQWjevSCD3mMy7","email_verified":0,"timeZone":"Asia\/Tokyo","created_at":"2024-09-14T18:08:33.000000Z","updated_at":"2024-09-14T18:08:33.000000Z"},{"id":8,"firstName":"Ismaell","lastName":"asd","age":22,"email":"bon1@gamil.com","email_verified_at":null,"verification_token":"BsGTYNMPhNNM1sJiO1vipfrXxwooDHBe","email_verified":0,"timeZone":"Asia\/Damascus","created_at":"2024-09-14T18:19:04.000000Z","updated_at":"2024-09-14T18:19:04.000000Z"},{"id":9,"firstName":"Ismaell","lastName":"asd","age":22,"email":"bon1@gamil.com","email_verified_at":null,"verification_token":"mzDZXPqDC7Kzqq9AT7PrHu2ZxzEwlVpi","email_verified":0,"timeZone":"Asia\/Damascus","created_at":"2024-09-14T18:20:23.000000Z","updated_at":"2024-09-14T18:20:23.000000Z"}],"first_page_url":"https:\/\/futuercoder-api-production.up.railway.app\/api\/Testimonial?page=1","from":1,"last_page":3,"last_page_url":"https:\/\/futuercoder-api-production.up.railway.app\/api\/Testimonial?page=3","links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https:\/\/futuercoder-api-production.up.railway.app\/api\/Testimonial?page=1","label":"1","active":true},{"url":"https:\/\/futuercoder-api-production.up.railway.app\/api\/Testimonial?page=2","label":"2","active":false},{"url":"https:\/\/futuercoder-api-production.up.railway.app\/api\/Testimonial?page=3","label":"3","active":false},{"url":"https:\/\/futuercoder-api-production.up.railway.app\/api\/Testimonial?page=2","label":"Next &raquo;","active":false}],"next_page_url":"https:\/\/futuercoder-api-production.up.railway.app\/api\/Testimonial?page=2","path":"https:\/\/futuercoder-api-production.up.railway.app\/api\/Testimonial","per_page":5,"prev_page_url":null,"to":5,"total":14}}]'
         headers:
-          content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
+          content-type: application/json
           vary: Origin
         description: null
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/Testimonial/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update the specified resource in storage.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the Testimonial.'
+        required: true
+        example: illum
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: illum
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      courseId:
+        name: courseId
+        description: ''
+        required: true
+        example: quod
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      firstName:
+        name: firstName
+        description: ''
+        required: true
+        example: at
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      lastName:
+        name: lastName
+        description: ''
+        required: true
+        example: doloribus
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      age:
+        name: age
+        description: ''
+        required: true
+        example: tenetur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: katelyn.gulgowski@example.net
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      courseId: quod
+      firstName: at
+      lastName: doloribus
+      age: tenetur
+      email: katelyn.gulgowski@example.net
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: api/Testimonial
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Remove the specified resource from storage.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      id:
+        name: id
+        description: ''
+        required: true
+        example: cumque
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      id: cumque
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/users
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"current_page":1,"data":[{"id":1,"firstName":"obedah","lastName":"shaban","age":28,"timeZone":"Asia\/Tokyo","email":"obedah9600@gmail.com","email_verified_at":null,"verification_token":null,"created_at":"2024-09-10T17:25:22.000000Z","updated_at":"2024-09-10T17:25:22.000000Z"},{"id":17,"firstName":"ali","lastName":"sh","age":23,"timeZone":"Asia\/Tokyo","email":"alialshrany204@gmail.com","email_verified_at":"2024-09-11T16:27:05.000000Z","verification_token":"154woOBFXaSrRVna2ZABlVUrwI239uK9Sx8w7kXRFQ2WOkvq7wpisgQemiNqKZ9S","created_at":"2024-09-11T16:26:44.000000Z","updated_at":"2024-09-11T16:27:05.000000Z"}],"first_page_url":"https:\/\/futuercoder-api-production.up.railway.app\/api\/users?page=1","from":1,"last_page":1,"last_page_url":"https:\/\/futuercoder-api-production.up.railway.app\/api\/users?page=1","links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https:\/\/futuercoder-api-production.up.railway.app\/api\/users?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"next_page_url":null,"path":"https:\/\/futuercoder-api-production.up.railway.app\/api\/users","per_page":5,"prev_page_url":null,"to":2,"total":2}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/users/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the user.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"id":1,"firstName":"obedah","lastName":"shaban","age":28,"timeZone":"Asia\/Tokyo","email":"obedah9600@gmail.com","email_verified_at":null,"verification_token":null,"created_at":"2024-09-10T17:25:22.000000Z","updated_at":"2024-09-10T17:25:22.000000Z"}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/users/signIn
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      firstName:
+        name: firstName
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: dzllfkfmbfpnjwutvgknc
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      lastName:
+        name: lastName
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: korwlzoqcardgvssotz
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      age:
+        name: age
+        description: ''
+        required: true
+        example: temporibus
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      timeZone:
+        name: timeZone
+        description: ''
+        required: true
+        example: nemo
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address. Must not be greater than 255 characters.'
+        required: true
+        example: jared.reinger@example.org
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      password:
+        name: password
+        description: 'Must be at least 8 characters.'
+        required: true
+        example: '|p|m~q&h},[EJy%'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      firstName: dzllfkfmbfpnjwutvgknc
+      lastName: korwlzoqcardgvssotz
+      age: temporibus
+      timeZone: nemo
+      email: jared.reinger@example.org
+      password: '|p|m~q&h},[EJy%'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/users/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the user.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: wlzyqyhrqsduixuknk
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      email:
+        name: email
+        description: ''
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      password:
+        name: password
+        description: 'Must be at least 8 characters.'
+        required: false
+        example: 'M}IK2GVIbDS'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      name: wlzyqyhrqsduixuknk
+      password: 'M}IK2GVIbDS'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/users/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the user.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/register1
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Handle an incoming registration request.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      firstName:
+        name: firstName
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: taurlapgozbcjmjpga
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      lastName:
+        name: lastName
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: tzptgnbnkhkxtyxjsatkhttyh
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      age:
+        name: age
+        description: 'Must be at least 0.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      timeZone:
+        name: timeZone
+        description: ''
+        required: true
+        example: eveniet
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      email:
+        name: email
+        description: 'Must be a valid email address. Must not be greater than 255 characters.'
+        required: true
+        example: fiona.schmidt@example.org
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      password:
+        name: password
+        description: 'Must be at least 8 characters.'
+        required: true
+        example: '0sL[n(L%+,'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      firstName: taurlapgozbcjmjpga
+      lastName: tzptgnbnkhkxtyxjsatkhttyh
+      age: 16
+      timeZone: eveniet
+      email: fiona.schmidt@example.org
+      password: '0sL[n(L%+,'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/email/verify/{id}/{hash}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: "Mark the authenticated user's email address as verified."
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the verify.'
+        required: true
+        example: a
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      hash:
+        name: hash
+        description: ''
+        required: true
+        example: voluptates
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: a
+      hash: voluptates
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 403
+        content: |-
+          {
+              "message": "Invalid signature."
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/verify-subscriber-email/{token}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      token:
+        name: token
+        description: ''
+        required: true
+        example: aliquid
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      token: aliquid
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 400
+        content: '{"message":"Invalid or expired verification token."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/verify-guest-email/{token}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      token:
+        name: token
+        description: ''
+        required: true
+        example: iusto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      token: iusto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 400
+        content: '{"message":"Invalid or expired verification token."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Bearer 1|KUxcjQBuEzMNtQlTqLb9JBNp9e8L3TXnalykyiRd31e4f4bf'
     controller: null
     method: null
     route: null

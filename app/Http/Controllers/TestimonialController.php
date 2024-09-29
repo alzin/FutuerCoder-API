@@ -41,11 +41,11 @@ class TestimonialController extends Controller
                 "description"=>'required',
                 "rating"=>'required'
             ]);
-            $user=User::find($request->userid);
+            $user=User::find($request->userId);
             if($user)
             {
                 $testimonial = Testimonial::create([
-                    "userId"=>$user,
+                    "userId"=>$user->id,
                     "description"=> $request->description,
                     "rating"=> $request->rating
                 ]);
@@ -72,6 +72,50 @@ class TestimonialController extends Controller
         $testimonial->save();
         return response()->json(["status"=> "update successfuly","data"=> $testimonial]);
     }
+        public function validTestimonial()
+    {
+        
+        $testimonials = Testimonial::with('user:id,firstName,lastName')
+            ->whereHas('user', function ($query) {
+                $query->whereNotNull('email_verified_at');
+            })
+            ->where('is_visible', 1) 
+            ->latest() 
+            ->limit(10)
+            ->get();
+
+        return response()->json($testimonials);
+    }
+
+        public function getAllTestimonialsForAdmin()
+    {
+        $testimonials = Testimonial::with('user:id,email,firstName,lastName')
+            ->get()
+            ->map(function ($testimonial) {
+                return [
+                    'testimonial_id' => $testimonial->id,
+                    'description' => $testimonial->description,
+                    'rating' => $testimonial->rating,
+                    'is_visible' => $testimonial->is_visible ? 1 : 0,
+                    'user_id' => $testimonial->user->id,
+                    'user_email' => $testimonial->user->email,
+                    'user_name' => $testimonial->user->firstName . ' ' . $testimonial->user->lastName,
+                ];
+            });
+
+        return response()->json($testimonials);
+    }
+
+        public function changeVisibility(Request $request)
+    {
+        $testimonial = Testimonial::findOrFail($request->id);
+        $testimonial->is_visible = !$testimonial->is_visible;
+        $testimonial->save();
+
+        return response()->json(['message' => 'Visibility status updated successfully.']);
+    }
+
+    
 
     /**
      * Remove the specified resource from storage.

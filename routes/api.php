@@ -19,11 +19,44 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Services\GuestUserService;
 
 
 
+Route::post('/login', function (Request $request) {
+    $credentials = $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
+    if (Auth::attempt($credentials)) {
+        $user = Auth::user();
+        $token = $user->createToken('API Token')->plainTextToken;
+        return response()->json([
+            'token' => $token,
+            'user' => $user,
+        ]);
+    }
 
-Route::get('/',function(){return "welcome to our api";});
+    return response()->json(['error' => 'Unauthorized'], 401);
+});
+//Route::get('/home',function(){return "welcome to our api";})->name('home');;
+Route::middleware('web')->get('/home', function () {
+    if (session('status') == 'success') {
+        $guestUser = session('guestUser');
+        $sessionDetails = session('sessionDetails');
+        return "
+            Guest User: {$guestUser->name} <br>
+            Session Start Time: {$sessionDetails['sessionStartTime']} <br>
+            Session End Time: {$sessionDetails['sessionEndtTime']} <br>
+            Meeting URL: <a href='{$sessionDetails['meetUrl']}'>{$sessionDetails['meetUrl']}</a> <br>
+            Event ID: {$sessionDetails['eventId']}
+        ";
+    } else {
+        return "Welcome to our API";
+    }
+})->name('home');
+
+
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('blogs')->group(function () {
@@ -31,6 +64,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/store', [BlogsController::class, 'store']);
         Route::get('/', [BlogsController::class, 'index']);
         Route::put('/{id}', [BlogsController::class, 'update']);
+        Route::get('/lastThree', [BlogsController::class, 'getLastThreeBlogs']);
         Route::delete('/', [BlogsController::class, 'destroy']);
     });
 
@@ -74,39 +108,43 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/', [FreeLessonsController::class, 'destroy']);
     });
         Route::prefix('Testimonial')->group(function () {
-        Route::post('/', [GuestUsersController::class, 'create']);
-        Route::get('/', [GuestUsersController::class, 'index']);
-        Route::put('/{id}', [GuestUsersController::class, 'update']);
-        Route::delete('/', [GuestUsersController::class, 'destroy']);
+        Route::post('/', [TestimonialController::class, 'create']);
+        Route::post('/changeVisibility', [TestimonialController::class, 'changeVisibility']);
+        Route::get('/', [TestimonialController::class, 'index']);
+        Route::put('/{id}', [TestimonialController::class, 'update']);
+        Route::get('/validTestimonial', [TestimonialController::class, 'validTestimonial']);
+        Route::get('/getAllTestimonialsForAdmin', [TestimonialController::class, 'getAllTestimonialsForAdmin']);
+        Route::delete('/', [TestimonialController::class, 'destroy']);
     });
     Route::group(['prefix' => 'users'], function () {
         Route::get('/', [UserController::class, 'index']);    
         Route::get('/{id}', [UserController::class, 'show']); 
-        Route::post('/signIn', [UserController::class, 'create']);    
+        Route::post('/signIn', [UserController::class, 'create']);
         Route::put('/{id}', [UserController::class, 'update']);
         Route::delete('/{id}', [UserController::class, 'destroy']);
     });
-
-
-    /*Route::post('/email/resend', 'VerificationController@resend')
-        ->middleware('throttle:6,1')
-        ->name('verification.resend');*/
 
     Route::get('create_event',[FreeLessonsController::class,'createEvent']);
    
 });
 
-Route::post('register1', [RegisteredUserController::class, 'store'])
+Route::post('register1', [RegisteredUserController::class,'store'])
 ->middleware('guest')
 ->name('register1');
+Route::post('logIn', [RegisteredUserController::class,'login'])
+->middleware('guest')
+->name('logIn');
+Route::post('logOut', [RegisteredUserController::class,'logout'])
+->middleware('auth')
+->name('logOut');
+Route::post('/forgot-password', [PasswordResetLinkController::class, 'store']);
+Route::post('/reset-password', [NewPasswordController::class, 'store']);
 
 Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
         ->middleware(['signed'])
         ->name('verification.verify');
 
-
-
-
-
 Route::get('/verify-subscriber-email/{token}', [SubscribersController::class, 'verify']);
-Route::get('/verify-guest-email/{token}', [GuestUsersController::class, 'verify']);
+
+Route::get('/verify-guest-email/{token}/{courseId}/{sessionTimings}', [GuestUserService::class, 'verifyGuestUser']);
+

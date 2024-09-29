@@ -11,6 +11,11 @@ class Testimonial extends Model
     protected $fillable = [
         'userId',
         'description',
-        'rating'
+        'rating',
+        'is_visible'
     ] ;
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'userId');
+    }
 }

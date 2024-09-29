@@ -3,18 +3,27 @@
 namespace App\Services;
 
 use App\Models\GuestUsers;
+use App\Models\Cources;
+use App\Models\Cources_time;
+use App\Models\FreeLessons;
 use Illuminate\Support\Facades\Mail;
+use App\Services\GoogleCalendarService;
 use Illuminate\Support\Str;
 use App\Mail\VerifyEmail;
-
+use Carbon\Carbon;
 class GuestUserService
 {
+    protected $calendarService;
+
+    public function __construct(GoogleCalendarService $calendarService)
+    {
+        $this->calendarService = $calendarService;
+    }
+
     public function createGuestUser($data)
     {
-        // توليد رمز التحقق
         $verificationToken = Str::random(32);
 
-        // إنشاء المستخدم الضيف
         $guestUser = GuestUsers::create([
             'firstName' => $data['firstName'],
             'lastName' => $data['lastName'],
@@ -23,32 +32,79 @@ class GuestUserService
             'timeZone' => $data['timeZone'],
             'verification_token' => $verificationToken
         ]);
+        $courseId=$data['courseId'];
+        $sessionTimings=$data['sessionTimings'];
 
-        // إعداد رابط التحقق
-        $verificationUrl = url("/api/verify-guest-email/{$verificationToken}");
-
-        // إرسال البريد الإلكتروني
+        $verificationUrl = url("/api/verify-guest-email/{$verificationToken}/{$courseId}/{$sessionTimings}");
         Mail::to($guestUser->email)->send(new VerifyEmail($verificationUrl));
 
         return $guestUser;
     }
 
-    public function verifyGuestUser($token)
+        public function verifyGuestUser($token, $courseId, $sessionTimings)
     {
-        // البحث عن المستخدم الضيف باستخدام رمز التحقق
         $guestUser = GuestUsers::where('verification_token', $token)->first();
-
-        if ($guestUser) {
-            // تأكيد البريد الإلكتروني
-            $guestUser->update([
-                'email_verified_at' => now(),
-                'verification_token' => null,
-                'email_verified' => 1
-            ]);
-
-            return true;
+        if (!$guestUser) {
+            return [
+                'status' => 'error',
+                'message' => 'Invalid or expired verification token.',
+                'statusCode' => 400
+            ];
         }
 
-        return false;
+        $guestUser->update([
+            'email_verified_at' => now(),
+            'verification_token' => null,
+            'email_verified' => 1
+        ]);
+
+        $existingtime = Cources_time::where('courseId', $courseId)
+            ->where('id', $sessionTimings)
+            ->where('studentsCount', '<', 3)
+            ->first();
+
+        if (!$existingtime) {
+            return [
+                'status' => 'error',
+                'message' => 'No available session time found.',
+                'statusCode' => 404
+            ];
+        }
+
+        $existingLesson = FreeLessons::where('sessionTime', $existingtime->id)->first();
+
+        if ($existingLesson && $existingtime->studentsCount < 3) {
+            $eventDetails = $this->calendarService->createEvent($guestUser->email, $existingtime->startTime, $existingtime->endTime, $existingtime->SessionTimings, $existingLesson->eventId, $guestUser->timeZone);
+        } else {
+            $eventDetails = $this->calendarService->createEvent($guestUser->email, $existingtime->startTime, $existingtime->endTime, $existingtime->SessionTimings, 0, $guestUser->timeZone);
+        }
+
+        $existingtime->increment('studentsCount');
+        $freeLesson = FreeLessons::create([
+            'courseId' => $courseId,
+            'userId' => $guestUser->id,
+            'sessionTime' => $existingtime->id,
+            'meetUrl' => $eventDetails['meetUrl'],
+            'eventId' => $eventDetails['eventId']
+        ]);
+        $time = Cources_time::find($freeLesson->sessionTime);
+        $timeZone=$guestUser->timeZone;
+        $startDateTime = Carbon::createFromFormat('Y-m-d H:i:s', $time->SessionTimings . ' ' . $time->startTime, 'UTC')
+                            ->setTimezone($timeZone);
+        $endDateTime = Carbon::createFromFormat('Y-m-d H:i:s', $time->SessionTimings . ' ' . $time->endTime, 'UTC')
+                            ->setTimezone($timeZone);
+        return redirect()->route('home') 
+            ->with([
+                'status' => 'success',
+                'guestUser' => $guestUser,
+                'sessionDetails' => [
+                    'sessionStartTime' =>  $startDateTime->format('Y-m-d H:i:s'), 
+                    'sessionEndtTime' =>  $endDateTime->format('Y-m-d H:i:s'),
+                    'meetUrl' => $eventDetails['meetUrl'],
+                    'eventId' => $eventDetails['eventId']
+                ]
+            ]);
+
     }
+
 }

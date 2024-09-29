@@ -51,62 +51,63 @@ class GoogleCalendarService
         $client->setScopes(Google_Service_Calendar::CALENDAR);
         $client->setAccessType('offline');
         $client->setApprovalPrompt('force');
-
         $service = new Google_Service_Calendar($client);
-
-        if ($eventId == 0) {
+        if ($eventId == 0){
             $event = new Google_Service_Calendar_Event();
             $event->setSummary('NEW EVENT');
             
             $event->setDescription('Event description');
             $event->setStart(new EventDateTime([
                 'dateTime' => Carbon::parse($date . $startTime,'UTC')
-                                        ->addHours(6)
                                         ->setTimezone($userTimezone)
                                         ->toRfc3339String(),
-                'timeZone' => $userTimezone,    
+                'timeZone' => $userTimezone,
             ]));
             $event->setEnd(new EventDateTime([
                 'dateTime' => Carbon::parse($date . $endTime,'UTC')
-                                        ->addHours(6)
                                         ->setTimezone($userTimezone)
                                         ->toRfc3339String(),
                 'timeZone' => $userTimezone,
             ]));
             $attendee1 = new EventAttendee();
-            $attendee1->setEmail($email); // البريد الإلكتروني للمدعو
+            $attendee1->setEmail($email); 
             $event->setAttendees([$attendee1]);
 
-            // إعداد الاجتماع عبر Google Meet
+           
             $conference = new ConferenceData();
             $conferenceRequest = new CreateConferenceRequest();
             $conferenceSolutionKey = new ConferenceSolutionKey();
             $conferenceSolutionKey->setType('hangoutsMeet');
             $conferenceRequest->setConferenceSolutionKey($conferenceSolutionKey);
-            $conferenceRequest->setRequestId(uniqid()); // معرف فريد للطلب
+            $conferenceRequest->setRequestId(uniqid());
             $conference->setCreateRequest($conferenceRequest);
             $event->setConferenceData($conference);
 
             $calendarId = 'primary';
 
             try {
-                // إدراج الحدث مع إرسال الدعوات عبر البريد الإلكتروني
                 $createdEvent = $service->events->insert($calendarId, $event, [
                     'conferenceDataVersion' => 1,
-                    'sendUpdates' => 'all' // إرسال دعوة إلى جميع الحضور عبر البريد الإلكتروني
+                    'sendUpdates' => 'all' 
                 ]);
-
-                // التأكيد على نجاح الإنشاء وعرض الرابط
+            
                 echo 'Event created: ' . $createdEvent->htmlLink;
                 echo 'Join the meeting: ' . $createdEvent->getHangoutLink();
-
+            
+              
+                return [
+                    'eventId' => $createdEvent->getId(),
+                    'meetUrl' => $createdEvent->getHangoutLink(),
+                ];
+            
             } catch (\Exception $e) {
                 echo 'Error creating event: ' . $e->getMessage();
+                return [
+                    'error' => 'Failed to create event',
+                    'message' => $e->getMessage()
+                ];
             }
-            return [
-                'eventId' => $createdEvent->getId(),
-                'meetUrl' => $createdEvent->getHangoutLink(),
-            ];
+            
         } else {
             $event = $service->events->get('primary', $eventId);
             $attendee = new Google_Service_Calendar_EventAttendee();

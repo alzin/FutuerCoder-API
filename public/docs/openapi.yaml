@@ -5,7 +5,7 @@ info:
   version: 1.0.0
 servers:
   -
-    url: 'https://onlineschool-production.up.railway.app'
+    url: 'https://futuercoder-api-production.up.railway.app'
 paths:
   /api/blogs:
     post:
@@ -26,15 +26,14 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: ex
+                  example: fugiat
                 description:
                   type: string
                   description: ''
-                  example: alias
+                  example: hic
               required:
                 - title
                 - description
-      security: []
     get:
       summary: 'Display a listing of the resource.'
       operationId: displayAListingOfTheResource
@@ -52,66 +51,41 @@ paths:
                   data:
                     -
                       id: 1
-                      title: fdgdfg
-                      description: fgdfgdf
+                      title: 'Blog Titless'
+                      description: 'Blog Description'
                       ImagePath: 'https://i.postimg.cc/jjfjwTWs/image.png'
-                      created_at: '2024-08-26T19:41:38.000000Z'
-                      updated_at: '2024-08-27T14:47:47.000000Z'
-                    -
-                      id: 2
-                      title: hhh
-                      description: 'first by postman'
-                      ImagePath: 'https://onlineschool-production.up.railway.app/storage/blogs/1724705235.jpg'
-                      created_at: '2024-08-26T20:47:15.000000Z'
-                      updated_at: '2024-08-26T20:47:15.000000Z'
+                      created_at: '2024-09-10T10:02:37.000000Z'
+                      updated_at: '2024-09-16T11:51:09.000000Z'
                     -
                       id: 3
-                      title: mmm
-                      description: 'first by postman'
-                      ImagePath: 'https://onlineschool-production.up.railway.app/storage/blogs/1724705869.jpg'
-                      created_at: '2024-08-26T20:57:49.000000Z'
-                      updated_at: '2024-08-26T20:57:49.000000Z'
-                    -
-                      id: 4
-                      title: kkk
-                      description: 'first by postman'
-                      ImagePath: uploads/images/blogs/1724743149.jpg
-                      created_at: '2024-08-27T07:19:09.000000Z'
-                      updated_at: '2024-08-27T07:19:09.000000Z'
-                    -
-                      id: 5
-                      title: kkk
-                      description: 'first by postman'
-                      ImagePath: uploads/images/blogs/1724746595.jpg
-                      created_at: '2024-08-27T08:16:35.000000Z'
-                      updated_at: '2024-08-27T08:16:35.000000Z'
-                  first_page_url: 'https://onlineschool-production.up.railway.app/api/blogs?page=1'
+                      title: 'blog title'
+                      description: 'blog description'
+                      ImagePath: 'https://i.postimg.cc/jjfjwTWs/image.png'
+                      created_at: '2024-09-22T11:39:46.000000Z'
+                      updated_at: '2024-09-22T11:39:46.000000Z'
+                  first_page_url: 'https://futuercoder-api-production.up.railway.app/api/blogs?page=1'
                   from: 1
-                  last_page: 2
-                  last_page_url: 'https://onlineschool-production.up.railway.app/api/blogs?page=2'
+                  last_page: 1
+                  last_page_url: 'https://futuercoder-api-production.up.railway.app/api/blogs?page=1'
                   links:
                     -
                       url: null
                       label: '&laquo; Previous'
                       active: false
                     -
-                      url: 'https://onlineschool-production.up.railway.app/api/blogs?page=1'
+                      url: 'https://futuercoder-api-production.up.railway.app/api/blogs?page=1'
                       label: '1'
                       active: true
                     -
-                      url: 'https://onlineschool-production.up.railway.app/api/blogs?page=2'
-                      label: '2'
-                      active: false
-                    -
-                      url: 'https://onlineschool-production.up.railway.app/api/blogs?page=2'
+                      url: null
                       label: 'Next &raquo;'
                       active: false
-                  next_page_url: 'https://onlineschool-production.up.railway.app/api/blogs?page=2'
-                  path: 'https://onlineschool-production.up.railway.app/api/blogs'
+                  next_page_url: null
+                  path: 'https://futuercoder-api-production.up.railway.app/api/blogs'
                   per_page: 5
                   prev_page_url: null
-                  to: 5
-                  total: 9
+                  to: 2
+                  total: 2
                 properties:
                   current_page:
                     type: integer
@@ -121,39 +95,18 @@ paths:
                     example:
                       -
                         id: 1
-                        title: fdgdfg
-                        description: fgdfgdf
+                        title: 'Blog Titless'
+                        description: 'Blog Description'
                         ImagePath: 'https://i.postimg.cc/jjfjwTWs/image.png'
-                        created_at: '2024-08-26T19:41:38.000000Z'
-                        updated_at: '2024-08-27T14:47:47.000000Z'
-                      -
-                        id: 2
-                        title: hhh
-                        description: 'first by postman'
-                        ImagePath: 'https://onlineschool-production.up.railway.app/storage/blogs/1724705235.jpg'
-                        created_at: '2024-08-26T20:47:15.000000Z'
-                        updated_at: '2024-08-26T20:47:15.000000Z'
+                        created_at: '2024-09-10T10:02:37.000000Z'
+                        updated_at: '2024-09-16T11:51:09.000000Z'
                       -
                         id: 3
-                        title: mmm
-                        description: 'first by postman'
-                        ImagePath: 'https://onlineschool-production.up.railway.app/storage/blogs/1724705869.jpg'
-                        created_at: '2024-08-26T20:57:49.000000Z'
-                        updated_at: '2024-08-26T20:57:49.000000Z'
-                      -
-                        id: 4
-                        title: kkk
-                        description: 'first by postman'
-                        ImagePath: uploads/images/blogs/1724743149.jpg
-                        created_at: '2024-08-27T07:19:09.000000Z'
-                        updated_at: '2024-08-27T07:19:09.000000Z'
-                      -
-                        id: 5
-                        title: kkk
-                        description: 'first by postman'
-                        ImagePath: uploads/images/blogs/1724746595.jpg
-                        created_at: '2024-08-27T08:16:35.000000Z'
-                        updated_at: '2024-08-27T08:16:35.000000Z'
+                        title: 'blog title'
+                        description: 'blog description'
+                        ImagePath: 'https://i.postimg.cc/jjfjwTWs/image.png'
+                        created_at: '2024-09-22T11:39:46.000000Z'
+                        updated_at: '2024-09-22T11:39:46.000000Z'
                     items:
                       type: object
                       properties:
@@ -162,31 +115,31 @@ paths:
                           example: 1
                         title:
                           type: string
-                          example: fdgdfg
+                          example: 'Blog Titless'
                         description:
                           type: string
-                          example: fgdfgdf
+                          example: 'Blog Description'
                         ImagePath:
                           type: string
                           example: 'https://i.postimg.cc/jjfjwTWs/image.png'
                         created_at:
                           type: string
-                          example: '2024-08-26T19:41:38.000000Z'
+                          example: '2024-09-10T10:02:37.000000Z'
                         updated_at:
                           type: string
-                          example: '2024-08-27T14:47:47.000000Z'
+                          example: '2024-09-16T11:51:09.000000Z'
                   first_page_url:
                     type: string
-                    example: 'https://onlineschool-production.up.railway.app/api/blogs?page=1'
+                    example: 'https://futuercoder-api-production.up.railway.app/api/blogs?page=1'
                   from:
                     type: integer
                     example: 1
                   last_page:
                     type: integer
-                    example: 2
+                    example: 1
                   last_page_url:
                     type: string
-                    example: 'https://onlineschool-production.up.railway.app/api/blogs?page=2'
+                    example: 'https://futuercoder-api-production.up.railway.app/api/blogs?page=1'
                   links:
                     type: array
                     example:
@@ -195,15 +148,11 @@ paths:
                         label: '&laquo; Previous'
                         active: false
                       -
-                        url: 'https://onlineschool-production.up.railway.app/api/blogs?page=1'
+                        url: 'https://futuercoder-api-production.up.railway.app/api/blogs?page=1'
                         label: '1'
                         active: true
                       -
-                        url: 'https://onlineschool-production.up.railway.app/api/blogs?page=2'
-                        label: '2'
-                        active: false
-                      -
-                        url: 'https://onlineschool-production.up.railway.app/api/blogs?page=2'
+                        url: null
                         label: 'Next &raquo;'
                         active: false
                     items:
@@ -220,10 +169,10 @@ paths:
                           example: false
                   next_page_url:
                     type: string
-                    example: 'https://onlineschool-production.up.railway.app/api/blogs?page=2'
+                    example: null
                   path:
                     type: string
-                    example: 'https://onlineschool-production.up.railway.app/api/blogs'
+                    example: 'https://futuercoder-api-production.up.railway.app/api/blogs'
                   per_page:
                     type: integer
                     example: 5
@@ -232,13 +181,12 @@ paths:
                     example: null
                   to:
                     type: integer
-                    example: 5
+                    example: 2
                   total:
                     type: integer
-                    example: 9
+                    example: 2
       tags:
         - Endpoints
-      security: []
     delete:
       summary: 'Remove the specified resource from storage.'
       operationId: removeTheSpecifiedResourceFromStorage
@@ -247,7 +195,28 @@ paths:
       responses: {  }
       tags:
         - Endpoints
-      security: []
+  /api/blogs/store:
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                  description: 'Must be an image. Must not be greater than 2048 kilobytes.'
+              required:
+                - image
   '/api/blogs/{id}':
     put:
       summary: 'Update the specified resource in storage.'
@@ -267,21 +236,20 @@ paths:
                 title:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: gaxdezpuzycfev
+                  example: khepxipqbkwirczzv
                 description:
                   type: string
                   description: ''
-                  example: ducimus
+                  example: consequuntur
               required:
                 - title
                 - description
-      security: []
     parameters:
       -
         in: path
         name: id
         description: 'The ID of the blog.'
-        example: error
+        example: accusamus
         required: true
         schema:
           type: string
@@ -304,10 +272,9 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: lkrajcik@example.net
+                  example: erna.herzog@example.net
               required:
                 - email
-      security: []
     get:
       summary: 'Display a listing of the resource.'
       operationId: displayAListingOfTheResource
@@ -325,81 +292,43 @@ paths:
                   data:
                     -
                       id: 1
-                      email: obedag@gmail.com
-                      created_at: '2024-08-27T13:33:47.000000Z'
-                      updated_at: '2024-08-27T13:33:47.000000Z'
+                      email: audirezk@gmail.com
+                      email_verified_at: '2024-09-10 13:03:16'
+                      verification_token: null
+                      email_verified: 1
+                      created_at: '2024-09-10T10:02:58.000000Z'
+                      updated_at: '2024-09-10T10:03:16.000000Z'
                     -
-                      id: 3
-                      email: obedahh@gmail.com
-                      created_at: '2024-08-27T13:46:33.000000Z'
-                      updated_at: '2024-08-27T13:46:33.000000Z'
-                    -
-                      id: 4
-                      email: obedag1@gmail.com
-                      created_at: '2024-08-27T14:51:10.000000Z'
-                      updated_at: '2024-08-27T14:51:10.000000Z'
-                    -
-                      id: 5
-                      email: obedahh11111111111@gmail.com
-                      created_at: '2024-08-27T15:11:45.000000Z'
-                      updated_at: '2024-08-27T15:11:45.000000Z'
-                    -
-                      id: 6
-                      email: obedag111111111111111111111111@gmail.com
-                      created_at: '2024-08-27T15:12:49.000000Z'
-                      updated_at: '2024-08-27T15:12:49.000000Z'
-                    -
-                      id: 7
-                      email: aaa@gmail.com
-                      created_at: '2024-08-27T17:05:40.000000Z'
-                      updated_at: '2024-08-27T17:05:40.000000Z'
-                    -
-                      id: 8
-                      email: aaaaa@gmail.com
-                      created_at: '2024-08-27T17:16:02.000000Z'
-                      updated_at: '2024-08-27T17:16:02.000000Z'
-                    -
-                      id: 9
-                      email: aaabbb@gmail.com
-                      created_at: '2024-08-27T17:17:57.000000Z'
-                      updated_at: '2024-08-27T17:17:57.000000Z'
-                    -
-                      id: 10
-                      email: aannnna@gmail.com
-                      created_at: '2024-08-27T17:21:19.000000Z'
-                      updated_at: '2024-08-27T17:21:19.000000Z'
-                    -
-                      id: 11
-                      email: obedahh12@gmail.com
-                      created_at: '2024-08-28T06:27:58.000000Z'
-                      updated_at: '2024-08-28T06:27:58.000000Z'
-                  first_page_url: 'https://onlineschool-production.up.railway.app/api/subscribers?page=1'
+                      id: 2
+                      email: obedah9600@gmail.com
+                      email_verified_at: '2024-09-12 13:55:02'
+                      verification_token: null
+                      email_verified: 1
+                      created_at: '2024-09-12T10:54:45.000000Z'
+                      updated_at: '2024-09-12T10:55:02.000000Z'
+                  first_page_url: 'https://futuercoder-api-production.up.railway.app/api/subscribers?page=1'
                   from: 1
-                  last_page: 2
-                  last_page_url: 'https://onlineschool-production.up.railway.app/api/subscribers?page=2'
+                  last_page: 1
+                  last_page_url: 'https://futuercoder-api-production.up.railway.app/api/subscribers?page=1'
                   links:
                     -
                       url: null
                       label: '&laquo; Previous'
                       active: false
                     -
-                      url: 'https://onlineschool-production.up.railway.app/api/subscribers?page=1'
+                      url: 'https://futuercoder-api-production.up.railway.app/api/subscribers?page=1'
                       label: '1'
                       active: true
                     -
-                      url: 'https://onlineschool-production.up.railway.app/api/subscribers?page=2'
-                      label: '2'
-                      active: false
-                    -
-                      url: 'https://onlineschool-production.up.railway.app/api/subscribers?page=2'
+                      url: null
                       label: 'Next &raquo;'
                       active: false
-                  next_page_url: 'https://onlineschool-production.up.railway.app/api/subscribers?page=2'
-                  path: 'https://onlineschool-production.up.railway.app/api/subscribers'
+                  next_page_url: null
+                  path: 'https://futuercoder-api-production.up.railway.app/api/subscribers'
                   per_page: 10
                   prev_page_url: null
-                  to: 10
-                  total: 19
+                  to: 2
+                  total: 2
                 properties:
                   current_page:
                     type: integer
@@ -409,54 +338,20 @@ paths:
                     example:
                       -
                         id: 1
-                        email: obedag@gmail.com
-                        created_at: '2024-08-27T13:33:47.000000Z'
-                        updated_at: '2024-08-27T13:33:47.000000Z'
+                        email: audirezk@gmail.com
+                        email_verified_at: '2024-09-10 13:03:16'
+                        verification_token: null
+                        email_verified: 1
+                        created_at: '2024-09-10T10:02:58.000000Z'
+                        updated_at: '2024-09-10T10:03:16.000000Z'
                       -
-                        id: 3
-                        email: obedahh@gmail.com
-                        created_at: '2024-08-27T13:46:33.000000Z'
-                        updated_at: '2024-08-27T13:46:33.000000Z'
-                      -
-                        id: 4
-                        email: obedag1@gmail.com
-                        created_at: '2024-08-27T14:51:10.000000Z'
-                        updated_at: '2024-08-27T14:51:10.000000Z'
-                      -
-                        id: 5
-                        email: obedahh11111111111@gmail.com
-                        created_at: '2024-08-27T15:11:45.000000Z'
-                        updated_at: '2024-08-27T15:11:45.000000Z'
-                      -
-                        id: 6
-                        email: obedag111111111111111111111111@gmail.com
-                        created_at: '2024-08-27T15:12:49.000000Z'
-                        updated_at: '2024-08-27T15:12:49.000000Z'
-                      -
-                        id: 7
-                        email: aaa@gmail.com
-                        created_at: '2024-08-27T17:05:40.000000Z'
-                        updated_at: '2024-08-27T17:05:40.000000Z'
-                      -
-                        id: 8
-                        email: aaaaa@gmail.com
-                        created_at: '2024-08-27T17:16:02.000000Z'
-                        updated_at: '2024-08-27T17:16:02.000000Z'
-                      -
-                        id: 9
-                        email: aaabbb@gmail.com
-                        created_at: '2024-08-27T17:17:57.000000Z'
-                        updated_at: '2024-08-27T17:17:57.000000Z'
-                      -
-                        id: 10
-                        email: aannnna@gmail.com
-                        created_at: '2024-08-27T17:21:19.000000Z'
-                        updated_at: '2024-08-27T17:21:19.000000Z'
-                      -
-                        id: 11
-                        email: obedahh12@gmail.com
-                        created_at: '2024-08-28T06:27:58.000000Z'
-                        updated_at: '2024-08-28T06:27:58.000000Z'
+                        id: 2
+                        email: obedah9600@gmail.com
+                        email_verified_at: '2024-09-12 13:55:02'
+                        verification_token: null
+                        email_verified: 1
+                        created_at: '2024-09-12T10:54:45.000000Z'
+                        updated_at: '2024-09-12T10:55:02.000000Z'
                     items:
                       type: object
                       properties:
@@ -465,25 +360,34 @@ paths:
                           example: 1
                         email:
                           type: string
-                          example: obedag@gmail.com
+                          example: audirezk@gmail.com
+                        email_verified_at:
+                          type: string
+                          example: '2024-09-10 13:03:16'
+                        verification_token:
+                          type: string
+                          example: null
+                        email_verified:
+                          type: integer
+                          example: 1
                         created_at:
                           type: string
-                          example: '2024-08-27T13:33:47.000000Z'
+                          example: '2024-09-10T10:02:58.000000Z'
                         updated_at:
                           type: string
-                          example: '2024-08-27T13:33:47.000000Z'
+                          example: '2024-09-10T10:03:16.000000Z'
                   first_page_url:
                     type: string
-                    example: 'https://onlineschool-production.up.railway.app/api/subscribers?page=1'
+                    example: 'https://futuercoder-api-production.up.railway.app/api/subscribers?page=1'
                   from:
                     type: integer
                     example: 1
                   last_page:
                     type: integer
-                    example: 2
+                    example: 1
                   last_page_url:
                     type: string
-                    example: 'https://onlineschool-production.up.railway.app/api/subscribers?page=2'
+                    example: 'https://futuercoder-api-production.up.railway.app/api/subscribers?page=1'
                   links:
                     type: array
                     example:
@@ -492,15 +396,11 @@ paths:
                         label: '&laquo; Previous'
                         active: false
                       -
-                        url: 'https://onlineschool-production.up.railway.app/api/subscribers?page=1'
+                        url: 'https://futuercoder-api-production.up.railway.app/api/subscribers?page=1'
                         label: '1'
                         active: true
                       -
-                        url: 'https://onlineschool-production.up.railway.app/api/subscribers?page=2'
-                        label: '2'
-                        active: false
-                      -
-                        url: 'https://onlineschool-production.up.railway.app/api/subscribers?page=2'
+                        url: null
                         label: 'Next &raquo;'
                         active: false
                     items:
@@ -517,10 +417,10 @@ paths:
                           example: false
                   next_page_url:
                     type: string
-                    example: 'https://onlineschool-production.up.railway.app/api/subscribers?page=2'
+                    example: null
                   path:
                     type: string
-                    example: 'https://onlineschool-production.up.railway.app/api/subscribers'
+                    example: 'https://futuercoder-api-production.up.railway.app/api/subscribers'
                   per_page:
                     type: integer
                     example: 10
@@ -529,13 +429,12 @@ paths:
                     example: null
                   to:
                     type: integer
-                    example: 10
+                    example: 2
                   total:
                     type: integer
-                    example: 19
+                    example: 2
       tags:
         - Endpoints
-      security: []
     delete:
       summary: 'Remove the specified resource from storage.'
       operationId: removeTheSpecifiedResourceFromStorage
@@ -544,39 +443,6 @@ paths:
       responses: {  }
       tags:
         - Endpoints
-      security: []
-  '/api/subscribers/{id}':
-    put:
-      summary: 'Update the specified resource in storage.'
-      operationId: updateTheSpecifiedResourceInStorage
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                  description: ''
-                  example: quae
-              required:
-                - email
-      security: []
-    parameters:
-      -
-        in: path
-        name: id
-        description: 'The ID of the subscriber.'
-        example: quaerat
-        required: true
-        schema:
-          type: string
   /api/courses:
     post:
       summary: 'Show the form for creating a new resource.'
@@ -596,15 +462,14 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: consequuntur
+                  example: dicta
                 description:
                   type: string
                   description: ''
-                  example: ea
+                  example: quia
               required:
                 - title
                 - description
-      security: []
     get:
       summary: 'Display a listing of the resource.'
       operationId: displayAListingOfTheResource
@@ -624,33 +489,106 @@ paths:
                     status: success
                     data:
                       current_page: 1
-                      data: []
-                      first_page_url: 'https://onlineschool-production.up.railway.app/api/courses?page=1'
-                      from: null
-                      last_page: 1
-                      last_page_url: 'https://onlineschool-production.up.railway.app/api/courses?page=1'
+                      data:
+                        -
+                          id: 1
+                          title: laravel
+                          teacher: obedah
+                          description: 'learn laravel 11'
+                          imagePath: 'https://i.postimg.cc/jjfjwTWs/image.png'
+                          price: '1000.00'
+                          min_age: 15
+                          max_age: 30
+                          course_outline: 'course outline'
+                          duration_in_session: 60
+                          course_start_date: '2024-10-01'
+                          created_at: '2024-09-10T07:27:37.000000Z'
+                          updated_at: '2024-09-10T07:27:37.000000Z'
+                        -
+                          id: 2
+                          title: 'Course Title'
+                          teacher: 'Course Teacher'
+                          description: 'Course Description'
+                          imagePath: 'https://i.postimg.cc/jjfjwTWs/image.png'
+                          price: '2000.00'
+                          min_age: 12
+                          max_age: 15
+                          course_outline: 'Course Outline'
+                          duration_in_session: 60
+                          course_start_date: '2024-09-10'
+                          created_at: '2024-09-10T10:04:10.000000Z'
+                          updated_at: '2024-09-10T10:04:10.000000Z'
+                        -
+                          id: 3
+                          title: css
+                          teacher: rezk
+                          description: 'learn css'
+                          imagePath: 'https://i.postimg.cc/jjfjwTWs/image.png'
+                          price: '1000.00'
+                          min_age: 15
+                          max_age: 30
+                          course_outline: 'course outline'
+                          duration_in_session: 60
+                          course_start_date: '2024-10-01'
+                          created_at: '2024-09-15T06:35:48.000000Z'
+                          updated_at: '2024-09-15T06:35:48.000000Z'
+                        -
+                          id: 4
+                          title: python
+                          teacher: obedah
+                          description: 'learn laravel 11'
+                          imagePath: 'https://i.postimg.cc/jjfjwTWs/image.png'
+                          price: '1000.00'
+                          min_age: 15
+                          max_age: 30
+                          course_outline: 'course outline'
+                          duration_in_session: 60
+                          course_start_date: '2024-10-01'
+                          created_at: '2024-09-15T10:22:55.000000Z'
+                          updated_at: '2024-09-15T10:22:55.000000Z'
+                        -
+                          id: 5
+                          title: js
+                          teacher: obedah
+                          description: 'learn laravel 11'
+                          imagePath: 'https://i.postimg.cc/jjfjwTWs/image.png'
+                          price: '1000.00'
+                          min_age: 15
+                          max_age: 30
+                          course_outline: 'course outline'
+                          duration_in_session: 60
+                          course_start_date: '2024-10-01'
+                          created_at: '2024-09-15T10:23:01.000000Z'
+                          updated_at: '2024-09-15T10:23:01.000000Z'
+                      first_page_url: 'https://futuercoder-api-production.up.railway.app/api/courses?page=1'
+                      from: 1
+                      last_page: 2
+                      last_page_url: 'https://futuercoder-api-production.up.railway.app/api/courses?page=2'
                       links:
                         -
                           url: null
                           label: '&laquo; Previous'
                           active: false
                         -
-                          url: 'https://onlineschool-production.up.railway.app/api/courses?page=1'
+                          url: 'https://futuercoder-api-production.up.railway.app/api/courses?page=1'
                           label: '1'
                           active: true
                         -
-                          url: null
+                          url: 'https://futuercoder-api-production.up.railway.app/api/courses?page=2'
+                          label: '2'
+                          active: false
+                        -
+                          url: 'https://futuercoder-api-production.up.railway.app/api/courses?page=2'
                           label: 'Next &raquo;'
                           active: false
-                      next_page_url: null
-                      path: 'https://onlineschool-production.up.railway.app/api/courses'
+                      next_page_url: 'https://futuercoder-api-production.up.railway.app/api/courses?page=2'
+                      path: 'https://futuercoder-api-production.up.railway.app/api/courses'
                       per_page: 5
                       prev_page_url: null
-                      to: null
-                      total: 0
+                      to: 5
+                      total: 7
       tags:
         - Endpoints
-      security: []
     delete:
       summary: 'Remove the specified resource from storage.'
       operationId: removeTheSpecifiedResourceFromStorage
@@ -659,7 +597,27 @@ paths:
       responses: {  }
       tags:
         - Endpoints
-      security: []
+  /api/courses/courseById:
+    get:
+      summary: 'get course by the student Age'
+      operationId: getCourseByTheStudentAge
+      description: ''
+      parameters: []
+      responses:
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Server Error'
+                properties:
+                  message:
+                    type: string
+                    example: 'Server Error'
+      tags:
+        - Endpoints
   '/api/courses/{id}':
     put:
       summary: 'Update the specified resource in storage.'
@@ -679,21 +637,20 @@ paths:
                 title:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: psxtwauaow
+                  example: vgrjyqnsanyn
                 description:
                   type: string
                   description: ''
-                  example: veritatis
+                  example: tempore
               required:
                 - title
                 - description
-      security: []
     parameters:
       -
         in: path
         name: id
         description: 'The ID of the course.'
-        example: tempora
+        example: et
         required: true
         schema:
           type: string
@@ -713,54 +670,27 @@ paths:
             schema:
               type: object
               properties:
-                course_id:
+                courseId:
                   type: string
                   description: ''
-                  example: qui
-                courseMonth:
+                  example: reprehenderit
+                SessionTimings:
                   type: string
-                  description: ''
-                  example: id
-                start_time:
+                  description: 'Must be a valid date.'
+                  example: '2024-09-23T01:03:44'
+                startTime:
                   type: string
-                  description: ''
-                  example: inventore
-                end_time:
+                  description: 'Must be a valid date in the format <code>H:i:s</code>.'
+                  example: '01:03:44'
+                endTime:
                   type: string
-                  description: ''
-                  example: dignissimos
-                day_of_month:
-                  type: string
-                  description: ''
-                  example: quam
+                  description: 'Must be a valid date in the format <code>H:i:s</code>.'
+                  example: '01:03:44'
               required:
-                - course_id
-                - courseMonth
-                - start_time
-                - end_time
-                - day_of_month
-      security: []
-    get:
-      summary: 'Display a listing of the resource.'
-      operationId: displayAListingOfTheResource
-      description: ''
-      parameters: []
-      responses:
-        500:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: 'Server Error'
-                properties:
-                  message:
-                    type: string
-                    example: 'Server Error'
-      tags:
-        - Endpoints
-      security: []
+                - courseId
+                - SessionTimings
+                - startTime
+                - endTime
     delete:
       summary: 'Remove the specified resource from storage.'
       operationId: removeTheSpecifiedResourceFromStorage
@@ -769,7 +699,129 @@ paths:
       responses: {  }
       tags:
         - Endpoints
-      security: []
+  '/api/courses_time/{userId}':
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: 'this function will display the time of course based on the user timezone'
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'User or time zone not found'
+                properties:
+                  message:
+                    type: string
+                    example: 'User or time zone not found'
+      tags:
+        - Endpoints
+    parameters:
+      -
+        in: path
+        name: userId
+        description: ''
+        example: debitis
+        required: true
+        schema:
+          type: string
+  '/api/courses_time/courseDays/{id}/{courseId}':
+    get:
+      summary: 'get all dates for course based in user timezone'
+      operationId: getAllDatesForCourseBasedInUserTimezone
+      description: ''
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'User or time zone not found'
+                properties:
+                  message:
+                    type: string
+                    example: 'User or time zone not found'
+      tags:
+        - Endpoints
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the courseDay.'
+        example: quasi
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: courseId
+        description: ''
+        example: dignissimos
+        required: true
+        schema:
+          type: string
+  '/api/courses_time/availableTimes/{course_id}/{sessionTimie}/{userId}':
+    get:
+      summary: 'git all times for a course date (startTime,endTime) based on user timezone'
+      operationId: gitAllTimesForACourseDatestartTimeendTimeBasedOnUserTimezone
+      description: ''
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'User or time zone not found'
+                properties:
+                  message:
+                    type: string
+                    example: 'User or time zone not found'
+      tags:
+        - Endpoints
+    parameters:
+      -
+        in: path
+        name: course_id
+        description: 'The ID of the course.'
+        example: error
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: sessionTimie
+        description: ''
+        example: doloremque
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: userId
+        description: ''
+        example: cum
+        required: true
+        schema:
+          type: string
+  /api/courses_time/timezone:
+    post:
+      summary: ''
+      operationId: postApiCourses_timeTimezone
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
   '/api/courses_time/{id}':
     put:
       summary: 'Update the specified resource in storage.'
@@ -779,13 +831,12 @@ paths:
       responses: {  }
       tags:
         - Endpoints
-      security: []
     parameters:
       -
         in: path
         name: id
         description: 'The ID of the courses time.'
-        example: quidem
+        example: totam
         required: true
         schema:
           type: string
@@ -805,33 +856,32 @@ paths:
             schema:
               type: object
               properties:
-                courseId:
-                  type: string
-                  description: ''
-                  example: magnam
                 firstName:
                   type: string
                   description: ''
-                  example: quam
+                  example: corporis
                 lastName:
                   type: string
                   description: ''
-                  example: sit
+                  example: officiis
                 age:
                   type: string
                   description: ''
-                  example: aut
+                  example: assumenda
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: gcronin@example.org
+                  example: ndibbert@example.org
+                timeZone:
+                  type: string
+                  description: ''
+                  example: consectetur
               required:
-                - courseId
                 - firstName
                 - lastName
                 - age
                 - email
-      security: []
+                - timeZone
     get:
       summary: 'Display a listing of the resource.'
       operationId: displayAListingOfTheResource
@@ -851,33 +901,100 @@ paths:
                     status: success
                     data:
                       current_page: 1
-                      data: []
-                      first_page_url: 'https://onlineschool-production.up.railway.app/api/guest_users?page=1'
-                      from: null
-                      last_page: 1
-                      last_page_url: 'https://onlineschool-production.up.railway.app/api/guest_users?page=1'
+                      data:
+                        -
+                          id: 3
+                          firstName: ail
+                          lastName: yahea
+                          age: 22
+                          email: obedah9600@gmail.com
+                          email_verified_at: '2024-09-10 11:29:06'
+                          verification_token: null
+                          email_verified: 1
+                          timeZone: Asia/Damascus
+                          created_at: '2024-09-10T08:27:26.000000Z'
+                          updated_at: '2024-09-10T08:29:06.000000Z'
+                        -
+                          id: 6
+                          firstName: sami
+                          lastName: yahea
+                          age: 27
+                          email: obedah9600@gmail.com
+                          email_verified_at: '2024-09-10 11:57:07'
+                          verification_token: null
+                          email_verified: 1
+                          timeZone: Asia/Tokyo
+                          created_at: '2024-09-10T08:56:39.000000Z'
+                          updated_at: '2024-09-10T08:57:07.000000Z'
+                        -
+                          id: 7
+                          firstName: sami
+                          lastName: yahea
+                          age: 27
+                          email: obedah90@gmail.com
+                          email_verified_at: null
+                          verification_token: PxnYS821sUxzQVWpq8UQWjevSCD3mMy7
+                          email_verified: 0
+                          timeZone: Asia/Tokyo
+                          created_at: '2024-09-14T18:08:33.000000Z'
+                          updated_at: '2024-09-14T18:08:33.000000Z'
+                        -
+                          id: 8
+                          firstName: Ismaell
+                          lastName: asd
+                          age: 22
+                          email: bon1@gamil.com
+                          email_verified_at: null
+                          verification_token: BsGTYNMPhNNM1sJiO1vipfrXxwooDHBe
+                          email_verified: 0
+                          timeZone: Asia/Damascus
+                          created_at: '2024-09-14T18:19:04.000000Z'
+                          updated_at: '2024-09-14T18:19:04.000000Z'
+                        -
+                          id: 9
+                          firstName: Ismaell
+                          lastName: asd
+                          age: 22
+                          email: bon1@gamil.com
+                          email_verified_at: null
+                          verification_token: mzDZXPqDC7Kzqq9AT7PrHu2ZxzEwlVpi
+                          email_verified: 0
+                          timeZone: Asia/Damascus
+                          created_at: '2024-09-14T18:20:23.000000Z'
+                          updated_at: '2024-09-14T18:20:23.000000Z'
+                      first_page_url: 'https://futuercoder-api-production.up.railway.app/api/guest_users?page=1'
+                      from: 1
+                      last_page: 3
+                      last_page_url: 'https://futuercoder-api-production.up.railway.app/api/guest_users?page=3'
                       links:
                         -
                           url: null
                           label: '&laquo; Previous'
                           active: false
                         -
-                          url: 'https://onlineschool-production.up.railway.app/api/guest_users?page=1'
+                          url: 'https://futuercoder-api-production.up.railway.app/api/guest_users?page=1'
                           label: '1'
                           active: true
                         -
-                          url: null
+                          url: 'https://futuercoder-api-production.up.railway.app/api/guest_users?page=2'
+                          label: '2'
+                          active: false
+                        -
+                          url: 'https://futuercoder-api-production.up.railway.app/api/guest_users?page=3'
+                          label: '3'
+                          active: false
+                        -
+                          url: 'https://futuercoder-api-production.up.railway.app/api/guest_users?page=2'
                           label: 'Next &raquo;'
                           active: false
-                      next_page_url: null
-                      path: 'https://onlineschool-production.up.railway.app/api/guest_users'
+                      next_page_url: 'https://futuercoder-api-production.up.railway.app/api/guest_users?page=2'
+                      path: 'https://futuercoder-api-production.up.railway.app/api/guest_users'
                       per_page: 5
                       prev_page_url: null
-                      to: null
-                      total: 0
+                      to: 5
+                      total: 14
       tags:
         - Endpoints
-      security: []
     delete:
       summary: 'Remove the specified resource from storage.'
       operationId: removeTheSpecifiedResourceFromStorage
@@ -896,10 +1013,9 @@ paths:
                 id:
                   type: string
                   description: ''
-                  example: quam
+                  example: provident
               required:
                 - id
-      security: []
   '/api/guest_users/{id}':
     put:
       summary: 'Update the specified resource in storage.'
@@ -919,36 +1035,35 @@ paths:
                 courseId:
                   type: string
                   description: ''
-                  example: maxime
+                  example: ducimus
                 firstName:
                   type: string
                   description: ''
-                  example: adipisci
+                  example: rerum
                 lastName:
                   type: string
                   description: ''
-                  example: quia
+                  example: minus
                 age:
                   type: string
                   description: ''
-                  example: sed
+                  example: dolorem
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: gutkowski.elenor@example.com
+                  example: brannon.hyatt@example.org
               required:
                 - courseId
                 - firstName
                 - lastName
                 - age
                 - email
-      security: []
     parameters:
       -
         in: path
         name: id
         description: 'The ID of the guest user.'
-        example: rerum
+        example: numquam
         required: true
         schema:
           type: string
@@ -971,56 +1086,177 @@ paths:
                 userId:
                   type: integer
                   description: ''
-                  example: 19
+                  example: 5
                 courseId:
                   type: integer
                   description: ''
-                  example: 2
-                numberOfMonth:
-                  type: integer
-                  description: ''
-                  example: 19
-                dayOfMonth:
-                  type: integer
-                  description: ''
-                  example: 16
-                startTime:
+                  example: 3
+                time:
                   type: string
-                  description: 'Must be a valid date in the format <code>H:i:s</code>.'
-                  example: '00:23:36'
-                endTime:
-                  type: string
-                  description: 'Must be a valid date in the format <code>H:i:s</code>.'
-                  example: '00:23:36'
+                  description: ''
+                  example: molestias
               required:
                 - userId
                 - courseId
-                - numberOfMonth
-                - dayOfMonth
-                - startTime
-                - endTime
-      security: []
+                - time
     get:
       summary: 'Display a listing of the resource.'
       operationId: displayAListingOfTheResource
       description: ''
       parameters: []
       responses:
-        500:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: 'Server Error'
+                  status: success
+                  total: 29
+                  data:
+                    -
+                      freeLessonId: 2
+                      courseName: laravel
+                      guestUserName: 'ail yahea'
+                      userAge: 22
+                      userEmail: obedah9600@gmail.com
+                      lessonDate: '2024-09-11'
+                      lessoStartTime: '20:00:00'
+                      lessoEndTime: '21:00:00'
+                      googleMeetUrl: 'https://meet.google.com/stx-cgwe-xet'
+                    -
+                      freeLessonId: 3
+                      courseName: laravel
+                      guestUserName: 'sami yahea'
+                      userAge: 27
+                      userEmail: obedah9600@gmail.com
+                      lessonDate: '2024-09-11'
+                      lessoStartTime: '20:00:00'
+                      lessoEndTime: '21:00:00'
+                      googleMeetUrl: 'https://meet.google.com/stx-cgwe-xet'
+                    -
+                      freeLessonId: 4
+                      courseName: laravel
+                      guestUserName: 'sami yahea'
+                      userAge: 27
+                      userEmail: obedah9600@gmail.com
+                      lessonDate: '2024-09-14'
+                      lessoStartTime: '06:00:00'
+                      lessoEndTime: '07:00:00'
+                      googleMeetUrl: 'https://meet.google.com/brt-gcrj-cav'
+                    -
+                      freeLessonId: 5
+                      courseName: laravel
+                      guestUserName: 'ail yahea'
+                      userAge: 22
+                      userEmail: obedah9600@gmail.com
+                      lessonDate: '2024-09-11'
+                      lessoStartTime: '01:00:00'
+                      lessoEndTime: '02:00:00'
+                      googleMeetUrl: 'https://meet.google.com/aej-jmta-cre'
+                    -
+                      freeLessonId: 6
+                      courseName: laravel
+                      guestUserName: 'ail yahea'
+                      userAge: 22
+                      userEmail: obedah9600@gmail.com
+                      lessonDate: '2024-09-14'
+                      lessoStartTime: '06:00:00'
+                      lessoEndTime: '07:00:00'
+                      googleMeetUrl: 'https://meet.google.com/brt-gcrj-cav'
                 properties:
-                  message:
+                  status:
                     type: string
-                    example: 'Server Error'
+                    example: success
+                  total:
+                    type: integer
+                    example: 29
+                  data:
+                    type: array
+                    example:
+                      -
+                        freeLessonId: 2
+                        courseName: laravel
+                        guestUserName: 'ail yahea'
+                        userAge: 22
+                        userEmail: obedah9600@gmail.com
+                        lessonDate: '2024-09-11'
+                        lessoStartTime: '20:00:00'
+                        lessoEndTime: '21:00:00'
+                        googleMeetUrl: 'https://meet.google.com/stx-cgwe-xet'
+                      -
+                        freeLessonId: 3
+                        courseName: laravel
+                        guestUserName: 'sami yahea'
+                        userAge: 27
+                        userEmail: obedah9600@gmail.com
+                        lessonDate: '2024-09-11'
+                        lessoStartTime: '20:00:00'
+                        lessoEndTime: '21:00:00'
+                        googleMeetUrl: 'https://meet.google.com/stx-cgwe-xet'
+                      -
+                        freeLessonId: 4
+                        courseName: laravel
+                        guestUserName: 'sami yahea'
+                        userAge: 27
+                        userEmail: obedah9600@gmail.com
+                        lessonDate: '2024-09-14'
+                        lessoStartTime: '06:00:00'
+                        lessoEndTime: '07:00:00'
+                        googleMeetUrl: 'https://meet.google.com/brt-gcrj-cav'
+                      -
+                        freeLessonId: 5
+                        courseName: laravel
+                        guestUserName: 'ail yahea'
+                        userAge: 22
+                        userEmail: obedah9600@gmail.com
+                        lessonDate: '2024-09-11'
+                        lessoStartTime: '01:00:00'
+                        lessoEndTime: '02:00:00'
+                        googleMeetUrl: 'https://meet.google.com/aej-jmta-cre'
+                      -
+                        freeLessonId: 6
+                        courseName: laravel
+                        guestUserName: 'ail yahea'
+                        userAge: 22
+                        userEmail: obedah9600@gmail.com
+                        lessonDate: '2024-09-14'
+                        lessoStartTime: '06:00:00'
+                        lessoEndTime: '07:00:00'
+                        googleMeetUrl: 'https://meet.google.com/brt-gcrj-cav'
+                    items:
+                      type: object
+                      properties:
+                        freeLessonId:
+                          type: integer
+                          example: 2
+                        courseName:
+                          type: string
+                          example: laravel
+                        guestUserName:
+                          type: string
+                          example: 'ail yahea'
+                        userAge:
+                          type: integer
+                          example: 22
+                        userEmail:
+                          type: string
+                          example: obedah9600@gmail.com
+                        lessonDate:
+                          type: string
+                          example: '2024-09-11'
+                        lessoStartTime:
+                          type: string
+                          example: '20:00:00'
+                        lessoEndTime:
+                          type: string
+                          example: '21:00:00'
+                        googleMeetUrl:
+                          type: string
+                          example: 'https://meet.google.com/stx-cgwe-xet'
       tags:
         - Endpoints
-      security: []
     delete:
       summary: 'Remove the specified resource from storage.'
       operationId: removeTheSpecifiedResourceFromStorage
@@ -1039,10 +1275,41 @@ paths:
                 id:
                   type: string
                   description: ''
-                  example: voluptas
+                  example: totam
               required:
                 - id
-      security: []
+  /api/free_lessons/createSession:
+    post:
+      summary: ''
+      operationId: postApiFree_lessonsCreateSession
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                CourseId:
+                  type: string
+                  description: ''
+                  example: exercitationem
+                SessionTimings:
+                  type: string
+                  description: ''
+                  example: et
+                guestUserId:
+                  type: string
+                  description: ''
+                  example: et
+              required:
+                - CourseId
+                - SessionTimings
+                - guestUserId
   '/api/free_lessons/{id}':
     put:
       summary: 'Update the specified resource in storage.'
@@ -1059,59 +1326,728 @@ paths:
             schema:
               type: object
               properties:
-                numberOfMonth:
+                sessionTime:
                   type: string
                   description: ''
-                  example: quibusdam
-                dayOfMonth:
-                  type: string
-                  description: ''
-                  example: ut
-                startTime:
-                  type: string
-                  description: ''
-                  example: in
-                endTime:
-                  type: string
-                  description: ''
-                  example: explicabo
+                  example: tempore
                 meetUrl:
                   type: string
                   description: ''
-                  example: autem
+                  example: ut
               required:
-                - numberOfMonth
-                - dayOfMonth
-                - startTime
-                - endTime
+                - sessionTime
                 - meetUrl
-      security: []
     parameters:
       -
         in: path
         name: id
         description: 'The ID of the free lesson.'
-        example: modi
+        example: doloribus
         required: true
         schema:
           type: string
-  /api/create_event:
+  /api/Testimonial:
+    post:
+      summary: 'Show the form for creating a new resource.'
+      operationId: showTheFormForCreatingANewResource
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                  description: ''
+                  example: non
+                lastName:
+                  type: string
+                  description: ''
+                  example: dolores
+                age:
+                  type: string
+                  description: ''
+                  example: eum
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: garret71@example.com
+                timeZone:
+                  type: string
+                  description: ''
+                  example: excepturi
+              required:
+                - firstName
+                - lastName
+                - age
+                - email
+                - timeZone
     get:
-      summary: ''
-      operationId: getApiCreate_event
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
       description: ''
       parameters: []
       responses:
         200:
           description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: 'https://meet.google.com/mft-oddf-wse'
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    status: success
+                    data:
+                      current_page: 1
+                      data:
+                        -
+                          id: 3
+                          firstName: ail
+                          lastName: yahea
+                          age: 22
+                          email: obedah9600@gmail.com
+                          email_verified_at: '2024-09-10 11:29:06'
+                          verification_token: null
+                          email_verified: 1
+                          timeZone: Asia/Damascus
+                          created_at: '2024-09-10T08:27:26.000000Z'
+                          updated_at: '2024-09-10T08:29:06.000000Z'
+                        -
+                          id: 6
+                          firstName: sami
+                          lastName: yahea
+                          age: 27
+                          email: obedah9600@gmail.com
+                          email_verified_at: '2024-09-10 11:57:07'
+                          verification_token: null
+                          email_verified: 1
+                          timeZone: Asia/Tokyo
+                          created_at: '2024-09-10T08:56:39.000000Z'
+                          updated_at: '2024-09-10T08:57:07.000000Z'
+                        -
+                          id: 7
+                          firstName: sami
+                          lastName: yahea
+                          age: 27
+                          email: obedah90@gmail.com
+                          email_verified_at: null
+                          verification_token: PxnYS821sUxzQVWpq8UQWjevSCD3mMy7
+                          email_verified: 0
+                          timeZone: Asia/Tokyo
+                          created_at: '2024-09-14T18:08:33.000000Z'
+                          updated_at: '2024-09-14T18:08:33.000000Z'
+                        -
+                          id: 8
+                          firstName: Ismaell
+                          lastName: asd
+                          age: 22
+                          email: bon1@gamil.com
+                          email_verified_at: null
+                          verification_token: BsGTYNMPhNNM1sJiO1vipfrXxwooDHBe
+                          email_verified: 0
+                          timeZone: Asia/Damascus
+                          created_at: '2024-09-14T18:19:04.000000Z'
+                          updated_at: '2024-09-14T18:19:04.000000Z'
+                        -
+                          id: 9
+                          firstName: Ismaell
+                          lastName: asd
+                          age: 22
+                          email: bon1@gamil.com
+                          email_verified_at: null
+                          verification_token: mzDZXPqDC7Kzqq9AT7PrHu2ZxzEwlVpi
+                          email_verified: 0
+                          timeZone: Asia/Damascus
+                          created_at: '2024-09-14T18:20:23.000000Z'
+                          updated_at: '2024-09-14T18:20:23.000000Z'
+                      first_page_url: 'https://futuercoder-api-production.up.railway.app/api/Testimonial?page=1'
+                      from: 1
+                      last_page: 3
+                      last_page_url: 'https://futuercoder-api-production.up.railway.app/api/Testimonial?page=3'
+                      links:
+                        -
+                          url: null
+                          label: '&laquo; Previous'
+                          active: false
+                        -
+                          url: 'https://futuercoder-api-production.up.railway.app/api/Testimonial?page=1'
+                          label: '1'
+                          active: true
+                        -
+                          url: 'https://futuercoder-api-production.up.railway.app/api/Testimonial?page=2'
+                          label: '2'
+                          active: false
+                        -
+                          url: 'https://futuercoder-api-production.up.railway.app/api/Testimonial?page=3'
+                          label: '3'
+                          active: false
+                        -
+                          url: 'https://futuercoder-api-production.up.railway.app/api/Testimonial?page=2'
+                          label: 'Next &raquo;'
+                          active: false
+                      next_page_url: 'https://futuercoder-api-production.up.railway.app/api/Testimonial?page=2'
+                      path: 'https://futuercoder-api-production.up.railway.app/api/Testimonial'
+                      per_page: 5
+                      prev_page_url: null
+                      to: 5
+                      total: 14
       tags:
         - Endpoints
-      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: ''
+                  example: cumque
+              required:
+                - id
+  '/api/Testimonial/{id}':
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                courseId:
+                  type: string
+                  description: ''
+                  example: quod
+                firstName:
+                  type: string
+                  description: ''
+                  example: at
+                lastName:
+                  type: string
+                  description: ''
+                  example: doloribus
+                age:
+                  type: string
+                  description: ''
+                  example: tenetur
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: katelyn.gulgowski@example.net
+              required:
+                - courseId
+                - firstName
+                - lastName
+                - age
+                - email
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the Testimonial.'
+        example: illum
+        required: true
+        schema:
+          type: string
+  /api/users:
+    get:
+      summary: ''
+      operationId: getApiUsers
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  current_page: 1
+                  data:
+                    -
+                      id: 1
+                      firstName: obedah
+                      lastName: shaban
+                      age: 28
+                      timeZone: Asia/Tokyo
+                      email: obedah9600@gmail.com
+                      email_verified_at: null
+                      verification_token: null
+                      created_at: '2024-09-10T17:25:22.000000Z'
+                      updated_at: '2024-09-10T17:25:22.000000Z'
+                    -
+                      id: 17
+                      firstName: ali
+                      lastName: sh
+                      age: 23
+                      timeZone: Asia/Tokyo
+                      email: alialshrany204@gmail.com
+                      email_verified_at: '2024-09-11T16:27:05.000000Z'
+                      verification_token: 154woOBFXaSrRVna2ZABlVUrwI239uK9Sx8w7kXRFQ2WOkvq7wpisgQemiNqKZ9S
+                      created_at: '2024-09-11T16:26:44.000000Z'
+                      updated_at: '2024-09-11T16:27:05.000000Z'
+                  first_page_url: 'https://futuercoder-api-production.up.railway.app/api/users?page=1'
+                  from: 1
+                  last_page: 1
+                  last_page_url: 'https://futuercoder-api-production.up.railway.app/api/users?page=1'
+                  links:
+                    -
+                      url: null
+                      label: '&laquo; Previous'
+                      active: false
+                    -
+                      url: 'https://futuercoder-api-production.up.railway.app/api/users?page=1'
+                      label: '1'
+                      active: true
+                    -
+                      url: null
+                      label: 'Next &raquo;'
+                      active: false
+                  next_page_url: null
+                  path: 'https://futuercoder-api-production.up.railway.app/api/users'
+                  per_page: 5
+                  prev_page_url: null
+                  to: 2
+                  total: 2
+                properties:
+                  current_page:
+                    type: integer
+                    example: 1
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        firstName: obedah
+                        lastName: shaban
+                        age: 28
+                        timeZone: Asia/Tokyo
+                        email: obedah9600@gmail.com
+                        email_verified_at: null
+                        verification_token: null
+                        created_at: '2024-09-10T17:25:22.000000Z'
+                        updated_at: '2024-09-10T17:25:22.000000Z'
+                      -
+                        id: 17
+                        firstName: ali
+                        lastName: sh
+                        age: 23
+                        timeZone: Asia/Tokyo
+                        email: alialshrany204@gmail.com
+                        email_verified_at: '2024-09-11T16:27:05.000000Z'
+                        verification_token: 154woOBFXaSrRVna2ZABlVUrwI239uK9Sx8w7kXRFQ2WOkvq7wpisgQemiNqKZ9S
+                        created_at: '2024-09-11T16:26:44.000000Z'
+                        updated_at: '2024-09-11T16:27:05.000000Z'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        firstName:
+                          type: string
+                          example: obedah
+                        lastName:
+                          type: string
+                          example: shaban
+                        age:
+                          type: integer
+                          example: 28
+                        timeZone:
+                          type: string
+                          example: Asia/Tokyo
+                        email:
+                          type: string
+                          example: obedah9600@gmail.com
+                        email_verified_at:
+                          type: string
+                          example: null
+                        verification_token:
+                          type: string
+                          example: null
+                        created_at:
+                          type: string
+                          example: '2024-09-10T17:25:22.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2024-09-10T17:25:22.000000Z'
+                  first_page_url:
+                    type: string
+                    example: 'https://futuercoder-api-production.up.railway.app/api/users?page=1'
+                  from:
+                    type: integer
+                    example: 1
+                  last_page:
+                    type: integer
+                    example: 1
+                  last_page_url:
+                    type: string
+                    example: 'https://futuercoder-api-production.up.railway.app/api/users?page=1'
+                  links:
+                    type: array
+                    example:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: 'https://futuercoder-api-production.up.railway.app/api/users?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: null
+                        label: 'Next &raquo;'
+                        active: false
+                    items:
+                      type: object
+                      properties:
+                        url:
+                          type: string
+                          example: null
+                        label:
+                          type: string
+                          example: '&laquo; Previous'
+                        active:
+                          type: boolean
+                          example: false
+                  next_page_url:
+                    type: string
+                    example: null
+                  path:
+                    type: string
+                    example: 'https://futuercoder-api-production.up.railway.app/api/users'
+                  per_page:
+                    type: integer
+                    example: 5
+                  prev_page_url:
+                    type: string
+                    example: null
+                  to:
+                    type: integer
+                    example: 2
+                  total:
+                    type: integer
+                    example: 2
+      tags:
+        - Endpoints
+  '/api/users/{id}':
+    get:
+      summary: ''
+      operationId: getApiUsersId
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  firstName: obedah
+                  lastName: shaban
+                  age: 28
+                  timeZone: Asia/Tokyo
+                  email: obedah9600@gmail.com
+                  email_verified_at: null
+                  verification_token: null
+                  created_at: '2024-09-10T17:25:22.000000Z'
+                  updated_at: '2024-09-10T17:25:22.000000Z'
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  firstName:
+                    type: string
+                    example: obedah
+                  lastName:
+                    type: string
+                    example: shaban
+                  age:
+                    type: integer
+                    example: 28
+                  timeZone:
+                    type: string
+                    example: Asia/Tokyo
+                  email:
+                    type: string
+                    example: obedah9600@gmail.com
+                  email_verified_at:
+                    type: string
+                    example: null
+                  verification_token:
+                    type: string
+                    example: null
+                  created_at:
+                    type: string
+                    example: '2024-09-10T17:25:22.000000Z'
+                  updated_at:
+                    type: string
+                    example: '2024-09-10T17:25:22.000000Z'
+      tags:
+        - Endpoints
+    put:
+      summary: ''
+      operationId: putApiUsersId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: wlzyqyhrqsduixuknk
+                email:
+                  type: string
+                  description: ''
+                  example: null
+                password:
+                  type: string
+                  description: 'Must be at least 8 characters.'
+                  example: 'M}IK2GVIbDS'
+    delete:
+      summary: ''
+      operationId: deleteApiUsersId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the user.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/users/signIn:
+    post:
+      summary: ''
+      operationId: postApiUsersSignIn
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: dzllfkfmbfpnjwutvgknc
+                lastName:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: korwlzoqcardgvssotz
+                age:
+                  type: string
+                  description: ''
+                  example: temporibus
+                timeZone:
+                  type: string
+                  description: ''
+                  example: nemo
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
+                  example: jared.reinger@example.org
+                password:
+                  type: string
+                  description: 'Must be at least 8 characters.'
+                  example: '|p|m~q&h},[EJy%'
+              required:
+                - firstName
+                - lastName
+                - age
+                - timeZone
+                - email
+                - password
+  /api/register1:
+    post:
+      summary: 'Handle an incoming registration request.'
+      operationId: handleAnIncomingRegistrationRequest
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: taurlapgozbcjmjpga
+                lastName:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: tzptgnbnkhkxtyxjsatkhttyh
+                age:
+                  type: integer
+                  description: 'Must be at least 0.'
+                  example: 16
+                timeZone:
+                  type: string
+                  description: ''
+                  example: eveniet
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
+                  example: fiona.schmidt@example.org
+                password:
+                  type: string
+                  description: 'Must be at least 8 characters.'
+                  example: '0sL[n(L%+,'
+              required:
+                - firstName
+                - lastName
+                - age
+                - timeZone
+                - email
+                - password
+  '/api/email/verify/{id}/{hash}':
+    get:
+      summary: "Mark the authenticated user's email address as verified."
+      operationId: markTheAuthenticatedUsersEmailAddressAsVerified
+      description: ''
+      parameters: []
+      responses:
+        403:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Invalid signature.'
+                properties:
+                  message:
+                    type: string
+                    example: 'Invalid signature.'
+      tags:
+        - Endpoints
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the verify.'
+        example: a
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: hash
+        description: ''
+        example: voluptates
+        required: true
+        schema:
+          type: string
+  '/api/verify-subscriber-email/{token}':
+    get:
+      summary: ''
+      operationId: getApiVerifySubscriberEmailToken
+      description: ''
+      parameters: []
+      responses:
+        400:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Invalid or expired verification token.'
+                properties:
+                  message:
+                    type: string
+                    example: 'Invalid or expired verification token.'
+      tags:
+        - Endpoints
+    parameters:
+      -
+        in: path
+        name: token
+        description: ''
+        example: aliquid
+        required: true
+        schema:
+          type: string
+  '/api/verify-guest-email/{token}':
+    get:
+      summary: ''
+      operationId: getApiVerifyGuestEmailToken
+      description: ''
+      parameters: []
+      responses:
+        400:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Invalid or expired verification token.'
+                properties:
+                  message:
+                    type: string
+                    example: 'Invalid or expired verification token.'
+      tags:
+        - Endpoints
+    parameters:
+      -
+        in: path
+        name: token
+        description: ''
+        example: iusto
+        required: true
+        schema:
+          type: string
 tags:
   -
     name: Endpoints

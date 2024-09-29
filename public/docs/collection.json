@@ -5,12 +5,12 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "https:\/\/onlineschool-production.up.railway.app"
+            "value": "https:\/\/futuercoder-api-production.up.railway.app"
         }
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "32f08348-0121-423a-9f3f-a8becab2ae14",
+        "_postman_id": "626a10f0-dc9c-46f5-b798-aec3c86f0f7c",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,12 +41,43 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"ex\",\"description\":\"alias\"}"
+                            "raw": "{\"title\":\"fugiat\",\"description\":\"hic\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Store a newly created resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/blogs\/store",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/blogs\/store"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "multipart\/form-data"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "image",
+                                    "src": [],
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        "description": ""
                     },
                     "response": []
                 },
@@ -71,10 +102,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -93,7 +121,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"current_page\":1,\"data\":[{\"id\":1,\"title\":\"fdgdfg\",\"description\":\"fgdfgdf\",\"ImagePath\":\"https:\\\/\\\/i.postimg.cc\\\/jjfjwTWs\\\/image.png\",\"created_at\":\"2024-08-26T19:41:38.000000Z\",\"updated_at\":\"2024-08-27T14:47:47.000000Z\"},{\"id\":2,\"title\":\"hhh\",\"description\":\"first by postman\",\"ImagePath\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/storage\\\/blogs\\\/1724705235.jpg\",\"created_at\":\"2024-08-26T20:47:15.000000Z\",\"updated_at\":\"2024-08-26T20:47:15.000000Z\"},{\"id\":3,\"title\":\"mmm\",\"description\":\"first by postman\",\"ImagePath\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/storage\\\/blogs\\\/1724705869.jpg\",\"created_at\":\"2024-08-26T20:57:49.000000Z\",\"updated_at\":\"2024-08-26T20:57:49.000000Z\"},{\"id\":4,\"title\":\"kkk\",\"description\":\"first by postman\",\"ImagePath\":\"uploads\\\/images\\\/blogs\\\/1724743149.jpg\",\"created_at\":\"2024-08-27T07:19:09.000000Z\",\"updated_at\":\"2024-08-27T07:19:09.000000Z\"},{\"id\":5,\"title\":\"kkk\",\"description\":\"first by postman\",\"ImagePath\":\"uploads\\\/images\\\/blogs\\\/1724746595.jpg\",\"created_at\":\"2024-08-27T08:16:35.000000Z\",\"updated_at\":\"2024-08-27T08:16:35.000000Z\"}],\"first_page_url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/blogs?page=1\",\"from\":1,\"last_page\":2,\"last_page_url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/blogs?page=2\",\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/blogs?page=1\",\"label\":\"1\",\"active\":true},{\"url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/blogs?page=2\",\"label\":\"2\",\"active\":false},{\"url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/blogs?page=2\",\"label\":\"Next &raquo;\",\"active\":false}],\"next_page_url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/blogs?page=2\",\"path\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/blogs\",\"per_page\":5,\"prev_page_url\":null,\"to\":5,\"total\":9}",
+                            "body": "{\"current_page\":1,\"data\":[{\"id\":1,\"title\":\"Blog Titless\",\"description\":\"Blog Description\",\"ImagePath\":\"https:\\\/\\\/i.postimg.cc\\\/jjfjwTWs\\\/image.png\",\"created_at\":\"2024-09-10T10:02:37.000000Z\",\"updated_at\":\"2024-09-16T11:51:09.000000Z\"},{\"id\":3,\"title\":\"blog title\",\"description\":\"blog description\",\"ImagePath\":\"https:\\\/\\\/i.postimg.cc\\\/jjfjwTWs\\\/image.png\",\"created_at\":\"2024-09-22T11:39:46.000000Z\",\"updated_at\":\"2024-09-22T11:39:46.000000Z\"}],\"first_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/blogs?page=1\",\"from\":1,\"last_page\":1,\"last_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/blogs?page=1\",\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/blogs?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"next_page_url\":null,\"path\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/blogs\",\"per_page\":5,\"prev_page_url\":null,\"to\":2,\"total\":2}",
                             "name": ""
                         }
                     ]
@@ -110,7 +138,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "error",
+                                    "value": "accusamus",
                                     "description": "The ID of the blog."
                                 }
                             ]
@@ -128,12 +156,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"gaxdezpuzycfev\",\"description\":\"ducimus\"}"
+                            "raw": "{\"title\":\"khepxipqbkwirczzv\",\"description\":\"consequuntur\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -158,10 +183,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -187,12 +209,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"lkrajcik@example.net\"}"
+                            "raw": "{\"email\":\"erna.herzog@example.net\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -217,10 +236,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -239,49 +255,10 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"current_page\":1,\"data\":[{\"id\":1,\"email\":\"obedag@gmail.com\",\"created_at\":\"2024-08-27T13:33:47.000000Z\",\"updated_at\":\"2024-08-27T13:33:47.000000Z\"},{\"id\":3,\"email\":\"obedahh@gmail.com\",\"created_at\":\"2024-08-27T13:46:33.000000Z\",\"updated_at\":\"2024-08-27T13:46:33.000000Z\"},{\"id\":4,\"email\":\"obedag1@gmail.com\",\"created_at\":\"2024-08-27T14:51:10.000000Z\",\"updated_at\":\"2024-08-27T14:51:10.000000Z\"},{\"id\":5,\"email\":\"obedahh11111111111@gmail.com\",\"created_at\":\"2024-08-27T15:11:45.000000Z\",\"updated_at\":\"2024-08-27T15:11:45.000000Z\"},{\"id\":6,\"email\":\"obedag111111111111111111111111@gmail.com\",\"created_at\":\"2024-08-27T15:12:49.000000Z\",\"updated_at\":\"2024-08-27T15:12:49.000000Z\"},{\"id\":7,\"email\":\"aaa@gmail.com\",\"created_at\":\"2024-08-27T17:05:40.000000Z\",\"updated_at\":\"2024-08-27T17:05:40.000000Z\"},{\"id\":8,\"email\":\"aaaaa@gmail.com\",\"created_at\":\"2024-08-27T17:16:02.000000Z\",\"updated_at\":\"2024-08-27T17:16:02.000000Z\"},{\"id\":9,\"email\":\"aaabbb@gmail.com\",\"created_at\":\"2024-08-27T17:17:57.000000Z\",\"updated_at\":\"2024-08-27T17:17:57.000000Z\"},{\"id\":10,\"email\":\"aannnna@gmail.com\",\"created_at\":\"2024-08-27T17:21:19.000000Z\",\"updated_at\":\"2024-08-27T17:21:19.000000Z\"},{\"id\":11,\"email\":\"obedahh12@gmail.com\",\"created_at\":\"2024-08-28T06:27:58.000000Z\",\"updated_at\":\"2024-08-28T06:27:58.000000Z\"}],\"first_page_url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/subscribers?page=1\",\"from\":1,\"last_page\":2,\"last_page_url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/subscribers?page=2\",\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/subscribers?page=1\",\"label\":\"1\",\"active\":true},{\"url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/subscribers?page=2\",\"label\":\"2\",\"active\":false},{\"url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/subscribers?page=2\",\"label\":\"Next &raquo;\",\"active\":false}],\"next_page_url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/subscribers?page=2\",\"path\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/subscribers\",\"per_page\":10,\"prev_page_url\":null,\"to\":10,\"total\":19}",
+                            "body": "{\"current_page\":1,\"data\":[{\"id\":1,\"email\":\"audirezk@gmail.com\",\"email_verified_at\":\"2024-09-10 13:03:16\",\"verification_token\":null,\"email_verified\":1,\"created_at\":\"2024-09-10T10:02:58.000000Z\",\"updated_at\":\"2024-09-10T10:03:16.000000Z\"},{\"id\":2,\"email\":\"obedah9600@gmail.com\",\"email_verified_at\":\"2024-09-12 13:55:02\",\"verification_token\":null,\"email_verified\":1,\"created_at\":\"2024-09-12T10:54:45.000000Z\",\"updated_at\":\"2024-09-12T10:55:02.000000Z\"}],\"first_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/subscribers?page=1\",\"from\":1,\"last_page\":1,\"last_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/subscribers?page=1\",\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/subscribers?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"next_page_url\":null,\"path\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/subscribers\",\"per_page\":10,\"prev_page_url\":null,\"to\":2,\"total\":2}",
                             "name": ""
                         }
                     ]
-                },
-                {
-                    "name": "Update the specified resource in storage.",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/subscribers\/:id",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/subscribers\/:id",
-                            "variable": [
-                                {
-                                    "id": "id",
-                                    "key": "id",
-                                    "value": "quaerat",
-                                    "description": "The ID of the subscriber."
-                                }
-                            ]
-                        },
-                        "method": "PUT",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"email\":\"quae\"}"
-                        },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": []
                 },
                 {
                     "name": "Remove the specified resource from storage.",
@@ -304,10 +281,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -333,12 +307,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"consequuntur\",\"description\":\"ea\"}"
+                            "raw": "{\"title\":\"dicta\",\"description\":\"quia\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -363,10 +334,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -385,7 +353,52 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "[{\"status\":\"success\",\"data\":{\"current_page\":1,\"data\":[],\"first_page_url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/courses?page=1\",\"from\":null,\"last_page\":1,\"last_page_url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/courses?page=1\",\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/courses?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"next_page_url\":null,\"path\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/courses\",\"per_page\":5,\"prev_page_url\":null,\"to\":null,\"total\":0}}]",
+                            "body": "[{\"status\":\"success\",\"data\":{\"current_page\":1,\"data\":[{\"id\":1,\"title\":\"laravel\",\"teacher\":\"obedah\",\"description\":\"learn laravel 11\",\"imagePath\":\"https:\\\/\\\/i.postimg.cc\\\/jjfjwTWs\\\/image.png\",\"price\":\"1000.00\",\"min_age\":15,\"max_age\":30,\"course_outline\":\"course outline\",\"duration_in_session\":60,\"course_start_date\":\"2024-10-01\",\"created_at\":\"2024-09-10T07:27:37.000000Z\",\"updated_at\":\"2024-09-10T07:27:37.000000Z\"},{\"id\":2,\"title\":\"Course Title\",\"teacher\":\"Course Teacher\",\"description\":\"Course Description\",\"imagePath\":\"https:\\\/\\\/i.postimg.cc\\\/jjfjwTWs\\\/image.png\",\"price\":\"2000.00\",\"min_age\":12,\"max_age\":15,\"course_outline\":\"Course Outline\",\"duration_in_session\":60,\"course_start_date\":\"2024-09-10\",\"created_at\":\"2024-09-10T10:04:10.000000Z\",\"updated_at\":\"2024-09-10T10:04:10.000000Z\"},{\"id\":3,\"title\":\"css\",\"teacher\":\"rezk\",\"description\":\"learn css\",\"imagePath\":\"https:\\\/\\\/i.postimg.cc\\\/jjfjwTWs\\\/image.png\",\"price\":\"1000.00\",\"min_age\":15,\"max_age\":30,\"course_outline\":\"course outline\",\"duration_in_session\":60,\"course_start_date\":\"2024-10-01\",\"created_at\":\"2024-09-15T06:35:48.000000Z\",\"updated_at\":\"2024-09-15T06:35:48.000000Z\"},{\"id\":4,\"title\":\"python\",\"teacher\":\"obedah\",\"description\":\"learn laravel 11\",\"imagePath\":\"https:\\\/\\\/i.postimg.cc\\\/jjfjwTWs\\\/image.png\",\"price\":\"1000.00\",\"min_age\":15,\"max_age\":30,\"course_outline\":\"course outline\",\"duration_in_session\":60,\"course_start_date\":\"2024-10-01\",\"created_at\":\"2024-09-15T10:22:55.000000Z\",\"updated_at\":\"2024-09-15T10:22:55.000000Z\"},{\"id\":5,\"title\":\"js\",\"teacher\":\"obedah\",\"description\":\"learn laravel 11\",\"imagePath\":\"https:\\\/\\\/i.postimg.cc\\\/jjfjwTWs\\\/image.png\",\"price\":\"1000.00\",\"min_age\":15,\"max_age\":30,\"course_outline\":\"course outline\",\"duration_in_session\":60,\"course_start_date\":\"2024-10-01\",\"created_at\":\"2024-09-15T10:23:01.000000Z\",\"updated_at\":\"2024-09-15T10:23:01.000000Z\"}],\"first_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/courses?page=1\",\"from\":1,\"last_page\":2,\"last_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/courses?page=2\",\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/courses?page=1\",\"label\":\"1\",\"active\":true},{\"url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/courses?page=2\",\"label\":\"2\",\"active\":false},{\"url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/courses?page=2\",\"label\":\"Next &raquo;\",\"active\":false}],\"next_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/courses?page=2\",\"path\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/courses\",\"per_page\":5,\"prev_page_url\":null,\"to\":5,\"total\":7}}]",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "get course by the student Age",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/courses\/courseById",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/courses\/courseById"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 500,
+                            "body": "{\n    \"message\": \"Server Error\"\n}",
                             "name": ""
                         }
                     ]
@@ -402,7 +415,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "tempora",
+                                    "value": "et",
                                     "description": "The ID of the course."
                                 }
                             ]
@@ -420,12 +433,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"psxtwauaow\",\"description\":\"veritatis\"}"
+                            "raw": "{\"title\":\"vgrjyqnsanyn\",\"description\":\"tempore\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -450,10 +460,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -479,12 +486,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"course_id\":\"qui\",\"courseMonth\":\"id\",\"start_time\":\"inventore\",\"end_time\":\"dignissimos\",\"day_of_month\":\"quam\"}"
+                            "raw": "{\"courseId\":\"reprehenderit\",\"SessionTimings\":\"2024-09-23T01:03:44\",\"startTime\":\"01:03:44\",\"endTime\":\"01:03:44\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -493,9 +497,17 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/courses_time",
+                            "path": "api\/courses_time\/:userId",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/courses_time"
+                            "raw": "{{baseUrl}}\/api\/courses_time\/:userId",
+                            "variable": [
+                                {
+                                    "id": "userId",
+                                    "key": "userId",
+                                    "value": "debitis",
+                                    "description": ""
+                                }
+                            ]
                         },
                         "method": "GET",
                         "header": [
@@ -509,10 +521,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": "this function will display the time of course based on the user timezone"
                     },
                     "response": [
                         {
@@ -530,11 +539,160 @@
                                     "value": "Origin"
                                 }
                             ],
-                            "code": 500,
-                            "body": "{\n    \"message\": \"Server Error\"\n}",
+                            "code": 404,
+                            "body": "{\"message\":\"User or time zone not found\"}",
                             "name": ""
                         }
                     ]
+                },
+                {
+                    "name": "get all dates for course based in user timezone",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/courses_time\/courseDays\/:id\/:courseId",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/courses_time\/courseDays\/:id\/:courseId",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "quasi",
+                                    "description": "The ID of the courseDay."
+                                },
+                                {
+                                    "id": "courseId",
+                                    "key": "courseId",
+                                    "value": "dignissimos",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 404,
+                            "body": "{\"message\":\"User or time zone not found\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "git all times for a course date (startTime,endTime) based on user timezone",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/courses_time\/availableTimes\/:course_id\/:sessionTimie\/:userId",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/courses_time\/availableTimes\/:course_id\/:sessionTimie\/:userId",
+                            "variable": [
+                                {
+                                    "id": "course_id",
+                                    "key": "course_id",
+                                    "value": "error",
+                                    "description": "The ID of the course."
+                                },
+                                {
+                                    "id": "sessionTimie",
+                                    "key": "sessionTimie",
+                                    "value": "doloremque",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "userId",
+                                    "key": "userId",
+                                    "value": "cum",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 404,
+                            "body": "{\"message\":\"User or time zone not found\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/courses_time\/timezone",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/courses_time\/timezone",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/courses_time\/timezone"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
                 },
                 {
                     "name": "Update the specified resource in storage.",
@@ -548,7 +706,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "quidem",
+                                    "value": "totam",
                                     "description": "The ID of the courses time."
                                 }
                             ]
@@ -565,10 +723,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -593,10 +748,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -622,12 +774,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"courseId\":\"magnam\",\"firstName\":\"quam\",\"lastName\":\"sit\",\"age\":\"aut\",\"email\":\"gcronin@example.org\"}"
+                            "raw": "{\"firstName\":\"corporis\",\"lastName\":\"officiis\",\"age\":\"assumenda\",\"email\":\"ndibbert@example.org\",\"timeZone\":\"consectetur\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -652,10 +801,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -674,7 +820,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "[{\"status\":\"success\",\"data\":{\"current_page\":1,\"data\":[],\"first_page_url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/guest_users?page=1\",\"from\":null,\"last_page\":1,\"last_page_url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/guest_users?page=1\",\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/guest_users?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"next_page_url\":null,\"path\":\"https:\\\/\\\/onlineschool-production.up.railway.app\\\/api\\\/guest_users\",\"per_page\":5,\"prev_page_url\":null,\"to\":null,\"total\":0}}]",
+                            "body": "[{\"status\":\"success\",\"data\":{\"current_page\":1,\"data\":[{\"id\":3,\"firstName\":\"ail\",\"lastName\":\"yahea\",\"age\":22,\"email\":\"obedah9600@gmail.com\",\"email_verified_at\":\"2024-09-10 11:29:06\",\"verification_token\":null,\"email_verified\":1,\"timeZone\":\"Asia\\\/Damascus\",\"created_at\":\"2024-09-10T08:27:26.000000Z\",\"updated_at\":\"2024-09-10T08:29:06.000000Z\"},{\"id\":6,\"firstName\":\"sami\",\"lastName\":\"yahea\",\"age\":27,\"email\":\"obedah9600@gmail.com\",\"email_verified_at\":\"2024-09-10 11:57:07\",\"verification_token\":null,\"email_verified\":1,\"timeZone\":\"Asia\\\/Tokyo\",\"created_at\":\"2024-09-10T08:56:39.000000Z\",\"updated_at\":\"2024-09-10T08:57:07.000000Z\"},{\"id\":7,\"firstName\":\"sami\",\"lastName\":\"yahea\",\"age\":27,\"email\":\"obedah90@gmail.com\",\"email_verified_at\":null,\"verification_token\":\"PxnYS821sUxzQVWpq8UQWjevSCD3mMy7\",\"email_verified\":0,\"timeZone\":\"Asia\\\/Tokyo\",\"created_at\":\"2024-09-14T18:08:33.000000Z\",\"updated_at\":\"2024-09-14T18:08:33.000000Z\"},{\"id\":8,\"firstName\":\"Ismaell\",\"lastName\":\"asd\",\"age\":22,\"email\":\"bon1@gamil.com\",\"email_verified_at\":null,\"verification_token\":\"BsGTYNMPhNNM1sJiO1vipfrXxwooDHBe\",\"email_verified\":0,\"timeZone\":\"Asia\\\/Damascus\",\"created_at\":\"2024-09-14T18:19:04.000000Z\",\"updated_at\":\"2024-09-14T18:19:04.000000Z\"},{\"id\":9,\"firstName\":\"Ismaell\",\"lastName\":\"asd\",\"age\":22,\"email\":\"bon1@gamil.com\",\"email_verified_at\":null,\"verification_token\":\"mzDZXPqDC7Kzqq9AT7PrHu2ZxzEwlVpi\",\"email_verified\":0,\"timeZone\":\"Asia\\\/Damascus\",\"created_at\":\"2024-09-14T18:20:23.000000Z\",\"updated_at\":\"2024-09-14T18:20:23.000000Z\"}],\"first_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/guest_users?page=1\",\"from\":1,\"last_page\":3,\"last_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/guest_users?page=3\",\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/guest_users?page=1\",\"label\":\"1\",\"active\":true},{\"url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/guest_users?page=2\",\"label\":\"2\",\"active\":false},{\"url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/guest_users?page=3\",\"label\":\"3\",\"active\":false},{\"url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/guest_users?page=2\",\"label\":\"Next &raquo;\",\"active\":false}],\"next_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/guest_users?page=2\",\"path\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/guest_users\",\"per_page\":5,\"prev_page_url\":null,\"to\":5,\"total\":14}}]",
                             "name": ""
                         }
                     ]
@@ -691,7 +837,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "rerum",
+                                    "value": "numquam",
                                     "description": "The ID of the guest user."
                                 }
                             ]
@@ -709,12 +855,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"courseId\":\"maxime\",\"firstName\":\"adipisci\",\"lastName\":\"quia\",\"age\":\"sed\",\"email\":\"gutkowski.elenor@example.com\"}"
+                            "raw": "{\"courseId\":\"ducimus\",\"firstName\":\"rerum\",\"lastName\":\"minus\",\"age\":\"dolorem\",\"email\":\"brannon.hyatt@example.org\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -740,12 +883,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"id\":\"quam\"}"
+                            "raw": "{\"id\":\"provident\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -771,12 +911,37 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"userId\":19,\"courseId\":2,\"numberOfMonth\":19,\"dayOfMonth\":16,\"startTime\":\"00:23:36\",\"endTime\":\"00:23:36\"}"
+                            "raw": "{\"userId\":5,\"courseId\":3,\"time\":\"molestias\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/free_lessons\/createSession",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/free_lessons\/createSession",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/free_lessons\/createSession"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"CourseId\":\"exercitationem\",\"SessionTimings\":\"et\",\"guestUserId\":\"et\"}"
+                        },
+                        "description": ""
                     },
                     "response": []
                 },
@@ -801,10 +966,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -822,8 +984,8 @@
                                     "value": "Origin"
                                 }
                             ],
-                            "code": 500,
-                            "body": "{\n    \"message\": \"Server Error\"\n}",
+                            "code": 200,
+                            "body": "{\"status\":\"success\",\"total\":29,\"data\":[{\"freeLessonId\":2,\"courseName\":\"laravel\",\"guestUserName\":\"ail yahea\",\"userAge\":22,\"userEmail\":\"obedah9600@gmail.com\",\"lessonDate\":\"2024-09-11\",\"lessoStartTime\":\"20:00:00\",\"lessoEndTime\":\"21:00:00\",\"googleMeetUrl\":\"https:\\\/\\\/meet.google.com\\\/stx-cgwe-xet\"},{\"freeLessonId\":3,\"courseName\":\"laravel\",\"guestUserName\":\"sami yahea\",\"userAge\":27,\"userEmail\":\"obedah9600@gmail.com\",\"lessonDate\":\"2024-09-11\",\"lessoStartTime\":\"20:00:00\",\"lessoEndTime\":\"21:00:00\",\"googleMeetUrl\":\"https:\\\/\\\/meet.google.com\\\/stx-cgwe-xet\"},{\"freeLessonId\":4,\"courseName\":\"laravel\",\"guestUserName\":\"sami yahea\",\"userAge\":27,\"userEmail\":\"obedah9600@gmail.com\",\"lessonDate\":\"2024-09-14\",\"lessoStartTime\":\"06:00:00\",\"lessoEndTime\":\"07:00:00\",\"googleMeetUrl\":\"https:\\\/\\\/meet.google.com\\\/brt-gcrj-cav\"},{\"freeLessonId\":5,\"courseName\":\"laravel\",\"guestUserName\":\"ail yahea\",\"userAge\":22,\"userEmail\":\"obedah9600@gmail.com\",\"lessonDate\":\"2024-09-11\",\"lessoStartTime\":\"01:00:00\",\"lessoEndTime\":\"02:00:00\",\"googleMeetUrl\":\"https:\\\/\\\/meet.google.com\\\/aej-jmta-cre\"},{\"freeLessonId\":6,\"courseName\":\"laravel\",\"guestUserName\":\"ail yahea\",\"userAge\":22,\"userEmail\":\"obedah9600@gmail.com\",\"lessonDate\":\"2024-09-14\",\"lessoStartTime\":\"06:00:00\",\"lessoEndTime\":\"07:00:00\",\"googleMeetUrl\":\"https:\\\/\\\/meet.google.com\\\/brt-gcrj-cav\"}]}",
                             "name": ""
                         }
                     ]
@@ -840,7 +1002,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "modi",
+                                    "value": "doloribus",
                                     "description": "The ID of the free lesson."
                                 }
                             ]
@@ -858,12 +1020,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"numberOfMonth\":\"quibusdam\",\"dayOfMonth\":\"ut\",\"startTime\":\"in\",\"endTime\":\"explicabo\",\"meetUrl\":\"autem\"}"
+                            "raw": "{\"sessionTime\":\"tempore\",\"meetUrl\":\"ut\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -889,23 +1048,48 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"id\":\"voluptas\"}"
+                            "raw": "{\"id\":\"totam\"}"
                         },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
                 {
-                    "name": "GET api\/create_event",
+                    "name": "Show the form for creating a new resource.",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/create_event",
+                            "path": "api\/Testimonial",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/create_event"
+                            "raw": "{{baseUrl}}\/api\/Testimonial"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"firstName\":\"non\",\"lastName\":\"dolores\",\"age\":\"eum\",\"email\":\"garret71@example.com\",\"timeZone\":\"excepturi\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/Testimonial",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/Testimonial"
                         },
                         "method": "GET",
                         "header": [
@@ -919,21 +1103,18 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
                             "header": [
                                 {
-                                    "key": "content-type",
-                                    "value": "text\/html; charset=UTF-8"
-                                },
-                                {
                                     "key": "cache-control",
                                     "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
                                 },
                                 {
                                     "key": "vary",
@@ -941,7 +1122,459 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "https:\/\/meet.google.com\/mft-oddf-wse",
+                            "body": "[{\"status\":\"success\",\"data\":{\"current_page\":1,\"data\":[{\"id\":3,\"firstName\":\"ail\",\"lastName\":\"yahea\",\"age\":22,\"email\":\"obedah9600@gmail.com\",\"email_verified_at\":\"2024-09-10 11:29:06\",\"verification_token\":null,\"email_verified\":1,\"timeZone\":\"Asia\\\/Damascus\",\"created_at\":\"2024-09-10T08:27:26.000000Z\",\"updated_at\":\"2024-09-10T08:29:06.000000Z\"},{\"id\":6,\"firstName\":\"sami\",\"lastName\":\"yahea\",\"age\":27,\"email\":\"obedah9600@gmail.com\",\"email_verified_at\":\"2024-09-10 11:57:07\",\"verification_token\":null,\"email_verified\":1,\"timeZone\":\"Asia\\\/Tokyo\",\"created_at\":\"2024-09-10T08:56:39.000000Z\",\"updated_at\":\"2024-09-10T08:57:07.000000Z\"},{\"id\":7,\"firstName\":\"sami\",\"lastName\":\"yahea\",\"age\":27,\"email\":\"obedah90@gmail.com\",\"email_verified_at\":null,\"verification_token\":\"PxnYS821sUxzQVWpq8UQWjevSCD3mMy7\",\"email_verified\":0,\"timeZone\":\"Asia\\\/Tokyo\",\"created_at\":\"2024-09-14T18:08:33.000000Z\",\"updated_at\":\"2024-09-14T18:08:33.000000Z\"},{\"id\":8,\"firstName\":\"Ismaell\",\"lastName\":\"asd\",\"age\":22,\"email\":\"bon1@gamil.com\",\"email_verified_at\":null,\"verification_token\":\"BsGTYNMPhNNM1sJiO1vipfrXxwooDHBe\",\"email_verified\":0,\"timeZone\":\"Asia\\\/Damascus\",\"created_at\":\"2024-09-14T18:19:04.000000Z\",\"updated_at\":\"2024-09-14T18:19:04.000000Z\"},{\"id\":9,\"firstName\":\"Ismaell\",\"lastName\":\"asd\",\"age\":22,\"email\":\"bon1@gamil.com\",\"email_verified_at\":null,\"verification_token\":\"mzDZXPqDC7Kzqq9AT7PrHu2ZxzEwlVpi\",\"email_verified\":0,\"timeZone\":\"Asia\\\/Damascus\",\"created_at\":\"2024-09-14T18:20:23.000000Z\",\"updated_at\":\"2024-09-14T18:20:23.000000Z\"}],\"first_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/Testimonial?page=1\",\"from\":1,\"last_page\":3,\"last_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/Testimonial?page=3\",\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/Testimonial?page=1\",\"label\":\"1\",\"active\":true},{\"url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/Testimonial?page=2\",\"label\":\"2\",\"active\":false},{\"url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/Testimonial?page=3\",\"label\":\"3\",\"active\":false},{\"url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/Testimonial?page=2\",\"label\":\"Next &raquo;\",\"active\":false}],\"next_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/Testimonial?page=2\",\"path\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/Testimonial\",\"per_page\":5,\"prev_page_url\":null,\"to\":5,\"total\":14}}]",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/Testimonial\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/Testimonial\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "illum",
+                                    "description": "The ID of the Testimonial."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"courseId\":\"quod\",\"firstName\":\"at\",\"lastName\":\"doloribus\",\"age\":\"tenetur\",\"email\":\"katelyn.gulgowski@example.net\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/Testimonial",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/Testimonial"
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"id\":\"cumque\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/users",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/users",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/users"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"current_page\":1,\"data\":[{\"id\":1,\"firstName\":\"obedah\",\"lastName\":\"shaban\",\"age\":28,\"timeZone\":\"Asia\\\/Tokyo\",\"email\":\"obedah9600@gmail.com\",\"email_verified_at\":null,\"verification_token\":null,\"created_at\":\"2024-09-10T17:25:22.000000Z\",\"updated_at\":\"2024-09-10T17:25:22.000000Z\"},{\"id\":17,\"firstName\":\"ali\",\"lastName\":\"sh\",\"age\":23,\"timeZone\":\"Asia\\\/Tokyo\",\"email\":\"alialshrany204@gmail.com\",\"email_verified_at\":\"2024-09-11T16:27:05.000000Z\",\"verification_token\":\"154woOBFXaSrRVna2ZABlVUrwI239uK9Sx8w7kXRFQ2WOkvq7wpisgQemiNqKZ9S\",\"created_at\":\"2024-09-11T16:26:44.000000Z\",\"updated_at\":\"2024-09-11T16:27:05.000000Z\"}],\"first_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/users?page=1\",\"from\":1,\"last_page\":1,\"last_page_url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/users?page=1\",\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/users?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"next_page_url\":null,\"path\":\"https:\\\/\\\/futuercoder-api-production.up.railway.app\\\/api\\\/users\",\"per_page\":5,\"prev_page_url\":null,\"to\":2,\"total\":2}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/users\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/users\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/users\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the user."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"id\":1,\"firstName\":\"obedah\",\"lastName\":\"shaban\",\"age\":28,\"timeZone\":\"Asia\\\/Tokyo\",\"email\":\"obedah9600@gmail.com\",\"email_verified_at\":null,\"verification_token\":null,\"created_at\":\"2024-09-10T17:25:22.000000Z\",\"updated_at\":\"2024-09-10T17:25:22.000000Z\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/users\/signIn",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/users\/signIn",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/users\/signIn"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"firstName\":\"dzllfkfmbfpnjwutvgknc\",\"lastName\":\"korwlzoqcardgvssotz\",\"age\":\"temporibus\",\"timeZone\":\"nemo\",\"email\":\"jared.reinger@example.org\",\"password\":\"|p|m~q&h},[EJy%\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "PUT api\/users\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/users\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/users\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the user."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"wlzyqyhrqsduixuknk\",\"password\":\"M}IK2GVIbDS\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "DELETE api\/users\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/users\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/users\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the user."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Handle an incoming registration request.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/register1",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/register1"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"firstName\":\"taurlapgozbcjmjpga\",\"lastName\":\"tzptgnbnkhkxtyxjsatkhttyh\",\"age\":16,\"timeZone\":\"eveniet\",\"email\":\"fiona.schmidt@example.org\",\"password\":\"0sL[n(L%+,\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Mark the authenticated user's email address as verified.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/email\/verify\/:id\/:hash",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/email\/verify\/:id\/:hash",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "a",
+                                    "description": "The ID of the verify."
+                                },
+                                {
+                                    "id": "hash",
+                                    "key": "hash",
+                                    "value": "voluptates",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 403,
+                            "body": "{\n    \"message\": \"Invalid signature.\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/verify-subscriber-email\/{token}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/verify-subscriber-email\/:token",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/verify-subscriber-email\/:token",
+                            "variable": [
+                                {
+                                    "id": "token",
+                                    "key": "token",
+                                    "value": "aliquid",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 400,
+                            "body": "{\"message\":\"Invalid or expired verification token.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/verify-guest-email\/{token}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/verify-guest-email\/:token",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/verify-guest-email\/:token",
+                            "variable": [
+                                {
+                                    "id": "token",
+                                    "key": "token",
+                                    "value": "iusto",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "vary",
+                                    "value": "Origin"
+                                }
+                            ],
+                            "code": 400,
+                            "body": "{\"message\":\"Invalid or expired verification token.\"}",
                             "name": ""
                         }
                     ]
@@ -953,7 +1586,7 @@
         "type": "bearer",
         "bearer": [
             {
-                "key": "key",
+                "key": "Authorization",
                 "type": "string"
             }
         ]

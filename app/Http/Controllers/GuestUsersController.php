@@ -93,14 +93,23 @@ class GuestUsersController extends Controller
                     'data'=>$gestUser
             ]);
     }
-    public function verify($token)
+    public function verify($token, $courseId, $sessionTimings)
     {
-        if ($this->guestUserService->verifyGuestUser($token)) {
-            return response()->json(['message' => 'Email verified successfully.']);
+        $result = $this->guestUserService->verifyGuestUser($token, $courseId, $sessionTimings);
+    
+        if ($result['status'] === 'success') {
+            return response()->json([
+                'message' => 'Email verified successfully.',
+                'guestUser' => $result['guestUser'],
+                'sessionDetails' => $result['sessionDetails']
+            ]);
+        } else {
+            return response()->json([
+                'message' => $result['message']
+            ], $result['statusCode']);
         }
-
-        return response()->json(['message' => 'Invalid or expired verification token.'], 400);
     }
+    
 
     /**
      * Remove the specified resource from storage.

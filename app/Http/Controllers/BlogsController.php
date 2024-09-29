@@ -186,6 +186,15 @@ class BlogsController extends Controller
             'blog' => $blog
         ]);
     }
+    //this function use to get the last three blogs from database
+    public function getLastThreeBlogs()
+{
+    // الحصول على آخر ثلاث منشورات من قاعدة البيانات
+    $blogs = Blogs::orderBy('created_at', 'desc')->take(3)->get();
+
+    // إعادة البيانات
+    return response()->json($blogs);
+}
 
     /**
      * Remove the specified resource from storage.
