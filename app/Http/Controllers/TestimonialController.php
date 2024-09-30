@@ -75,7 +75,7 @@ class TestimonialController extends Controller
         public function validTestimonial()
     {
         
-        $testimonials = Testimonial::with('user:id,email')
+        $testimonials = Testimonial::with('user:id,firstName,lastName')
             ->whereHas('user', function ($query) {
                 $query->whereNotNull('email_verified_at');
             })

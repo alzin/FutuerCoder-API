@@ -114,7 +114,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/{id}', [TestimonialController::class, 'update']);
         Route::get('/validTestimonial', [TestimonialController::class, 'validTestimonial']);
         Route::get('/getAllTestimonialsForAdmin', [TestimonialController::class, 'getAllTestimonialsForAdmin']);
-        
         Route::delete('/', [TestimonialController::class, 'destroy']);
     });
     Route::group(['prefix' => 'users'], function () {
