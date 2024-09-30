@@ -36,12 +36,16 @@ Make sure you have the following installed on your system:
    ```bash
    cd your-repository
 3. Install PHP dependencies:
+   ```bash
    composer install
 4. Install Node.js dependencies (if applicable):
+   ```bash
    npm install
 5. Copy the example environment file and create your own .env file:
+   ```bash
    cp .env.example .env
 6. Edit the .env file with your database and other necessary configurations:
+   ```bash
    DB_CONNECTION=mysql
    DB_HOST=127.0.0.1
    DB_PORT=3306
@@ -49,10 +53,13 @@ Make sure you have the following installed on your system:
    DB_USERNAME=your_username
    DB_PASSWORD=your_password
 7. Run the following command to generate the application key:
+   ```bash
    php artisan key:generate
 8. Run migrations to create the necessary database tables:
+   ```bash
    php artisan migrate
 9. Start the local development server:
+   ```bash
    php artisan serve
 10. Open your browser and go to http://127.0.0.1:8000.          
      
