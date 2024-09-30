@@ -61,8 +61,21 @@ Make sure you have the following installed on your system:
 9. Start the local development server:
    ```bash
    php artisan serve
-10. Open your browser and go to http://127.0.0.1:8000.          
+10. Open your browser and go to http://127.0.0.1:8000.
+
+## Code overview
+Dependencies
+sanctum-auth - For authentication using JSON Web Tokens
+laravel-cors - For handling Cross-Origin Resource Sharing (CORS)
      
+## Folders
+**app Contains all the Eloquent models**
+**app/Http/Controllers/Api - Contains all the api controllers**
+**app/Http/Middleware - Contains the JWT auth middleware**
+**config - Contains all the application configuration files**
+**database/migrations - Contains all the database migrations**
+**routes - Contains all the api routes defined in api.php file**
+
 
 ## Learning Laravel
 
