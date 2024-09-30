@@ -90,9 +90,7 @@ class TestimonialController extends Controller
     public function getAllTestimonialsForAdmin()
     {
         $testimonials = Testimonial::with('user:id,email,firstName,lastName')
-            ->paginate(6); // عرض 6 عناصر في كل صفحة
-    
-        // تحويل البيانات إلى صيغة مناسبة لـ JSON مع معلومات التصفح
+            ->paginate(6); 
         $data = [
             'current_page' => $testimonials->currentPage(),
             'last_page' => $testimonials->lastPage(),
