@@ -64,6 +64,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/store', [BlogsController::class, 'store']);
         Route::get('/', [BlogsController::class, 'index']);
         Route::put('/{id}', [BlogsController::class, 'update']);
+        Route::get('/lastThree', [BlogsController::class, 'getLastThreeBlogs']);
         Route::delete('/', [BlogsController::class, 'destroy']);
     });
 
@@ -108,8 +109,12 @@ Route::middleware('auth:sanctum')->group(function () {
     });
         Route::prefix('Testimonial')->group(function () {
         Route::post('/', [TestimonialController::class, 'create']);
+        Route::post('/changeVisibility', [TestimonialController::class, 'changeVisibility']);
         Route::get('/', [TestimonialController::class, 'index']);
         Route::put('/{id}', [TestimonialController::class, 'update']);
+        Route::get('/validTestimonial', [TestimonialController::class, 'validTestimonial']);
+        Route::get('/getAllTestimonialsForAdmin', [TestimonialController::class, 'getAllTestimonialsForAdmin']);
+        
         Route::delete('/', [TestimonialController::class, 'destroy']);
     });
     Route::group(['prefix' => 'users'], function () {
