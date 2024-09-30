@@ -69,12 +69,12 @@ sanctum-auth - For authentication using JSON Web Tokens
 laravel-cors - For handling Cross-Origin Resource Sharing (CORS)
      
 ## Folders
-**app Contains all the Eloquent models**
-**app/Http/Controllers/Api - Contains all the api controllers**
-**app/Http/Middleware - Contains the JWT auth middleware**
-**config - Contains all the application configuration files**
-**database/migrations - Contains all the database migrations**
-**routes - Contains all the api routes defined in api.php file**
+- **app Contains all the Eloquent models**
+- **app/Http/Controllers/Api - Contains all the api controllers**
+- **app/Http/Middleware - Contains the JWT auth middleware**
+- **config - Contains all the application configuration files**
+- **database/migrations - Contains all the database migrations**
+- **routes - Contains all the api routes defined in api.php file**
 
 
 ## Learning Laravel
