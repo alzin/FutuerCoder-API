@@ -96,7 +96,7 @@ class TestimonialController extends Controller
                     'testimonial_id' => $testimonial->id,
                     'description' => $testimonial->description,
                     'rating' => $testimonial->rating,
-                    'is_visible' => $testimonial->is_visible ? 'show' : 'not show',
+                    'is_visible' => $testimonial->is_visible ? 1 : 0,
                     'user_id' => $testimonial->user->id,
                     'user_email' => $testimonial->user->email,
                     'user_name' => $testimonial->user->firstName . ' ' . $testimonial->user->lastName,
