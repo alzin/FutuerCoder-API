@@ -20,6 +20,41 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 - [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Prerequisites
+Make sure you have the following installed on your system:
+- **PHP** (7.4 or higher)
+- **Composer**
+- **MySQL**
+- **Node.js** and **npm**
+- **Git**
+
+### Installation Steps
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/alzin/FutuerCoder-API.git
+2. Navigate to the project directory:
+   cd your-repository
+3. Install PHP dependencies:
+   composer install
+4. Install Node.js dependencies (if applicable):
+   npm install
+5. Copy the example environment file and create your own .env file:
+   cp .env.example .env
+6. Edit the .env file with your database and other necessary configurations:
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=your_database
+   DB_USERNAME=your_username
+   DB_PASSWORD=your_password
+7. Run the following command to generate the application key:
+   php artisan key:generate
+8. Run migrations to create the necessary database tables:
+   php artisan migrate
+9. Start the local development server:
+   php artisan serve
+10. Open your browser and go to http://127.0.0.1:8000.          
+     
 
 ## Learning Laravel
 
