@@ -78,7 +78,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('courses')->group(function () {
         Route::post('/', [CourcesController::class, 'create']);
         Route::get('/', [CourcesController::class, 'index']);
-        Route::get('/courseById', [CourcesController::class, 'getCoursesByAge']);
+        Route::get('/courseById', [CourcesController::class, 'getCoursesByAge']);    
         Route::put('/{id}', [CourcesController::class, 'update']);
         Route::delete('/', [CourcesController::class, 'destroy']);
     });
@@ -89,6 +89,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/courseDays/{id}/{courseId}', [CourcesTimeController::class, 'getDaysByCourseId']);
         Route::get('/availableTimes/{course_id}/{sessionTimie}/{userId}', [CourcesTimeController::class, 'getAvailableTimes']);
         route::post('/timezone',[CourcesTimeController::class,'getAvailableTimeZone']);
+        Route::get('/getAvailableTimeZoneForAdmin', [CourcesTimeController::class, 'getAvailableTimeZoneForAdmin']);
         Route::put('/{id}', [CourcesTimeController::class, 'update']);
         Route::delete('/', [CourcesTimeController::class, 'destroy']);
     });
