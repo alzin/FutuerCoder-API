@@ -51,57 +51,49 @@ class CourcesTimeController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
-{
-    $request->validate([
-        'courseId' => 'required',
-        'SessionTimings' => 'required|date',
-        'startTime' => 'required|date_format:H:i:s',
-        'endTime' => 'required|date_format:H:i:s',
-    ]);
+        public function create(Request $request)
+    {
+        $request->validate([
+            'courseId' => 'required',
+            'SessionTimings' => 'required|date',
+            'startTime' => 'required|date_format:H:i:s',
+            'endTime' => 'required|date_format:H:i:s',
+        ]);
 
-    // Retrieve and combine date and time inputs
-    $sessionDate = $request->input('SessionTimings'); // Format: Y-m-d
-    $startTime = $request->input('startTime'); // Format: H:i:s
-    $endTime = $request->input('endTime'); // Format: H:i:s
+        // Retrieve and combine date and time inputs
+        $sessionDate = $request->input('SessionTimings'); // Format: Y-m-d
+        $startTime = $request->input('startTime'); // Format: H:i:s
+        $endTime = $request->input('endTime'); // Format: H:i:s
 
-    $startTimeFull = $sessionDate . ' ' . $startTime;
-    $endTimeFull = $sessionDate . ' ' . $endTime;
+        $startTimeFull = $sessionDate . ' ' . $startTime;
+        $endTimeFull = $sessionDate . ' ' . $endTime;
 
-    // Convert startTime and endTime to Carbon objects in Asia/Tokyo timezone and then to UTC
-    $startTimeTokyo = Carbon::createFromFormat('Y-m-d H:i:s', $startTimeFull, 'Asia/Tokyo');
-    $endTimeTokyo = Carbon::createFromFormat('Y-m-d H:i:s', $endTimeFull, 'Asia/Tokyo');
+        // Convert startTime and endTime to Carbon objects in Asia/Tokyo timezone and then to UTC
+        $startTimeTokyo = Carbon::createFromFormat('Y-m-d H:i:s', $startTimeFull, 'Asia/Tokyo');
+        $endTimeTokyo = Carbon::createFromFormat('Y-m-d H:i:s', $endTimeFull, 'Asia/Tokyo');
 
-    $startTimeUTC = $startTimeTokyo->setTimezone('UTC');
-    $endTimeUTC = $endTimeTokyo->setTimezone('UTC');
+        $startTimeUTC = $startTimeTokyo->setTimezone('UTC');
+        $endTimeUTC = $endTimeTokyo->setTimezone('UTC');
 
-    // Check if the start and end times are on the same day in UTC
-    if ($startTimeUTC->toDateString() !== $endTimeUTC->toDateString()) {
-        // If they are on different days, you might want to handle this case differently
-        // For example, you can choose to throw an exception or set a specific behavior
-        // Here, we will just set the session date to the original SessionTimings
-        $sessionDateUTC = $sessionDate; // Keep the original date
-    } else {
-        // If they are on the same day, keep the original SessionTimings in UTC
-        $sessionDateUTC = $startTimeUTC->toDateString();
+        // Always convert SessionTimings to UTC based on the start time
+        $sessionDateUTC = $startTimeTokyo->setTimezone('UTC')->toDateString();
+
+        // Save into database with UTC time
+        $course_time = Cources_time::create([
+            'courseId' => $request->courseId,
+            'SessionTimings' => $sessionDateUTC, // Save SessionTimings in UTC
+            'startTime' => $startTimeUTC->toTimeString(), // Save startTime in UTC
+            'endTime' => $endTimeUTC->toTimeString(), // Save endTime in UTC
+        ]);
+
+        $course = Cources::find($request->courseId);
+
+        return response()->json([
+            'message' => 'course time created',
+            'course_name' => $course->title,
+            'data' => $course_time
+        ]);
     }
-
-    // Save into database with UTC time
-    $course_time = Cources_time::create([
-        'courseId' => $request->courseId,
-        'SessionTimings' => $sessionDateUTC, // Save SessionTimings in UTC
-        'startTime' => $startTimeUTC->toTimeString(), // Save startTime in UTC
-        'endTime' => $endTimeUTC->toTimeString(), // Save endTime in UTC
-    ]);
-
-    $course = Cources::find($request->courseId);
-
-    return response()->json([
-        'message' => 'course time created',
-        'course_name' => $course->title,
-        'data' => $course_time
-    ]);
-}
 
 
     
