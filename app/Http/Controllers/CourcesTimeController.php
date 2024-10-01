@@ -53,52 +53,45 @@ class CourcesTimeController extends Controller
      */
     public function create(Request $request)
 {
-    // التحقق من صحة المدخلات
     $request->validate([
-        'courseId' => 'required|exists:cources,id', // التأكد من أن courseId موجود في جدول الدورات
-        'SessionTimings' => 'required|date', // التأكد من أن SessionTimings هو تاريخ صحيح
-        'startTime' => 'required|date_format:H:i:s', // التأكد من أن startTime هو بالتنسيق الصحيح
-        'endTime' => 'required|date_format:H:i:s', // التأكد من أن endTime هو بالتنسيق الصحيح
+        'courseId' => 'required',
+        'SessionTimings' => 'required|date',
+        'startTime' => 'required|date_format:H:i:s',
+        'endTime' => 'required|date_format:H:i:s',
     ]);
 
-    // استرداد وإدماج تاريخ ووقت الإدخالات
-    $sessionDate = $request->input('SessionTimings'); // التنسيق: Y-m-d
-    $startTime = $request->input('startTime'); // التنسيق: H:i:s
-    $endTime = $request->input('endTime'); // التنسيق: H:i:s
+    // Retrieve and combine date and time inputs
+    $sessionDate = $request->input('SessionTimings'); // Format: Y-m-d
+    $startTime = $request->input('startTime'); // Format: H:i:s
+    $endTime = $request->input('endTime'); // Format: H:i:s
 
-    // دمج التاريخ مع الوقت للحصول على تاريخ ووقت كامل
     $startTimeFull = $sessionDate . ' ' . $startTime;
     $endTimeFull = $sessionDate . ' ' . $endTime;
 
-    // تحويل startTime و endTime إلى كائنات Carbon في المنطقة الزمنية Asia/Tokyo ثم إلى UTC
+    // Convert startTime and endTime to Carbon objects in Asia/Tokyo timezone and then to UTC
     $startTimeTokyo = Carbon::createFromFormat('Y-m-d H:i:s', $startTimeFull, 'Asia/Tokyo');
     $endTimeTokyo = Carbon::createFromFormat('Y-m-d H:i:s', $endTimeFull, 'Asia/Tokyo');
 
-    // تحويل التوقيتات إلى UTC
     $startTimeUTC = $startTimeTokyo->setTimezone('UTC');
     $endTimeUTC = $endTimeTokyo->setTimezone('UTC');
 
-    // تسجيل القيم للتحقق
-    Log::info('Start Time Tokyo: ' . $startTimeTokyo);
-    Log::info('End Time Tokyo: ' . $endTimeTokyo);
-    Log::info('Start Time UTC: ' . $startTimeUTC);
-    Log::info('End Time UTC: ' . $endTimeUTC);
-
-    // التحقق مما إذا كان endTime انتقل إلى اليوم التالي في UTC
+    // Check if the start and end times are on the same day in UTC
     if ($startTimeUTC->toDateString() !== $endTimeUTC->toDateString()) {
-        // إذا كانت endTime في يوم مختلف، استخدم تاريخ endTime
-        $sessionDateUTC = $endTimeUTC->toDateString(); // تعيين التاريخ إلى التاريخ من endTime
+        // If they are on different days, you might want to handle this case differently
+        // For example, you can choose to throw an exception or set a specific behavior
+        // Here, we will just set the session date to the original SessionTimings
+        $sessionDateUTC = $sessionDate; // Keep the original date
     } else {
-        // الاحتفاظ بالتاريخ الأصلي
+        // If they are on the same day, keep the original SessionTimings in UTC
         $sessionDateUTC = $startTimeUTC->toDateString();
     }
 
-    // حفظ البيانات في قاعدة البيانات بتوقيت UTC
+    // Save into database with UTC time
     $course_time = Cources_time::create([
         'courseId' => $request->courseId,
-        'SessionTimings' => $sessionDateUTC, // حفظ SessionTimings بتوقيت UTC
-        'startTime' => $startTimeUTC->toTimeString(), // حفظ startTime بتوقيت UTC
-        'endTime' => $endTimeUTC->toTimeString(), // حفظ endTime بتوقيت UTC
+        'SessionTimings' => $sessionDateUTC, // Save SessionTimings in UTC
+        'startTime' => $startTimeUTC->toTimeString(), // Save startTime in UTC
+        'endTime' => $endTimeUTC->toTimeString(), // Save endTime in UTC
     ]);
 
     $course = Cources::find($request->courseId);
@@ -109,6 +102,7 @@ class CourcesTimeController extends Controller
         'data' => $course_time
     ]);
 }
+
 
     
     /**
