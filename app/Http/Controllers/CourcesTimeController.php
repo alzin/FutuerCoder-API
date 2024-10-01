@@ -197,7 +197,7 @@ class CourcesTimeController extends Controller
         return response()->json(["message" => "successful", "data" => $availableTimesInUserTimeZone]);
     }
     
-    public function getAvailableTimeZone(Request $request)
+        public function getAvailableTimeZone(Request $request)
     {
         if (!$request->timezone) {
             return response()->json(['message' => 'Timezone is required'], 400);
@@ -205,32 +205,36 @@ class CourcesTimeController extends Controller
 
         $timezone = $request->timezone;
 
+        // الحصول على الوقت الحالي في المنطقة الزمنية المطلوبة
         $nowInRequestedTimeZone = Carbon::now($timezone);
         $nowUTC = $nowInRequestedTimeZone->copy()->setTimezone('UTC');
 
+        // استعلام لجلب الأوقات المتاحة
         $availableTimes = Cources_time::where('courseId', $request->course_id)
             ->where('studentsCount', '<', 3)
             ->where(function ($query) use ($nowUTC) {
                 $query->where('SessionTimings', '>', $nowUTC->toDateString())
                     ->orWhere(function ($query) use ($nowUTC) {
                         $query->where('SessionTimings', $nowUTC->toDateString())
-                                ->where('endTime', '>', $nowUTC->toTimeString());
+                            ->where('endTime', '>', $nowUTC->toTimeString());
                     });
             })
             ->get(['SessionTimings', 'startTime', 'endTime', 'studentsCount', 'id']);
 
+        // تحويل الأوقات المتاحة إلى المنطقة الزمنية المطلوبة
         $availableTimesInRequestedTimeZone = $availableTimes->map(function ($time) use ($timezone) {
-            // Convert SessionTimings from UTC to the requested timezone
-            $sessionDateInRequestedTimezone = Carbon::parse($time->SessionTimings . ' ' . $time->startTime, 'UTC')->setTimezone($timezone);
+            // دمج SessionTimings مع startTime للتاريخ والوقت الكامل
+            $startDateTimeUTC = Carbon::parse($time->SessionTimings . ' ' . $time->startTime, 'UTC');
+            $endDateTimeUTC = Carbon::parse($time->SessionTimings . ' ' . $time->endTime, 'UTC');
 
-            // Convert startTime and endTime from UTC to the requested timezone
-            $startTimeInRequestedTimezone = Carbon::parse($time->startTime, 'UTC')->setTimezone($timezone);
-            $endTimeInRequestedTimezone = Carbon::parse($time->endTime, 'UTC')->setTimezone($timezone);
+            // تحويل التوقيتات إلى المنطقة الزمنية المطلوبة
+            $startDateTimeInRequestedTimezone = $startDateTimeUTC->setTimezone($timezone);
+            $endDateTimeInRequestedTimezone = $endDateTimeUTC->setTimezone($timezone);
 
             return [
-                'SessionTimings' => $sessionDateInRequestedTimezone->toDateString(), // date with time
-                'startTime' => $startTimeInRequestedTimezone->toTimeString(),
-                'endTime' => $endTimeInRequestedTimezone->toTimeString(),
+                'SessionTimings' => $startDateTimeInRequestedTimezone->toDateString(), // التاريخ
+                'startTime' => $startDateTimeInRequestedTimezone->toTimeString(), // وقت البدء
+                'endTime' => $endDateTimeInRequestedTimezone->toTimeString(), // وقت النهاية
                 'studentsCount' => $time->studentsCount,
                 'id' => $time->id
             ];
@@ -238,6 +242,7 @@ class CourcesTimeController extends Controller
 
         return response()->json(["message" => "successful", "data" => $availableTimesInRequestedTimeZone]);
     }
+
 
 
     
