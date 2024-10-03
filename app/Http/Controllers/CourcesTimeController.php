@@ -279,13 +279,12 @@ class CourcesTimeController extends Controller
         ]);
     }
 
-    public function getAllTimes(Request $request)
+    public function getAllTimes($timezone)
 {
-    if ($request->timezone) {
+    if (!$timezone) {
         return response()->json(['message' => 'Timezone is required'], 400);
     }
 
-    /*$timezone = $request->timezone;
 
     // جلب البيانات المطلوبة فقط
     $availableTimes = Cources_time::with(['course:id,title']) // جلب اسم الكورس فقط مع الـ ID الخاص به
@@ -320,7 +319,7 @@ class CourcesTimeController extends Controller
         "last_page" => $availableTimes->lastPage(),
         "per_page" => $availableTimes->perPage(),
         "total" => $availableTimes->total()
-    ]);*/
+    ]);
 }
 
     
