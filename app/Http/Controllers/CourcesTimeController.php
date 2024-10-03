@@ -58,19 +58,21 @@ class CourcesTimeController extends Controller
             'SessionTimings' => 'required|date',
             'startTime' => 'required|date_format:H:i:s',
             'endTime' => 'required|date_format:H:i:s',
+            'timeZone'=>'required'
         ]);
 
         // Retrieve and combine date and time inputs
         $sessionDate = $request->input('SessionTimings'); // Format: Y-m-d
         $startTime = $request->input('startTime'); // Format: H:i:s
         $endTime = $request->input('endTime'); // Format: H:i:s
+        $timeZone=$request->input('timeZone');
 
         $startTimeFull = $sessionDate . ' ' . $startTime;
         $endTimeFull = $sessionDate . ' ' . $endTime;
 
         // Convert startTime and endTime to Carbon objects in Asia/Tokyo timezone and then to UTC
-        $startTimeTokyo = Carbon::createFromFormat('Y-m-d H:i:s', $startTimeFull, 'Asia/Tokyo');
-        $endTimeTokyo = Carbon::createFromFormat('Y-m-d H:i:s', $endTimeFull, 'Asia/Tokyo');
+        $startTimeTokyo = Carbon::createFromFormat('Y-m-d H:i:s', $startTimeFull, $timeZone);
+        $endTimeTokyo = Carbon::createFromFormat('Y-m-d H:i:s', $endTimeFull, $timeZone);
 
         $startTimeUTC = $startTimeTokyo->setTimezone('UTC');
         $endTimeUTC = $endTimeTokyo->setTimezone('UTC');

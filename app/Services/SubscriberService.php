@@ -32,11 +32,11 @@ class SubscriberService
 
     public function verifySubscriber($token)
     {
-        // البحث عن المشترك باستخدام رمز التحقق
+    
         $subscriber = Subscribers::where('verification_token', $token)->first();
 
         if ($subscriber) {
-            // تأكيد البريد الإلكتروني
+            
             $subscriber->update([
                 'email_verified_at' => now(),
                 'verification_token' => null,
@@ -46,6 +46,6 @@ class SubscriberService
             return true;
         }
 
-        return false;
+        return redirect("https://future-coder.vercel.app/");
     }
 }
