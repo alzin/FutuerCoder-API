@@ -279,22 +279,22 @@ class CourcesTimeController extends Controller
         ]);
     }
 
-    public function getAllTimes($timezone)
+    public function getAllTimes(Request $request)
 {
-    if (!$timezone) {
+    if (!$request->timezone) {
         return response()->json(['message' => 'Timezone is required'], 400);
     }
 
-
+    $timezone=$request->timezone;
     // جلب البيانات المطلوبة فقط
-    $availableTimes = Cources_time::with(['course:id,title']) // جلب اسم الكورس فقط مع الـ ID الخاص به
+    $availableTimes = Cources_time::with(['course:id,title'])
         ->paginate(10, ['SessionTimings', 'startTime', 'endTime', 'id', 'courseId']);
 
     if ($availableTimes->isEmpty()) {
         return response()->json(['message' => 'No available times found'], 404);
     }
 
-    // تحويل التواريخ والأوقات إلى المنطقة الزمنية المطلوبة
+    
     $availableTimes->getCollection()->transform(function ($time) use ($timezone) {
         $startDateTimeUTC = Carbon::parse($time->SessionTimings . ' ' . $time->startTime, 'UTC');
         $endDateTimeUTC = Carbon::parse($time->SessionTimings . ' ' . $time->endTime, 'UTC');
@@ -307,7 +307,7 @@ class CourcesTimeController extends Controller
             'startTime' => $startDateTimeInRequestedTimezone->toTimeString(),
             'endTime' => $endDateTimeInRequestedTimezone->toTimeString(),
             'courseId' => $time->courseId,
-            'courseName' => $time->course->title ?? 'N/A', // اسم الكورس
+            'courseName' => $time->course->title ?? 'N/A', 
             'id' => $time->id
         ];
     });
