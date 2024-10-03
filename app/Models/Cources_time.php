@@ -22,8 +22,8 @@ class Cources_time extends Model
                     ->whereColumn('endTime', 'endTime');
     }
     public function course()
-{
-    return $this->belongsTo(Cources::class, 'courseId');
-}
+    {
+        return $this->belongsTo(Cources::class);
+    }
 
 }
