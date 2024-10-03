@@ -280,49 +280,49 @@ class CourcesTimeController extends Controller
     }
 
     public function getAllTimes(Request $request)
-    {
-        if (!$request->timezone) {
-            return response()->json(['message' => 'Timezone is required'], 400);
-        }
-    
-        $timezone = $request->timezone;
-    
-        
-        $availableTimes = Cources_time::with('course')
-            ->paginate(10, ['SessionTimings', 'startTime', 'endTime', 'studentsCount', 'id', 'courseId']);
-    
-        
-        if ($availableTimes->isEmpty()) {
-            return response()->json(['message' => 'No available times found'], 404);
-        }
-    
-       
-        $availableTimes->getCollection()->transform(function ($time) use ($timezone) {
-            $startDateTimeUTC = Carbon::parse($time->SessionTimings . ' ' . $time->startTime, 'UTC');
-            $endDateTimeUTC = Carbon::parse($time->SessionTimings . ' ' . $time->endTime, 'UTC');
-    
-            $startDateTimeInRequestedTimezone = $startDateTimeUTC->setTimezone($timezone);
-            $endDateTimeInRequestedTimezone = $endDateTimeUTC->setTimezone($timezone);
-    
-            return [
-                'SessionTimings' => $startDateTimeInRequestedTimezone->toDateString(),
-                'startTime' => $startDateTimeInRequestedTimezone->toTimeString(),
-                'endTime' => $endDateTimeInRequestedTimezone->toTimeString(),
-                'courseId' => $time->courseId,
-                'courseName' => $time->course->title ?? 'N/A',
-                'id' => $time->id
-            ];
-        });
-    
-        return response()->json([
-            "message" => "successful",
-            "data" => $availableTimes->items(),
-            "current_page" => $availableTimes->currentPage(),
-            "last_page" => $availableTimes->lastPage(),
-            "per_page" => $availableTimes->perPage(),
-            "total" => $availableTimes->total()
-        ]);
+{
+    if (!$request->timezone) {
+        return response()->json(['message' => 'Timezone is required'], 400);
     }
+
+    $timezone = $request->timezone;
+
+    // جلب البيانات المطلوبة فقط
+    $availableTimes = Cources_time::with(['course:id,title']) // جلب اسم الكورس فقط مع الـ ID الخاص به
+        ->paginate(10, ['SessionTimings', 'startTime', 'endTime', 'id', 'courseId']);
+
+    if ($availableTimes->isEmpty()) {
+        return response()->json(['message' => 'No available times found'], 404);
+    }
+
+    // تحويل التواريخ والأوقات إلى المنطقة الزمنية المطلوبة
+    $availableTimes->getCollection()->transform(function ($time) use ($timezone) {
+        $startDateTimeUTC = Carbon::parse($time->SessionTimings . ' ' . $time->startTime, 'UTC');
+        $endDateTimeUTC = Carbon::parse($time->SessionTimings . ' ' . $time->endTime, 'UTC');
+
+        $startDateTimeInRequestedTimezone = $startDateTimeUTC->setTimezone($timezone);
+        $endDateTimeInRequestedTimezone = $endDateTimeUTC->setTimezone($timezone);
+
+        return [
+            'SessionTimings' => $startDateTimeInRequestedTimezone->toDateString(),
+            'startTime' => $startDateTimeInRequestedTimezone->toTimeString(),
+            'endTime' => $endDateTimeInRequestedTimezone->toTimeString(),
+            'courseId' => $time->courseId,
+            'courseName' => $time->course->title ?? 'N/A', // اسم الكورس
+            'id' => $time->id
+        ];
+    });
+
+    return response()->json([
+        "message" => "successful",
+        "data" => $availableTimes->items(),
+        "current_page" => $availableTimes->currentPage(),
+        "last_page" => $availableTimes->lastPage(),
+        "per_page" => $availableTimes->perPage(),
+        "total" => $availableTimes->total()
+    ]);
+}
+
     
 
     
