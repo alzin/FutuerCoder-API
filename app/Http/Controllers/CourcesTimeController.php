@@ -279,47 +279,47 @@ class CourcesTimeController extends Controller
         ]);
     }
 
-    public function getAlltimes(Request $request)
-{
-    if (!$request->timezone) {
-        return response()->json(['message' => 'Timezone is required'], 400);
-    }
+        public function getAlltimes(Request $request)
+    {
+        if (!$request->timezone) {
+            return response()->json(['message' => 'Timezone is required'], 400);
+        }
 
-    $timezone = $request->timezone;
+        $timezone = $request->timezone;
+
+        
+        $availableTimes = Cources_time::with('course') 
+            ->paginate(10, ['SessionTimings', 'startTime', 'endTime', 'studentsCount', 'id', 'courseId']);
 
     
-    $availableTimes = Cources_time::with('course') 
-        ->paginate(10, ['SessionTimings', 'startTime', 'endTime', 'studentsCount', 'id', 'courseId']);
+        $availableTimes->getCollection()->transform(function ($time) use ($timezone) {
+            
+            $startDateTimeUTC = Carbon::parse($time->SessionTimings . ' ' . $time->startTime, 'UTC');
+            $endDateTimeUTC = Carbon::parse($time->SessionTimings . ' ' . $time->endTime, 'UTC');
 
-   
-    $availableTimes->getCollection()->transform(function ($time) use ($timezone) {
-        
-        $startDateTimeUTC = Carbon::parse($time->SessionTimings . ' ' . $time->startTime, 'UTC');
-        $endDateTimeUTC = Carbon::parse($time->SessionTimings . ' ' . $time->endTime, 'UTC');
+            
+            $startDateTimeInRequestedTimezone = $startDateTimeUTC->setTimezone($timezone);
+            $endDateTimeInRequestedTimezone = $endDateTimeUTC->setTimezone($timezone);
 
-        
-        $startDateTimeInRequestedTimezone = $startDateTimeUTC->setTimezone($timezone);
-        $endDateTimeInRequestedTimezone = $endDateTimeUTC->setTimezone($timezone);
+            return [
+                'SessionTimings' => $startDateTimeInRequestedTimezone->toDateString(), 
+                'startTime' => $startDateTimeInRequestedTimezone->toTimeString(), 
+                'endTime' => $endDateTimeInRequestedTimezone->toTimeString(), 
+                'courseId' => $time->courseId, 
+                'courseName' => $time->course->title, 
+                'id' => $time->id 
+            ];
+        });
 
-        return [
-            'SessionTimings' => $startDateTimeInRequestedTimezone->toDateString(), 
-            'startTime' => $startDateTimeInRequestedTimezone->toTimeString(), 
-            'endTime' => $endDateTimeInRequestedTimezone->toTimeString(), 
-            'courseId' => $time->courseId, 
-            'courseName' => $time->course->title, 
-            'id' => $time->id 
-        ];
-    });
-
-    return response()->json([
-        "message" => "successful",
-        "data" => $availableTimes->items(), 
-        "current_page" => $availableTimes->currentPage(),
-        "last_page" => $availableTimes->lastPage(),
-        "per_page" => $availableTimes->perPage(),
-        "total" => $availableTimes->total()
-    ]);
-}
+        return response()->json([
+            "message" => "successful",
+            "data" => $availableTimes->items(), 
+            "current_page" => $availableTimes->currentPage(),
+            "last_page" => $availableTimes->lastPage(),
+            "per_page" => $availableTimes->perPage(),
+            "total" => $availableTimes->total()
+        ]);
+    }
 
     
 
