@@ -279,7 +279,7 @@ class CourcesTimeController extends Controller
         ]);
     }
 
-    public function getAllAvailableTimeZoneForAdmin(Request $request)
+    public function getAlltimes(Request $request)
 {
     if (!$request->timezone) {
         return response()->json(['message' => 'Timezone is required'], 400);
