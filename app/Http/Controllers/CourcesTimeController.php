@@ -307,7 +307,7 @@ class CourcesTimeController extends Controller
             'startTime' => $startDateTimeInRequestedTimezone->toTimeString(),
             'endTime' => $endDateTimeInRequestedTimezone->toTimeString(),
             'courseId' => $time->courseId,
-            'courseName' => $time->course->title ?? 'N/A', 
+            'courseName' => $time->course->title, 
             'id' => $time->id
         ];
     });
