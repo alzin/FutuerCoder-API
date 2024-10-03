@@ -91,6 +91,8 @@ Route::middleware('auth:sanctum')->group(function () {
         route::post('/timezone',[CourcesTimeController::class,'getAvailableTimeZone']);
         Route::post('/getAvailableTimeZoneForAdmin', [CourcesTimeController::class, 'getAvailableTimeZoneForAdmin']);
         Route::put('/{id}', [CourcesTimeController::class, 'update']);
+        Route::get('/getAllAvailableTimeZoneForAdmin', [CourcesTimeController::class, 'getAllAvailableTimeZoneForAdmin']);
+        
         Route::delete('/', [CourcesTimeController::class, 'destroy']);
     });
 

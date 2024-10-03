@@ -15,14 +15,15 @@ class Cources_time extends Model
         'endTime',
     ];
 
-    public function course()
-    {
-        return $this->belongsTo(Cources::class);
-    }
     public function freeLessons()
     {
         return $this->hasMany(FreeLessons::class, 'courseId', 'courseId')
                     ->whereColumn('startTime', 'startTime')
                     ->whereColumn('endTime', 'endTime');
     }
+    public function course()
+{
+    return $this->belongsTo(Cources::class, 'courseId');
+}
+
 }
