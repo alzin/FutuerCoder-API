@@ -100,12 +100,9 @@ class CourcesTimeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id, $user_id)
+    public function update(Request $request, $id)
     {
-        $user = GuestUsers::find($user_id);
-        if (!$user) {
-            return response()->json(['message' => 'User or time zone not found'], 404);
-        }
+        
         $newTime = Cources_time::find($id);
 
         if (!$newTime) {
