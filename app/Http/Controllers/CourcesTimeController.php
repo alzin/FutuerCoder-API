@@ -286,7 +286,6 @@ class CourcesTimeController extends Controller
     }
 
     $timezone=$request->timezone;
-    // جلب البيانات المطلوبة فقط
     $availableTimes = Cources_time::with(['course:id,title'])
         ->paginate(10, ['SessionTimings', 'startTime', 'endTime', 'id', 'courseId']);
 
