@@ -8,6 +8,7 @@ use App\Models\Cources;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\GuestUsers;
+use Illuminate\Support\Facades\Log;
 class CourcesTimeController extends Controller
 {
     /**
@@ -50,38 +51,34 @@ class CourcesTimeController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
+        public function create(Request $request)
     {
         $request->validate([
             'courseId' => 'required',
             'SessionTimings' => 'required|date',
             'startTime' => 'required|date_format:H:i:s',
             'endTime' => 'required|date_format:H:i:s',
+            'timeZone'=>'required'
         ]);
 
         // Retrieve and combine date and time inputs
         $sessionDate = $request->input('SessionTimings'); // Format: Y-m-d
         $startTime = $request->input('startTime'); // Format: H:i:s
         $endTime = $request->input('endTime'); // Format: H:i:s
+        $timeZone=$request->input('timeZone');
 
         $startTimeFull = $sessionDate . ' ' . $startTime;
         $endTimeFull = $sessionDate . ' ' . $endTime;
 
         // Convert startTime and endTime to Carbon objects in Asia/Tokyo timezone and then to UTC
-        $startTimeTokyo = Carbon::createFromFormat('Y-m-d H:i:s', $startTimeFull, 'Asia/Tokyo');
-        $endTimeTokyo = Carbon::createFromFormat('Y-m-d H:i:s', $endTimeFull, 'Asia/Tokyo');
+        $startTimeTokyo = Carbon::createFromFormat('Y-m-d H:i:s', $startTimeFull, $timeZone);
+        $endTimeTokyo = Carbon::createFromFormat('Y-m-d H:i:s', $endTimeFull, $timeZone);
 
         $startTimeUTC = $startTimeTokyo->setTimezone('UTC');
         $endTimeUTC = $endTimeTokyo->setTimezone('UTC');
 
-        // Check if the end time has crossed to the next day in UTC
-        if ($startTimeUTC->toDateString() !== $endTimeUTC->toDateString()) {
-            // Adjust SessionTimings if the end time crosses into the next day
-            $sessionDateUTC = $endTimeUTC->toDateString(); // Set the end date in UTC
-        } else {
-            // Keep the original SessionTimings in UTC
-            $sessionDateUTC = $startTimeUTC->toDateString();
-        }
+        // Always convert SessionTimings to UTC based on the start time
+        $sessionDateUTC = $startTimeTokyo->setTimezone('UTC')->toDateString();
 
         // Save into database with UTC time
         $course_time = Cources_time::create([
@@ -100,16 +97,14 @@ class CourcesTimeController extends Controller
         ]);
     }
 
+
     
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id, $user_id)
+    public function update(Request $request, $id)
     {
-        $user = GuestUsers::find($user_id);
-        if (!$user || !$user->timeZone) {
-            return response()->json(['message' => 'User or time zone not found'], 404);
-        }
+        
         $newTime = Cources_time::find($id);
 
         if (!$newTime) {
@@ -117,8 +112,9 @@ class CourcesTimeController extends Controller
         }
 
        // convert the time format into UTC before saving it in database
-        $newTime->startTime = Carbon::parse($request->start_time, $user->timeZone)->setTimezone('UTC')->toTimeString();
-        $newTime->endTime = Carbon::parse($request->end_time, $user->timeZone)->setTimezone('UTC')->toTimeString();
+        $newTime->SessionTimings = Carbon::parse($request->SessionTimings, $request->timeZone)->setTimezone('UTC')->toDateString();
+        $newTime->startTime = Carbon::parse($request->start_time, $request->timeZone)->setTimezone('UTC')->toTimeString();
+        $newTime->endTime = Carbon::parse($request->end_time, $request->timeZone)->setTimezone('UTC')->toTimeString();
 
         $newTime->save();
 
@@ -197,7 +193,7 @@ class CourcesTimeController extends Controller
         return response()->json(["message" => "successful", "data" => $availableTimesInUserTimeZone]);
     }
     
-    public function getAvailableTimeZone(Request $request)
+            public function getAvailableTimeZone(Request $request)
     {
         if (!$request->timezone) {
             return response()->json(['message' => 'Timezone is required'], 400);
@@ -205,32 +201,36 @@ class CourcesTimeController extends Controller
 
         $timezone = $request->timezone;
 
+        // الحصول على الوقت الحالي في المنطقة الزمنية المطلوبة
         $nowInRequestedTimeZone = Carbon::now($timezone);
         $nowUTC = $nowInRequestedTimeZone->copy()->setTimezone('UTC');
 
+        // استعلام لجلب الأوقات المتاحة
         $availableTimes = Cources_time::where('courseId', $request->course_id)
             ->where('studentsCount', '<', 3)
             ->where(function ($query) use ($nowUTC) {
                 $query->where('SessionTimings', '>', $nowUTC->toDateString())
                     ->orWhere(function ($query) use ($nowUTC) {
                         $query->where('SessionTimings', $nowUTC->toDateString())
-                                ->where('endTime', '>', $nowUTC->toTimeString());
+                            ->where('endTime', '>', $nowUTC->toTimeString());
                     });
             })
             ->get(['SessionTimings', 'startTime', 'endTime', 'studentsCount', 'id']);
 
+        // تحويل الأوقات المتاحة إلى المنطقة الزمنية المطلوبة
         $availableTimesInRequestedTimeZone = $availableTimes->map(function ($time) use ($timezone) {
-            // Convert SessionTimings from UTC to the requested timezone
-            $sessionDateInRequestedTimezone = Carbon::parse($time->SessionTimings . ' ' . $time->startTime, 'UTC')->setTimezone($timezone);
+            // دمج SessionTimings مع startTime للتاريخ والوقت الكامل
+            $startDateTimeUTC = Carbon::parse($time->SessionTimings . ' ' . $time->startTime, 'UTC');
+            $endDateTimeUTC = Carbon::parse($time->SessionTimings . ' ' . $time->endTime, 'UTC');
 
-            // Convert startTime and endTime from UTC to the requested timezone
-            $startTimeInRequestedTimezone = Carbon::parse($time->startTime, 'UTC')->setTimezone($timezone);
-            $endTimeInRequestedTimezone = Carbon::parse($time->endTime, 'UTC')->setTimezone($timezone);
+            // تحويل التوقيتات إلى المنطقة الزمنية المطلوبة
+            $startDateTimeInRequestedTimezone = $startDateTimeUTC->setTimezone($timezone);
+            $endDateTimeInRequestedTimezone = $endDateTimeUTC->setTimezone($timezone);
 
             return [
-                'SessionTimings' => $sessionDateInRequestedTimezone->toDateString(), // date with time
-                'startTime' => $startTimeInRequestedTimezone->toTimeString(),
-                'endTime' => $endTimeInRequestedTimezone->toTimeString(),
+                'SessionTimings' => $startDateTimeInRequestedTimezone->toDateString(), // التاريخ
+                'startTime' => $startDateTimeInRequestedTimezone->toTimeString(), // وقت البدء
+                'endTime' => $endDateTimeInRequestedTimezone->toTimeString(), // وقت النهاية
                 'studentsCount' => $time->studentsCount,
                 'id' => $time->id
             ];
@@ -238,6 +238,95 @@ class CourcesTimeController extends Controller
 
         return response()->json(["message" => "successful", "data" => $availableTimesInRequestedTimeZone]);
     }
+    public function getAvailableTimeZoneForAdmin(Request $request)
+    {
+        if (!$request->timezone) {
+            return response()->json(['message' => 'Timezone is required'], 400);
+        }
+    
+        $timezone = $request->timezone;
+    
+        
+        $availableTimes = Cources_time::where('courseId', $request->course_id)
+            ->paginate(10, ['SessionTimings', 'startTime', 'endTime', 'studentsCount', 'id']);
+    
+        
+        $availableTimes->getCollection()->transform(function ($time) use ($timezone) {
+           
+            $startDateTimeUTC = Carbon::parse($time->SessionTimings . ' ' . $time->startTime, 'UTC');
+            $endDateTimeUTC = Carbon::parse($time->SessionTimings . ' ' . $time->endTime, 'UTC');
+    
+           
+            $startDateTimeInRequestedTimezone = $startDateTimeUTC->setTimezone($timezone);
+            $endDateTimeInRequestedTimezone = $endDateTimeUTC->setTimezone($timezone);
+    
+            return [
+                'SessionTimings' => $startDateTimeInRequestedTimezone->toDateString(), 
+                'startTime' => $startDateTimeInRequestedTimezone->toTimeString(), 
+                'endTime' => $endDateTimeInRequestedTimezone->toTimeString(),
+                'id' => $time->id
+            ];
+        });
+    
+        return response()->json([
+            "message" => "successful",
+            "data" => $availableTimes->items(), 
+            "current_page" => $availableTimes->currentPage(),
+            "last_page" => $availableTimes->lastPage(), 
+            "per_page" => $availableTimes->perPage(), 
+            "total" => $availableTimes->total() 
+        ]);
+    }
+
+    public function getAllTimes(Request $request)
+{
+    if (!$request->timezone) {
+        return response()->json(['message' => 'Timezone is required'], 400);
+    }
+
+    $timezone=$request->timezone;
+    $availableTimes = Cources_time::with(['course:id,title'])
+        ->paginate(10, ['SessionTimings', 'startTime', 'endTime', 'id', 'courseId']);
+
+    if ($availableTimes->isEmpty()) {
+        return response()->json(['message' => 'No available times found'], 404);
+    }
+
+    
+    $availableTimes->getCollection()->transform(function ($time) use ($timezone) {
+        $startDateTimeUTC = Carbon::parse($time->SessionTimings . ' ' . $time->startTime, 'UTC');
+        $endDateTimeUTC = Carbon::parse($time->SessionTimings . ' ' . $time->endTime, 'UTC');
+
+        $startDateTimeInRequestedTimezone = $startDateTimeUTC->setTimezone($timezone);
+        $endDateTimeInRequestedTimezone = $endDateTimeUTC->setTimezone($timezone);
+
+        return [
+            'SessionTimings' => $startDateTimeInRequestedTimezone->toDateString(),
+            'startTime' => $startDateTimeInRequestedTimezone->toTimeString(),
+            'endTime' => $endDateTimeInRequestedTimezone->toTimeString(),
+            'courseId' => $time->courseId,
+            'courseName' => $time->course->title, 
+            'id' => $time->id
+        ];
+    });
+
+    return response()->json([
+        "message" => "successful",
+        "data" => $availableTimes->items(),
+        "current_page" => $availableTimes->currentPage(),
+        "last_page" => $availableTimes->lastPage(),
+        "per_page" => $availableTimes->perPage(),
+        "total" => $availableTimes->total()
+    ]);
+}
+
+    
+
+    
+
+    
+
+
 
 
     

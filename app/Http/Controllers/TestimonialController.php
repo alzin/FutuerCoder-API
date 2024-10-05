@@ -87,23 +87,19 @@ class TestimonialController extends Controller
         return response()->json($testimonials);
     }
 
-        public function getAllTestimonialsForAdmin()
+    public function getAllTestimonialsForAdmin()
     {
         $testimonials = Testimonial::with('user:id,email,firstName,lastName')
-            ->get()
-            ->map(function ($testimonial) {
-                return [
-                    'testimonial_id' => $testimonial->id,
-                    'description' => $testimonial->description,
-                    'rating' => $testimonial->rating,
-                    'is_visible' => $testimonial->is_visible ? 1 : 0,
-                    'user_id' => $testimonial->user->id,
-                    'user_email' => $testimonial->user->email,
-                    'user_name' => $testimonial->user->firstName . ' ' . $testimonial->user->lastName,
-                ];
-            });
-
-        return response()->json($testimonials);
+            ->paginate(6); 
+        $data = [
+            'current_page' => $testimonials->currentPage(),
+            'last_page' => $testimonials->lastPage(),
+            'per_page' => $testimonials->perPage(),
+            'total' => $testimonials->total(),
+            'data' => $testimonials->items()
+        ];
+    
+        return response()->json($data);
     }
 
         public function changeVisibility(Request $request)
