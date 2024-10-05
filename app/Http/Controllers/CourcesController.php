@@ -169,7 +169,7 @@ class CourcesController extends Controller
 
         public function getCourseHaveTime()
     {
-        $coursesWithTimes = Cources::whereHas('cources_times')
+        $coursesWithTimes = Cources::whereHas('courseTimes')
             ->get(['id', 'title', 'teacher', 'description', 'price', 'min_age', 'max_age']);
         if ($coursesWithTimes->isEmpty()) {
             return response()->json(['message' => 'No courses with times found'], 404);
