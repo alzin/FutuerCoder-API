@@ -169,7 +169,7 @@ class CourcesController extends Controller
 
     public function getCourseHaveTime()
     {
-        $coursesWithTimes = Cources::whereHas('courseTimes')
+        $coursesWithTimes = Cources::whereHas('cources_times')
             ->paginate(10, ['id', 'title', 'teacher', 'description', 'price', 'min_age', 'max_age']);
             
         if ($coursesWithTimes->isEmpty()) {
