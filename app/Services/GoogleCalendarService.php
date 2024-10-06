@@ -71,7 +71,17 @@ class GoogleCalendarService
             ]));
             $attendee1 = new EventAttendee();
             $attendee1->setEmail($email); 
-            $event->setAttendees([$attendee1]);
+            $attendees = $event->getAttendees() ?? [];
+            $permanentEmail = 'obedah6900@gmail.com';
+            if (!in_array($permanentEmail, array_map(function($attendee) {
+                return $attendee->getEmail();
+            }, $attendees))) {
+                
+                $attendeePermanent = new EventAttendee();
+                $attendeePermanent->setEmail($permanentEmail);
+                $attendees[] = $attendeePermanent;
+            }
+            $event->setAttendees(array_merge([$attendee1], $attendees));
 
            
             $conference = new ConferenceData();
