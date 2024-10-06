@@ -27,4 +27,8 @@ class Cources extends Model
     {
         return $this->hasMany(Cources_time::class);
     }
+    public function cources_times()
+    {
+        return $this->hasMany(Cources_time::class, 'courseId');
+    }
 }

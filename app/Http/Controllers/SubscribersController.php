@@ -64,7 +64,7 @@ class SubscribersController extends Controller
     public function verify($token)
     {
         if ($this->subscriberService->verifySubscriber($token)) {
-            return response()->json(['message' => 'Email verified successfully.']);
+            return redirect("https://future-coder.vercel.app/");
         }
 
         return response()->json(['message' => 'Invalid or expired verification token.'], 400);

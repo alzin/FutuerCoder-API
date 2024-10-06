@@ -166,6 +166,27 @@ class CourcesController extends Controller
                          ->get();
         return response()->json($courses);
     }
+
+    public function getCourseHaveTime()
+    {
+        $coursesWithTimes = Cources::whereHas('cources_times')
+            ->paginate(10, ['id', 'title', 'teacher', 'description', 'price', 'min_age', 'max_age']);
+            
+        if ($coursesWithTimes->isEmpty()) {
+            return response()->json(['message' => 'No courses with times found'], 404);
+        }
+        
+        return response()->json([
+            "message" => "successful",
+            "data" => $coursesWithTimes->items(),
+            "current_page" => $coursesWithTimes->currentPage(),
+            "last_page" => $coursesWithTimes->lastPage(),
+            "per_page" => $coursesWithTimes->perPage(),
+            "total" => $coursesWithTimes->total()
+        ]);
+    }
+    
+
     /**
      * Remove the specified resource from storage.
      */

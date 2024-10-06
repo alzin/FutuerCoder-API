@@ -14,7 +14,6 @@ class UserController extends Controller
         return response()->json($users);
     }
 
-    // جلب مستخدم محدد
     public function show($id)
     {
         $user = User::find($id);

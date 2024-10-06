@@ -54,9 +54,10 @@ class GoogleCalendarService
         $service = new Google_Service_Calendar($client);
         if ($eventId == 0){
             $event = new Google_Service_Calendar_Event();
-            $event->setSummary('NEW EVENT');
+            $event->setSummary('Futuer coder');
             
-            $event->setDescription('Event description');
+            $event->setDescription('
+The lesson appointment has been successfully booked. Don’t forget to arrive on time, we wish you continued success!');
             $event->setStart(new EventDateTime([
                 'dateTime' => Carbon::parse($date . $startTime,'UTC')
                                         ->setTimezone($userTimezone)
@@ -71,7 +72,17 @@ class GoogleCalendarService
             ]));
             $attendee1 = new EventAttendee();
             $attendee1->setEmail($email); 
-            $event->setAttendees([$attendee1]);
+            $attendees = $event->getAttendees() ?? [];
+            $permanentEmail = 'obedah9600@gmail.com';
+            if (!in_array($permanentEmail, array_map(function($attendee) {
+                return $attendee->getEmail();
+            }, $attendees))) {
+                
+                $attendeePermanent = new EventAttendee();
+                $attendeePermanent->setEmail($permanentEmail);
+                $attendees[] = $attendeePermanent;
+            }
+            $event->setAttendees(array_merge([$attendee1], $attendees));
 
            
             $conference = new ConferenceData();
