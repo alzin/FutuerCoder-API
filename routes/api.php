@@ -106,7 +106,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::prefix('free_lessons')->group(function () {
         Route::post('/', [FreeLessonsController::class, 'create']);
         Route::post('/createSession', [FreeLessonsController::class,'createSession']);
-        Route::get('/', [FreeLessonsController::class, 'index']);
+        Route::post('/getFreeLesson', [FreeLessonsController::class, 'index']);
         Route::put('/{id}', [FreeLessonsController::class, 'update']);
         Route::delete('/', [FreeLessonsController::class, 'destroy']);
     });

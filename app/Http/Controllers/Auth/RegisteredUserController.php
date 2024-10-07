@@ -25,7 +25,6 @@ class RegisteredUserController extends Controller
             'firstName' => 'required|string|max:255',
             'lastName' => 'required|string|max:255',
             'age' => 'required|integer|min:0',
-            'timeZone' => 'required',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
         ]);
@@ -36,7 +35,6 @@ class RegisteredUserController extends Controller
             'firstName' => $validatedData['firstName'],
             'lastName' => $validatedData['lastName'],
             'age' => $validatedData['age'],
-            'timeZone' => $validatedData['timeZone'],
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']),
             'verification_token' => $verificationToken,

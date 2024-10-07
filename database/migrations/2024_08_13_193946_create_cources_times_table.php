@@ -20,7 +20,8 @@ return new class extends Migration
             $table->time('endTime');
             $table->timestamps();
             // Create a composite unique index to prevent duplicate startTime for the same date
-            $table->unique(['SessionTimings', 'startTime']);
+            $table->unique(['courseId', 'SessionTimings', 'startTime']);
+
         });
         
     }

@@ -13,6 +13,7 @@ use Google\Service\Batch\Script;
 use Illuminate\Http\Request;
 use App\Http\Controllers\GuestUsersController;
 use App\Services\GuestUserService;
+use Carbon\Carbon;
 
 class FreeLessonsController extends Controller
 {
@@ -47,15 +48,25 @@ class FreeLessonsController extends Controller
                 if (!$user || !$course || !$time) {
                     $jsonData = ['message' => 'Associated data not found'];
                 } else {
+                    // Assume $time is an object with SessionTimings, startTime, and endTime properties
+                    $sessionDate = Carbon::parse($time->SessionTimings); // Convert SessionTimings to Carbon
+                    $convertedDate = $sessionDate->setTimezone($request->timezone); // Set the timezone
+
+                    $startTime = Carbon::parse($time->startTime); // Convert startTime to Carbon
+                    $convertStartTime = $startTime->setTimezone($request->timezone); // Set the timezone
+
+                    $endTime = Carbon::parse($time->endTime); // Convert endTime to Carbon
+                    $convertEndTime = $endTime->setTimezone($request->timezone); // Set the timezone
+
                     $jsonData = [
                         'status' => 'successful',
                         'courseName' => $course->title,
                         'guestUserName' => $user->firstName . ' ' . $user->lastName,
                         'userAge' => $user->age,
                         'userEmail' => $user->email,
-                        'lessonDate' => $time->SessionTimings,
-                        'lessoStartTime'=>$time->startTime,
-                        'lessoEndTime'=>$time->endTime,
+                        'lessonDate' => $convertedDate,
+                        'lessoStartTime'=>$convertStartTime ,
+                        'lessoEndTime'=>$convertEndTime,
                         'googleMeetUrl' => $freeLesson->meetUrl
                     ];
                 }
