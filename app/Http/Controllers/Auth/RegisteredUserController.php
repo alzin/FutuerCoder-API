@@ -47,7 +47,7 @@ class RegisteredUserController extends Controller
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        event(new Registered($user));
+        //event(new Registered($user));
 
         return response()->json(['message' => 'User registered successfully', 'token' => $verificationToken], 201);
     }
