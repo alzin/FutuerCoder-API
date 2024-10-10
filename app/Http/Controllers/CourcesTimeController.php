@@ -289,7 +289,14 @@ class CourcesTimeController extends Controller
         ->paginate(10, ['SessionTimings', 'startTime', 'endTime', 'id', 'courseId']);
 
     if ($availableTimes->isEmpty()) {
-        return response()->json(['message' => 'No available times found'], 404);
+        return response()->json([
+            "message" => "successful",
+            "data" => [],
+            "current_page" => 1,
+            "last_page" => 1,
+            "per_page" => 10,
+            "total" => 0
+        ]);
     }
 
     
