@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cources;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class CourcesController extends Controller
 {
@@ -167,15 +168,27 @@ class CourcesController extends Controller
         return response()->json($courses);
     }
 
-    public function getCourseHaveTime()
+        public function getCourseHaveTime(Request $request)
     {
-        $coursesWithTimes = Cources::whereHas('cources_times')
-            ->paginate(10, ['id', 'title', 'teacher', 'description', 'price', 'min_age', 'max_age','imagePath']);
-            
+    
+        $timezone = $request->input('timezone', config('app.timezone'));
+
+        $currentDateTime = Carbon::now($timezone);
+
+        $coursesWithTimes = Cources::whereHas('cources_times', function ($query) use ($currentDateTime, $timezone) {
+            $query->where(function($query) use ($currentDateTime, $timezone) {
+                $query->whereRaw("DATE_ADD(SessionTimings, INTERVAL TIME_TO_SEC(CONVERT_TZ(startTime, '+00:00', ?)) SECOND) > ?", [$timezone, $currentDateTime->toDateTimeString()])
+                    ->orWhere(function($query) use ($currentDateTime, $timezone) {
+                        $query->whereRaw("DATE_ADD(SessionTimings, INTERVAL TIME_TO_SEC(CONVERT_TZ(endTime, '+00:00', ?)) SECOND) > ?", [$timezone, $currentDateTime->toDateTimeString()]);
+                    });
+            });
+        })
+        ->paginate(10, ['id', 'title', 'teacher', 'description', 'price', 'min_age', 'max_age', 'imagePath']);
+
         if ($coursesWithTimes->isEmpty()) {
-            return response()->json(['message' => 'No courses with times found'], 404);
+            return response()->json(['message' => 'No courses with upcoming times found'], 404);
         }
-        
+
         return response()->json([
             "message" => "successful",
             "data" => $coursesWithTimes->items(),
@@ -185,6 +198,7 @@ class CourcesController extends Controller
             "total" => $coursesWithTimes->total()
         ]);
     }
+
     
 
     /**

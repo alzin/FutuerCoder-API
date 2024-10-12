@@ -80,7 +80,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/', [CourcesController::class, 'index']);
         Route::get('/courseById', [CourcesController::class, 'getCoursesByAge']);    
         Route::put('/{id}', [CourcesController::class, 'update']);
-        Route::get('/getCourseHaveTime', [CourcesController::class,'getCourseHaveTime']);
+        Route::post('/getCourseHaveTime', [CourcesController::class,'getCourseHaveTime']);
         Route::delete('/', [CourcesController::class, 'destroy']);
     });
 
