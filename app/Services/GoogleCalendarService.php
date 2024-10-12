@@ -30,7 +30,7 @@ class GoogleCalendarService
         $client->setAccessToken([
             'access_token' => $accessToken,
             'refresh_token' => $refreshToken,
-            'expires_in' => 3600,
+            'expires_in' => 36000000,
         ]);
 
         if ($client->isAccessTokenExpired()) {
@@ -45,9 +45,9 @@ class GoogleCalendarService
         }
 
         $client->setApplicationName('laravelcalendar');
-        $client->setClientId('691463698835-fum9nttru55k9k7pfvf7j9ef51slslod.apps.googleusercontent.com');
-        $client->setClientSecret('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');
-        $client->setRedirectUri('https://www.google.com');
+        $client->setClientId('145095079689-plpg2bu6b8s1e1ktbhf0ph9hoieuqdks.apps.googleusercontent.com');
+        $client->setClientSecret('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');
+        $client->setRedirectUri('https://future-coder.vercel.app');
         $client->setScopes(Google_Service_Calendar::CALENDAR);
         $client->setAccessType('offline');
         $client->setApprovalPrompt('force');
@@ -73,7 +73,7 @@ The lesson appointment has been successfully booked. Don’t forget to arrive on
             $attendee1 = new EventAttendee();
             $attendee1->setEmail($email); 
             $attendees = $event->getAttendees() ?? [];
-            $permanentEmail = 'obedah9600@gmail.com';
+            $permanentEmail = 'futurecoderonlineschool@gmail.com';
             if (!in_array($permanentEmail, array_map(function($attendee) {
                 return $attendee->getEmail();
             }, $attendees))) {
@@ -94,7 +94,7 @@ The lesson appointment has been successfully booked. Don’t forget to arrive on
             $conference->setCreateRequest($conferenceRequest);
             $event->setConferenceData($conference);
 
-            $calendarId = 'primary';
+            $calendarId = 'b8913a0fc91696496e801350a53e347f62008e4daf3bf91b45cd7067ded46563@group.calendar.google.com';
 
             try {
                 $createdEvent = $service->events->insert($calendarId, $event, [
@@ -120,7 +120,7 @@ The lesson appointment has been successfully booked. Don’t forget to arrive on
             }
             
         } else {
-            $event = $service->events->get('primary', $eventId);
+            $event = $service->events->get('b8913a0fc91696496e801350a53e347f62008e4daf3bf91b45cd7067ded46563@group.calendar.google.com', $eventId);
             $attendee = new Google_Service_Calendar_EventAttendee();
             $attendee->setEmail($email);
 
@@ -128,7 +128,7 @@ The lesson appointment has been successfully booked. Don’t forget to arrive on
             $attendees[] = $attendee;
             $event->setAttendees($attendees);
 
-            $service->events->update('primary', $eventId, $event);
+            $service->events->update('b8913a0fc91696496e801350a53e347f62008e4daf3bf91b45cd7067ded46563@group.calendar.google.com', $eventId, $event);
 
             return [
                 'eventId' => $eventId,

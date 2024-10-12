@@ -45,7 +45,7 @@ Route::middleware('web')->get('/home', function () {
         $guestUser = session('guestUser');
         $sessionDetails = session('sessionDetails');
         return "
-            Guest User: {$guestUser->name} <br>
+            Guest User: {$guestUser['name']} <br>
             Session Start Time: {$sessionDetails['sessionStartTime']} <br>
             Session End Time: {$sessionDetails['sessionEndtTime']} <br>
             Meeting URL: <a href='{$sessionDetails['meetUrl']}'>{$sessionDetails['meetUrl']}</a> <br>
