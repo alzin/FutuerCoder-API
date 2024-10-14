@@ -115,9 +115,7 @@ class GoogleCalendarService
                 'meetUrl' => $createdEvent->getHangoutLink(),
             ];
 
-            foreach ($createdEvent->getAttendees() as $attendee) {
-                Mail::to($attendee->getEmail())->send(new EventAttendeeMail($eventDetails));
-            }
+            Mail::to($permanentEmail)->send(new EventAttendeeMail($eventDetails));
 
             return [
                 'eventId' => $createdEvent->getId(),
@@ -150,9 +148,6 @@ class GoogleCalendarService
             'meetUrl' => $event->getHangoutLink(),
         ];
 
-        foreach ($attendees as $attendee) {
-            Mail::to($attendee->getEmail())->send(new EventAttendeeMail($eventDetails));
-        }
 
         return [
             'eventId' => $eventId,
