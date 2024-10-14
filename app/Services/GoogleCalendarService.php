@@ -106,7 +106,6 @@ class GoogleCalendarService
         try {
             $createdEvent = $service->events->insert($calendarId, $event, [
                 'conferenceDataVersion' => 1,
-                'sendUpdates' => 'all'
             ]);
 
             $eventDetails = [
@@ -133,7 +132,7 @@ class GoogleCalendarService
         }
 
     } else {
-        $event = $service->events->get('YOUR_CALENDAR_ID', $eventId);
+        $event = $service->events->get('b8913a0fc91696496e801350a53e347f62008e4daf3bf91b45cd7067ded46563@group.calendar.google.com', $eventId);
         $attendee = new Google_Service_Calendar_EventAttendee();
         $attendee->setEmail($email);
 
