@@ -87,6 +87,7 @@ class GoogleCalendarService
             'title' => $event->getSummary(),
             'startTime' => $event->getStart()->getDateTime(),
             'endTime' => $event->getEnd()->getDateTime(),
+            'meetUrl' => null,
         ];
 
         foreach ($attendees as $attendee) {
@@ -109,6 +110,11 @@ class GoogleCalendarService
                 'conferenceDataVersion' => 1,
                 'sendUpdates' => 'all'
             ]);
+            $eventDetails['meetUrl'] = $createdEvent->getHangoutLink();
+            foreach ($attendees as $attendee) {
+                Mail::to($attendee->getEmail())->send(new EventAttendeeMail($eventDetails));
+            }
+
 
             return [
                 'eventId' => $createdEvent->getId(),
@@ -123,7 +129,7 @@ class GoogleCalendarService
         }
 
     } else {
-        $event = $service->events->get('YOUR_CALENDAR_ID', $eventId);
+        $event = $service->events->get('b8913a0fc91696496e801350a53e347f62008e4daf3bf91b45cd7067ded46563@group.calendar.google.com', $eventId);
         $attendee = new Google_Service_Calendar_EventAttendee();
         $attendee->setEmail($email);
 
@@ -137,6 +143,7 @@ class GoogleCalendarService
             'title' => $event->getSummary(),
             'startTime' => $event->getStart()->getDateTime(),
             'endTime' => $event->getEnd()->getDateTime(),
+            'meetUrl' => $event->getHangoutLink(),
         ];
 
         foreach ($attendees as $attendee) {
