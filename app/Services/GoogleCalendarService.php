@@ -74,9 +74,14 @@ class GoogleCalendarService
         $attendee1->setEmail($email);
         $attendees = $event->getAttendees() ?? [];
         $permanentEmail = 'futurecoderonlineschool@gmail.com';
-        if (!in_array($permanentEmail, array_map(function ($attendee) {
-            return $attendee->getEmail();
-        }, $attendees))) {
+        $permanentEmailExists = false;
+        foreach ($attendees as $attendee) {
+            if ($attendee->getEmail() === $permanentEmail) {
+                $permanentEmailExists = true;
+                break;
+            }
+        }
+        if (!$permanentEmailExists) {
             $attendeePermanent = new EventAttendee();
             $attendeePermanent->setEmail($permanentEmail);
             $attendees[] = $attendeePermanent;
