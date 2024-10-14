@@ -101,16 +101,16 @@ class CourcesTimeController extends Controller
             
             if ($e->getCode() == 23000) {
                 return response()->json([
-                    'error' => 'The selected time already exists for this course and date. Please choose a different time.'
+                    'message' => 'The selected time already exists for this course and date. Please choose a different time.'
                 ], 400);
             }
     
             return response()->json([
-                'error' => 'An error occurred while creating the course time. Please try again.'
+                'message' => 'An error occurred while creating the course time. Please try again.'
             ], 500);
         } catch (ValidationException $e) {
             return response()->json([
-                'error' => 'Validation failed. Please check the input data.'
+                'message' => 'Validation failed. Please check the input data.'
             ], 422);
         }
     }
