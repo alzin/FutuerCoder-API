@@ -46,9 +46,9 @@ class GoogleCalendarService
     }
 
     $client->setApplicationName('laravelcalendar');
-    $client->setClientId('145095079689-plpg2bu6b8s1e1ktbhf0ph9hoieuqdks.apps.googleusercontent.com');
-    $client->setClientSecret('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');
-    $client->setRedirectUri('https://future-coder.vercel.app');
+    $client->setClientId('YOUR_CLIENT_ID');
+    $client->setClientSecret('YOUR_CLIENT_SECRET');
+    $client->setRedirectUri('YOUR_REDIRECT_URI');
     $client->setScopes(Google_Service_Calendar::CALENDAR);
     $client->setAccessType('offline');
     $client->setApprovalPrompt('force');
@@ -70,34 +70,27 @@ class GoogleCalendarService
                                 ->toRfc3339String(),
             'timeZone' => $userTimezone,
         ]));
+
         $attendee1 = new EventAttendee();
         $attendee1->setEmail($email);
         $attendees = $event->getAttendees() ?? [];
         $permanentEmail = 'futurecoderonlineschool@gmail.com';
         $permanentEmailExists = false;
+
         foreach ($attendees as $attendee) {
             if ($attendee->getEmail() === $permanentEmail) {
                 $permanentEmailExists = true;
                 break;
             }
         }
+
         if (!$permanentEmailExists) {
             $attendeePermanent = new EventAttendee();
             $attendeePermanent->setEmail($permanentEmail);
             $attendees[] = $attendeePermanent;
         }
+
         $event->setAttendees(array_merge([$attendee1], $attendees));
-
-        $eventDetails = [
-            'title' => $event->getSummary(),
-            'startTime' => $event->getStart()->getDateTime(),
-            'endTime' => $event->getEnd()->getDateTime(),
-            'meetUrl' => null,
-        ];
-
-        foreach ($attendees as $attendee) {
-            Mail::to($attendee->getEmail())->send(new EventAttendeeMail($eventDetails));
-        }
 
         $conference = new ConferenceData();
         $conferenceRequest = new CreateConferenceRequest();
@@ -108,18 +101,24 @@ class GoogleCalendarService
         $conference->setCreateRequest($conferenceRequest);
         $event->setConferenceData($conference);
 
-        $calendarId = 'b8913a0fc91696496e801350a53e347f62008e4daf3bf91b45cd7067ded46563@group.calendar.google.com';
+        $calendarId = 'YOUR_CALENDAR_ID';
 
         try {
             $createdEvent = $service->events->insert($calendarId, $event, [
                 'conferenceDataVersion' => 1,
                 'sendUpdates' => 'all'
             ]);
-            $eventDetails['meetUrl'] = $createdEvent->getHangoutLink();
-            foreach ($attendees as $attendee) {
+
+            $eventDetails = [
+                'title' => $createdEvent->getSummary(),
+                'startTime' => $createdEvent->getStart()->getDateTime(),
+                'endTime' => $createdEvent->getEnd()->getDateTime(),
+                'meetUrl' => $createdEvent->getHangoutLink(),
+            ];
+
+            foreach ($createdEvent->getAttendees() as $attendee) {
                 Mail::to($attendee->getEmail())->send(new EventAttendeeMail($eventDetails));
             }
-
 
             return [
                 'eventId' => $createdEvent->getId(),
@@ -134,7 +133,7 @@ class GoogleCalendarService
         }
 
     } else {
-        $event = $service->events->get('b8913a0fc91696496e801350a53e347f62008e4daf3bf91b45cd7067ded46563@group.calendar.google.com', $eventId);
+        $event = $service->events->get('YOUR_CALENDAR_ID', $eventId);
         $attendee = new Google_Service_Calendar_EventAttendee();
         $attendee->setEmail($email);
 
@@ -144,6 +143,7 @@ class GoogleCalendarService
 
         $service->events->update('YOUR_CALENDAR_ID', $eventId, $event);
 
+        
         $eventDetails = [
             'title' => $event->getSummary(),
             'startTime' => $event->getStart()->getDateTime(),
@@ -161,5 +161,6 @@ class GoogleCalendarService
         ];
     }
 }
+
 
 }
