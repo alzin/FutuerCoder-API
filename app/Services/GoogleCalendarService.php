@@ -54,13 +54,13 @@ class GoogleCalendarService
         $client->setApprovalPrompt('force');
         $service = new Google_Service_Calendar($client);
     
-        // إذا كان eventId هو 0، يعني إنشاء حدث جديد
+        
         if ($eventId == 0) {
             $event = new Google_Service_Calendar_Event();
             $event->setSummary('Future Coder');
             $event->setDescription('The lesson appointment has been successfully booked. Don’t forget to arrive on time, we wish you continued success!');
     
-            // إعداد التوقيت لبدء ونهاية الحدث مع المنطقة الزمنية للمستخدم
+           
             $event->setStart(new EventDateTime([
                 'dateTime' => Carbon::parse($date . $startTime, 'UTC')
                                     ->setTimezone($userTimezone)
@@ -74,11 +74,11 @@ class GoogleCalendarService
                 'timeZone' => $userTimezone,
             ]));
     
-            // إضافة الحضور
+          
             $attendee1 = new EventAttendee();
             $attendee1->setEmail($email);
     
-            // التحقق من عدم تكرار البريد الإلكتروني الدائم في الحضور
+            
             $permanentEmail = 'futurecoderonlineschool@gmail.com';
             $attendees = $event->getAttendees() ?? [];
             $existingEmails = array_map(function($attendee) {
@@ -97,7 +97,7 @@ class GoogleCalendarService
     
             $event->setAttendees($attendees);
     
-            // إعداد البيانات الخاصة بالمؤتمرات (Google Meet)
+            
             $conference = new ConferenceData();
             $conferenceRequest = new CreateConferenceRequest();
             $conferenceSolutionKey = new ConferenceSolutionKey();
@@ -107,7 +107,7 @@ class GoogleCalendarService
             $conference->setCreateRequest($conferenceRequest);
             $event->setConferenceData($conference);
     
-            // إدراج الحدث في تقويم Google
+          
             $calendarId = 'b8913a0fc91696496e801350a53e347f62008e4daf3bf91b45cd7067ded46563@group.calendar.google.com';
     
             try {
@@ -115,7 +115,7 @@ class GoogleCalendarService
                     'conferenceDataVersion' => 1,
                 ]);
     
-                // إعداد تفاصيل الحدث لإرسالها عبر البريد الإلكتروني
+                
                 $eventDetails = [
                     'title' => $createdEvent->getSummary(),
                     'startTime' => $createdEvent->getStart()->getDateTime(),
@@ -123,7 +123,7 @@ class GoogleCalendarService
                     'meetUrl' => $createdEvent->getHangoutLink(),
                 ];
     
-                // إرسال رسالة البريد الإلكتروني للحضور الجدد فقط
+               
                 foreach ($attendees as $attendee) {
                     if ($attendee->getEmail() === $email || $attendee->getEmail() === $permanentEmail) {
                         Mail::to($attendee->getEmail())->send(new EventAttendeeMail($eventDetails));
@@ -144,10 +144,8 @@ class GoogleCalendarService
     
         } else {
             $calendarId = 'b8913a0fc91696496e801350a53e347f62008e4daf3bf91b45cd7067ded46563@group.calendar.google.com';
-            // تحديث الحدث إذا كان موجودًا
             $event = $service->events->get($calendarId, $eventId);
     
-            // التحقق من عدم تكرار البريد الإلكتروني قبل إضافته
             $attendees = $event->getAttendees();
             $existingEmails = array_map(function($attendee) {
                 return $attendee->getEmail();
@@ -161,10 +159,10 @@ class GoogleCalendarService
     
             $event->setAttendees($attendees);
     
-            // تحديث الحدث
+            
             $service->events->update($calendarId, $eventId, $event);
     
-            // إرسال البريد الإلكتروني للحضور
+           
             $eventDetails = [
                 'title' => $event->getSummary(),
                 'startTime' => $event->getStart()->getDateTime(),
