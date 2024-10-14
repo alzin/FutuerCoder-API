@@ -46,9 +46,9 @@ class GoogleCalendarService
     }
 
     $client->setApplicationName('laravelcalendar');
-    $client->setClientId('YOUR_CLIENT_ID');
-    $client->setClientSecret('YOUR_CLIENT_SECRET');
-    $client->setRedirectUri('YOUR_REDIRECT_URI');
+    $client->setClientId('145095079689-plpg2bu6b8s1e1ktbhf0ph9hoieuqdks.apps.googleusercontent.com');
+    $client->setClientSecret('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');
+    $client->setRedirectUri('https://future-coder.vercel.app');
     $client->setScopes(Google_Service_Calendar::CALENDAR);
     $client->setAccessType('offline');
     $client->setApprovalPrompt('force');
