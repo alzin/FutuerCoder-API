@@ -101,7 +101,7 @@ class GoogleCalendarService
         $conference->setCreateRequest($conferenceRequest);
         $event->setConferenceData($conference);
 
-        $calendarId = 'YOUR_CALENDAR_ID';
+        $calendarId = 'b8913a0fc91696496e801350a53e347f62008e4daf3bf91b45cd7067ded46563@group.calendar.google.com';
 
         try {
             $createdEvent = $service->events->insert($calendarId, $event, [
@@ -141,7 +141,7 @@ class GoogleCalendarService
         $attendees[] = $attendee;
         $event->setAttendees($attendees);
 
-        $service->events->update('YOUR_CALENDAR_ID', $eventId, $event);
+        $service->events->update('b8913a0fc91696496e801350a53e347f62008e4daf3bf91b45cd7067ded46563@group.calendar.google.com', $eventId, $event);
 
         
         $eventDetails = [
