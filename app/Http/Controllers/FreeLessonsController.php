@@ -13,6 +13,7 @@ use Google\Service\Batch\Script;
 use Illuminate\Http\Request;
 use App\Http\Controllers\GuestUsersController;
 use App\Services\GuestUserService;
+use Carbon\Carbon;
 
 class FreeLessonsController extends Controller
 {
@@ -31,61 +32,71 @@ class FreeLessonsController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request)
-    {   
-        if($request->has('id')){
-            $freeLesson = FreeLessons::find($request->id);
+{
+    if($request->has('id')){
+        $freeLesson = FreeLessons::find($request->id);
         
-            if(!$freeLesson){
-                $jsonData = ['message' => 'lesson not found'];
-            } 
-            else 
-            {
-                $user = GuestUsers::find($freeLesson->userId);
-                $course = Cources::find($freeLesson->courseId);
-                $time = Cources_time::find($freeLesson->sessionTime);
+        if(!$freeLesson){
+            $jsonData = ['message' => 'lesson not found'];
+        } else {
+            $user = GuestUsers::find($freeLesson->userId);
+            $course = Cources::find($freeLesson->courseId);
+            $time = Cources_time::find($freeLesson->sessionTime);
         
-                if (!$user || !$course || !$time) {
-                    $jsonData = ['message' => 'Associated data not found'];
-                } else {
-                    $jsonData = [
-                        'status' => 'successful',
-                        'courseName' => $course->title,
-                        'guestUserName' => $user->firstName . ' ' . $user->lastName,
-                        'userAge' => $user->age,
-                        'userEmail' => $user->email,
-                        'lessonDate' => $time->SessionTimings,
-                        'lessoStartTime'=>$time->startTime,
-                        'lessoEndTime'=>$time->endTime,
-                        'googleMeetUrl' => $freeLesson->meetUrl
-                    ];
-                }
+            if (!$user || !$course || !$time) {
+                $jsonData = ['message' => 'Associated data not found'];
+            } else {
+                
+                $sessionDate = Carbon::parse($time->SessionTimings)->setTimezone($request->timezone);
+
+                
+                $startTime = Carbon::parse($time->SessionTimings . ' ' . $time->startTime)->setTimezone($request->timezone);
+                $endTime = Carbon::parse($time->SessionTimings . ' ' . $time->endTime)->setTimezone($request->timezone);
+
+                $jsonData = [
+                    'status' => 'successful',
+                    'courseName' => $course->title,
+                    'guestUserName' => $user->firstName . ' ' . $user->lastName,
+                    'userAge' => $user->age,
+                    'userEmail' => $user->email,
+                    'lessonDate' => $sessionDate->toDateString(), 
+                    'lessoStartTime' => $startTime->toDateTimeString(),
+                    'lessoEndTime' => $endTime->toDateTimeString(),
+                    'googleMeetUrl' => $freeLesson->meetUrl
+                ];
             }
         }
+    } else {
+        $freeLesson = FreeLessons::paginate(5);
+        $jsonData = ['status' => 'success', 'total' => $freeLesson->total(), 'data' => []];
         
-        else{
-                $freeLesson = FreeLessons::paginate(5);
-                $jsonData = ['status' => 'success','total'=>$freeLesson->total(), 'data' => []];
-                
-                foreach ($freeLesson as $lesson) {
-                    $user = GuestUsers::find($lesson->userId);
-                    $course = Cources::find($lesson->courseId);
-                    $time=Cources_time::find($lesson->sessionTime);
-                
-                    $jsonData['data'][] = [
-                        'freeLessonId'=>$lesson->id,
-                        'courseName' => $course->title,
-                        'guestUserName' => $user->firstName . ' ' . $user->lastName,
-                        'userAge'=>$user->age,
-                        'userEmail'=>$user->email,
-                        'lessonDate'=>$time->SessionTimings,
-                        'lessoStartTime'=>$time->startTime,
-                        'lessoEndTime'=>$time->endTime,
-                        'googleMeetUrl'=>$lesson->meetUrl
-                    ];
-                }
-            }
-        return response()->json($jsonData);
+        foreach ($freeLesson as $lesson) {
+            $user = GuestUsers::find($lesson->userId);
+            $course = Cources::find($lesson->courseId);
+            $time = Cources_time::find($lesson->sessionTime);
+
+           
+            $sessionDate = Carbon::parse($time->SessionTimings)->setTimezone($request->timezone);
+            $startTime = Carbon::parse($time->SessionTimings . ' ' . $time->startTime)->setTimezone($request->timezone);
+            $endTime = Carbon::parse($time->SessionTimings . ' ' . $time->endTime)->setTimezone($request->timezone);
+
+            $jsonData['data'][] = [
+                'freeLessonId' => $lesson->id,
+                'courseName' => $course->title,
+                'guestUserName' => $user->firstName . ' ' . $user->lastName,
+                'userAge' => $user->age,
+                'userEmail' => $user->email,
+                'lessonDate' => $sessionDate->toDateString(),
+                'lessoStartTime' => $startTime->toDateTimeString(),
+                'lessoEndTime' => $endTime->toDateTimeString(),
+                'googleMeetUrl' => $lesson->meetUrl
+            ];
+        }
     }
+
+    return response()->json($jsonData);
+}
+
 
     /**
      * Show the form for creating a new resource.
@@ -119,8 +130,10 @@ class FreeLessonsController extends Controller
     }
 
     /**
+     *
      * Update the specified resource in storage.
      */
+
     public function update(Request $request,$id)
     {
         $request->validate([

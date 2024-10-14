@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Database\QueryException;
+use Illuminate\Validation\ValidationException;
 
 use App\Models\Cources_time;
 use App\Models\FreeLessons;
@@ -51,51 +53,68 @@ class CourcesTimeController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-        public function create(Request $request)
+    
+    public function create(Request $request)
     {
-        $request->validate([
-            'courseId' => 'required',
-            'SessionTimings' => 'required|date',
-            'startTime' => 'required|date_format:H:i:s',
-            'endTime' => 'required|date_format:H:i:s',
-            'timeZone'=>'required'
-        ]);
-
-        // Retrieve and combine date and time inputs
-        $sessionDate = $request->input('SessionTimings'); // Format: Y-m-d
-        $startTime = $request->input('startTime'); // Format: H:i:s
-        $endTime = $request->input('endTime'); // Format: H:i:s
-        $timeZone=$request->input('timeZone');
-
-        $startTimeFull = $sessionDate . ' ' . $startTime;
-        $endTimeFull = $sessionDate . ' ' . $endTime;
-
-        // Convert startTime and endTime to Carbon objects in Asia/Tokyo timezone and then to UTC
-        $startTimeTokyo = Carbon::createFromFormat('Y-m-d H:i:s', $startTimeFull, $timeZone);
-        $endTimeTokyo = Carbon::createFromFormat('Y-m-d H:i:s', $endTimeFull, $timeZone);
-
-        $startTimeUTC = $startTimeTokyo->setTimezone('UTC');
-        $endTimeUTC = $endTimeTokyo->setTimezone('UTC');
-
-        // Always convert SessionTimings to UTC based on the start time
-        $sessionDateUTC = $startTimeTokyo->setTimezone('UTC')->toDateString();
-
-        // Save into database with UTC time
-        $course_time = Cources_time::create([
-            'courseId' => $request->courseId,
-            'SessionTimings' => $sessionDateUTC, // Save SessionTimings in UTC
-            'startTime' => $startTimeUTC->toTimeString(), // Save startTime in UTC
-            'endTime' => $endTimeUTC->toTimeString(), // Save endTime in UTC
-        ]);
-
-        $course = Cources::find($request->courseId);
-
-        return response()->json([
-            'message' => 'course time created',
-            'course_name' => $course->title,
-            'data' => $course_time
-        ]);
+        try {
+            
+            $request->validate([
+                'courseId' => 'required',
+                'SessionTimings' => 'required|date',
+                'startTime' => 'required|date_format:H:i:s',
+                'endTime' => 'required|date_format:H:i:s',
+                'timeZone' => 'required'
+            ]);
+    
+            $sessionDate = $request->input('SessionTimings');
+            $startTime = $request->input('startTime');
+            $endTime = $request->input('endTime');
+            $timeZone = $request->input('timeZone');
+    
+            $startTimeFull = $sessionDate . ' ' . $startTime;
+            $endTimeFull = $sessionDate . ' ' . $endTime;
+    
+            $startTimeTokyo = Carbon::createFromFormat('Y-m-d H:i:s', $startTimeFull, $timeZone);
+            $endTimeTokyo = Carbon::createFromFormat('Y-m-d H:i:s', $endTimeFull, $timeZone);
+    
+            $startTimeUTC = $startTimeTokyo->setTimezone('UTC');
+            $endTimeUTC = $endTimeTokyo->setTimezone('UTC');
+            
+            $sessionDateUTC = $startTimeTokyo->setTimezone('UTC')->toDateString();
+    
+            $course_time = Cources_time::create([
+                'courseId' => $request->courseId,
+                'SessionTimings' => $sessionDateUTC,
+                'startTime' => $startTimeUTC->toTimeString(),
+                'endTime' => $endTimeUTC->toTimeString(),
+            ]);
+    
+            $course = Cources::find($request->courseId);
+    
+            return response()->json([
+                'message' => 'Course time created successfully!',
+                'course_name' => $course->title,
+                'data' => $course_time
+            ]);
+    
+        } catch (QueryException $e) {
+            
+            if ($e->getCode() == 23000) {
+                return response()->json([
+                    'message' => 'The selected time already exists for this course and date. Please choose a different time.'
+                ], 400);
+            }
+    
+            return response()->json([
+                'message' => 'An error occurred while creating the course time. Please try again.'
+            ], 500);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'message' => 'Validation failed. Please check the input data.'
+            ], 422);
+        }
     }
+    
 
 
     
@@ -289,7 +308,14 @@ class CourcesTimeController extends Controller
         ->paginate(10, ['SessionTimings', 'startTime', 'endTime', 'id', 'courseId']);
 
     if ($availableTimes->isEmpty()) {
-        return response()->json(['message' => 'No available times found'], 404);
+        return response()->json([
+            "message" => "successful",
+            "data" => [],
+            "current_page" => 1,
+            "last_page" => 1,
+            "per_page" => 10,
+            "total" => 0
+        ]);
     }
 
     

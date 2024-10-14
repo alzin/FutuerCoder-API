@@ -45,7 +45,7 @@ Route::middleware('web')->get('/home', function () {
         $guestUser = session('guestUser');
         $sessionDetails = session('sessionDetails');
         return "
-            Guest User: {$guestUser->name} <br>
+            Guest User: {$guestUser['name']} <br>
             Session Start Time: {$sessionDetails['sessionStartTime']} <br>
             Session End Time: {$sessionDetails['sessionEndtTime']} <br>
             Meeting URL: <a href='{$sessionDetails['meetUrl']}'>{$sessionDetails['meetUrl']}</a> <br>
@@ -80,6 +80,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/', [CourcesController::class, 'index']);
         Route::get('/courseById', [CourcesController::class, 'getCoursesByAge']);    
         Route::put('/{id}', [CourcesController::class, 'update']);
+        Route::post('/getCourseHaveTime', [CourcesController::class,'getCourseHaveTime']);
         Route::delete('/', [CourcesController::class, 'destroy']);
     });
 
@@ -105,7 +106,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::prefix('free_lessons')->group(function () {
         Route::post('/', [FreeLessonsController::class, 'create']);
         Route::post('/createSession', [FreeLessonsController::class,'createSession']);
-        Route::get('/', [FreeLessonsController::class, 'index']);
+        Route::post('/getFreeLesson', [FreeLessonsController::class, 'index']);
         Route::put('/{id}', [FreeLessonsController::class, 'update']);
         Route::delete('/', [FreeLessonsController::class, 'destroy']);
     });
