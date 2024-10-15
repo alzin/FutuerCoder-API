@@ -305,7 +305,7 @@ class CourcesTimeController extends Controller
 
     $timezone=$request->timezone;
     $availableTimes = Cources_time::with(['course:id,title'])
-        ->paginate(10, ['SessionTimings', 'startTime', 'endTime', 'id', 'courseId']);
+        ->paginate(10, ['SessionTimings', 'startTime', 'endTime', 'id', 'courseId', 'studentsCount']);
 
     if ($availableTimes->isEmpty()) {
         return response()->json([
@@ -331,7 +331,8 @@ class CourcesTimeController extends Controller
             'startTime' => $startDateTimeInRequestedTimezone->toTimeString(),
             'endTime' => $endDateTimeInRequestedTimezone->toTimeString(),
             'courseId' => $time->courseId,
-            'courseName' => $time->course->title, 
+            'courseName' => $time->course->title,
+            'studentsCount' => $time->studentsCount,
             'id' => $time->id
         ];
     });
