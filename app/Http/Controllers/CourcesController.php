@@ -71,6 +71,7 @@ class CourcesController extends Controller
             'course_start_date'=>$request->course_start_date,
             'min_age'=>$request->min_age,
             'max_age'=>$request->max_age,
+            'payment_url'=>$request->payment_url
             
         ]);
         return response()->json([
@@ -145,6 +146,7 @@ class CourcesController extends Controller
         $course->course_start_date=$request->course_start_date;
         $course->min_age=$request->min_age;
         $course->max_age=$request->max_age;
+        $course->payment_url=$request->payment_url;
     
         $course->save();
         return response()->json([
