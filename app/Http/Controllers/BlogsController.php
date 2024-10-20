@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+require_once base_path('vendor/autoload.php');
+
 
 use App\Models\Blogs;
 use Illuminate\Http\Request;
