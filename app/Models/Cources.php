@@ -20,7 +20,8 @@ class Cources extends Model
     'duration_in_session',
     'course_start_date',
     'min_age',
-    'max_age'
+    'max_age',
+    'payment_url'
     ];
 
     public function courseTimes()

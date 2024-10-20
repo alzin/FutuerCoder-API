@@ -56,6 +56,18 @@ class GoogleCalendarService
     
         
         if ($eventId == 0) {
+            $calendarId = 'b8913a0fc91696496e801350a53e347f62008e4daf3bf91b45cd7067ded46563@group.calendar.google.com';
+    
+            $existingEvents = $service->events->listEvents($calendarId, [
+                'timeMin' => Carbon::parse($date . $startTime, 'UTC')->toRfc3339String(),
+                'timeMax' => Carbon::parse($date . $endTime, 'UTC')->toRfc3339String(),
+                'q' => 'Future Coder', 
+            ]);
+        
+            if (count($existingEvents->getItems()) > 0) {
+                
+                return response()->json(['message' => 'Event already exists'], 400);
+            }
             $event = new Google_Service_Calendar_Event();
             $event->setSummary('Future Coder');
             $event->setDescription('The lesson appointment has been successfully booked. Don’t forget to arrive on time, we wish you continued success!');
@@ -108,8 +120,7 @@ class GoogleCalendarService
             $event->setConferenceData($conference);
     
           
-            $calendarId = 'b8913a0fc91696496e801350a53e347f62008e4daf3bf91b45cd7067ded46563@group.calendar.google.com';
-    
+           
             try {
                 $createdEvent = $service->events->insert($calendarId, $event, [
                     'conferenceDataVersion' => 1,

@@ -21,8 +21,9 @@ return new class extends Migration
             $table->integer('min_age');
             $table->integer('max_age');
             $table->text('course_outline');
-            $table->integer('duration_in_session'); // أو استخدام نوع بيانات مناسب آخر
-            $table->date('course_start_date'); // أو datetime('course_start_datetime')
+            $table->text('payment_url');
+            $table->integer('duration_in_session'); 
+            $table->date('course_start_date'); 
             $table->timestamps();
         });
         
