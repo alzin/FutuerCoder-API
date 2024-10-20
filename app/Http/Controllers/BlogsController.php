@@ -18,16 +18,24 @@ class BlogsController extends Controller
     // app/Http/Controllers/BlogController.php
 
     public function index(Request $request)
-    {   
-        $translator = new GoogleTranslate();
-        $translator->setTarget('ar');
-
+    {
+        $translator = null;
+    
+        if ($request->has('language')) {
+            $translator = new GoogleTranslate();
+            $translator->setTarget($request->language);
+        }
+    
         if ($request->has('id')) {
             $blog = Blogs::find($request->id);
-        
+    
             if ($blog) {
-                $blog->title = $translator->translate($blog->title);
-                $blog->description = $translator->translate($blog->description);
+               
+                if ($translator) {
+                    $blog->title = $translator->translate($blog->title);
+                    $blog->description = $translator->translate($blog->description);
+                }
+    
                 $jsonData = [
                     'status' => 'success',
                     'data' => $blog,
@@ -35,23 +43,35 @@ class BlogsController extends Controller
             } else {
                 $jsonData = [
                     'status' => 'error',
-                    'message' => 'blog not found',
+                    'message' => 'Blog not found',
                 ];
             }
-        } else {
-            $blog = Blogs::paginate(5);
-            foreach ($blog as $bloog) {
-                $bloog->title = $translator->translate($bloog->title);
-                $bloog->description = $translator->translate($bloog->description);
-            }
-            $jsonData = [
-                'status' => 'success',
-                'data' => $blog,
-            ];
+    
+            return response()->json($jsonData);
         }
-        
-        return response()->json($blog);
+    
+        $blogs = Blogs::paginate(5);
+    
+        if ($translator) {
+            foreach ($blogs as $blog) {
+                
+                if (!empty($blog->title)) {
+                    $blog->title = $translator->translate($blog->title);
+                }
+                if (!empty($blog->description)) {
+                    $blog->description = $translator->translate($blog->description);
+                }
+            }
+        }
+    
+        $jsonData = [
+            'status' => 'success',
+            'data' => $blogs,
+        ];
+    
+        return response()->json($jsonData);
     }
+    
 
     /**
      * Show the form for creating a new resource.
