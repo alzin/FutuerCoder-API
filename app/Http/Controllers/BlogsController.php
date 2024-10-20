@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Blogs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Stichoza\GoogleTranslate\GoogleTranslate;
 use Illuminate\Support\Facades\File;
 
 class BlogsController extends Controller
@@ -16,10 +17,15 @@ class BlogsController extends Controller
 
     public function index(Request $request)
     {   
+        $translator = new GoogleTranslate();
+        $translator->setTarget('ar');
+
         if ($request->has('id')) {
             $blog = Blogs::find($request->id);
         
             if ($blog) {
+                $blog->title = $translator->translate($blog->title);
+                $blog->description = $translator->translate($blog->description);
                 $jsonData = [
                     'status' => 'success',
                     'data' => $blog,
@@ -32,6 +38,10 @@ class BlogsController extends Controller
             }
         } else {
             $blog = Blogs::paginate(5);
+            foreach ($blog as $bloog) {
+                $bloog->title = $translator->translate($bloog->title);
+                $bloog->description = $translator->translate($bloog->description);
+            }
             $jsonData = [
                 'status' => 'success',
                 'data' => $blog,
@@ -189,7 +199,6 @@ class BlogsController extends Controller
     //this function use to get the last three blogs from database
     public function getLastThreeBlogs()
 {
-    // الحصول على آخر ثلاث منشورات من قاعدة البيانات
     $blogs = Blogs::orderBy('created_at', 'desc')->take(3)->get();
 
     // إعادة البيانات
