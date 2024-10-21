@@ -17,17 +17,17 @@ class BlogsController extends Controller
      */
     // app/Http/Controllers/BlogController.php
 
-    public function index(Request $request)
+    public function index($id,$language)
     {
         $translator = null;
     
-        if ($request->has('language')) {
+        if ($language!=null) {
             $translator = new GoogleTranslate();
-            $translator->setTarget($request->language);
+            $translator->setTarget($language);
         }
     
-        if ($request->has('id')) {
-            $blog = Blogs::find($request->id);
+        if ($id) {
+            $blog = Blogs::find($id);
     
             if ($blog) {
                
@@ -159,14 +159,14 @@ class BlogsController extends Controller
     }
     
     //this function use to get the last three blogs from database
-        public function getLastThreeBlogs(Request $request)
+        public function getLastThreeBlogs($language)
     {
         $blogs = Blogs::orderBy('created_at', 'desc')->take(3)->get();
 
-        if ($request->has('language')) {
+        if ($language) {
             
             $translator = new GoogleTranslate();
-            $translator->setTarget($request->language); 
+            $translator->setTarget($language); 
             
             foreach ($blogs as $blog) {
                 $blog->title = $translator->translate($blog->title);
