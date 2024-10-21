@@ -36,6 +36,8 @@ class CourcesController extends Controller
                 if ($translator) {
                     $course->title = $translator->translate($course->title);
                     $course->description = $translator->translate($course->description);
+                    $course->course_outline=$translator->translate($course->course_outline);
+                    $course->teacher = $translator->translate($course->teacher);
                 }
 
                 $jsonData = [
@@ -55,6 +57,8 @@ class CourcesController extends Controller
                 foreach ($courses as $course) {
                     $course->title = $translator->translate($course->title);
                     $course->description = $translator->translate($course->description);
+                    $course->course_outline=$translator->translate($course->course_outline);
+                    $course->teacher = $translator->translate($course->teacher);
                 }
             }
 
@@ -136,12 +140,12 @@ class CourcesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update(Request $request,$id)
     {   
         $translator = new GoogleTranslate();
         $translator->setTarget('en');
 
-        $course = Cources::find($request->id);
+        $course = Cources::find($id);
         if (!$course) {
             return response()->json(['message' => 'course not found'], 404);
         }
