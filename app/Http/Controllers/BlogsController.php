@@ -32,8 +32,8 @@ class BlogsController extends Controller
         if ($id) {
             $blog = Blogs::find($id);
     
-            if ($blog) {
-               
+            if ($blog)
+             {
                 if ($translator) {
                     $blog->title = $translator->translate($blog->title);
                     $blog->description = $translator->translate($blog->description);
@@ -43,36 +43,40 @@ class BlogsController extends Controller
                     'status' => 'success',
                     'data' => $blog,
                 ];
-            } else {
-                $jsonData = [
-                    'status' => 'error',
-                    'message' => 'Blog not found',
-                ];
-            }
+                } 
+                else 
+                {
+                    $jsonData = [
+                        'status' => 'error',
+                        'message' => 'Blog not found',
+                    ];
+                }
     
             return response()->json($jsonData);
         }
-    
-        $blogs = Blogs::paginate(5);
-    
-        if ($translator) {
-            foreach ($blogs as $blog) {
-                
-                if (!empty($blog->title)) {
-                    $blog->title = $translator->translate($blog->title);
-                }
-                if (!empty($blog->description)) {
-                    $blog->description = $translator->translate($blog->description);
+        else
+        {
+            $blogs = Blogs::paginate(5);
+        
+            if ($translator) {
+                foreach ($blogs as $blog) {
+                    
+                    if (!empty($blog->title)) {
+                        $blog->title = $translator->translate($blog->title);
+                    }
+                    if (!empty($blog->description)) {
+                        $blog->description = $translator->translate($blog->description);
+                    }
                 }
             }
+        
+            $jsonData = [
+                'status' => 'success',
+                'data' => $blogs,
+            ];
+        
+            return response()->json($jsonData);
         }
-    
-        $jsonData = [
-            'status' => 'success',
-            'data' => $blogs,
-        ];
-    
-        return response()->json($jsonData);
     }
     
 
