@@ -61,9 +61,9 @@ Route::middleware('web')->get('/home', function () {
 Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('blogs')->group(function () {
         Route::post('/', [BlogsController::class, 'create']);
-        Route::get('/{id}/{language}', [BlogsController::class, 'index']);
+        Route::get('/}', [BlogsController::class, 'index']);
         Route::put('/{id}', [BlogsController::class, 'update']);
-        Route::get('/lastThree/{language}', [BlogsController::class, 'getLastThreeBlogs']);
+        Route::get('/lastThree', [BlogsController::class, 'getLastThreeBlogs']);
         Route::delete('/', [BlogsController::class, 'destroy']);
     });
 
