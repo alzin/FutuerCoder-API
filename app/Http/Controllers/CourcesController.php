@@ -6,6 +6,8 @@ use App\Models\Cources;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
+use Stichoza\GoogleTranslate\GoogleTranslate;
+
 
 class CourcesController extends Controller
 {
@@ -13,64 +15,96 @@ class CourcesController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request)
-    {
-        if ($request->has('id')) 
-        {
-            
-            $course = Cources::find($request->id);
+    {   
+       
+        $language = $request->input('language');
+        $translator = null;
+
+        if ($language) {
+          
+            $translator = new GoogleTranslate();
+            $translator->setTarget($language); 
+        }
+
+        $id = $request->input('id');
         
+        if ($id) {
+            $course = Cources::find($id);
+
             if ($course) {
+               
+                if ($translator) {
+                    $course->title = $translator->translate($course->title);
+                    $course->description = $translator->translate($course->description);
+                    $course->course_outline=$translator->translate($course->course_outline);
+                    $course->teacher = $translator->translate($course->teacher);
+                }
+
                 $jsonData = [
                     'status' => 'success',
                     'data' => $course,
                 ];
-            } 
-            else {
+            } else {
                 $jsonData = [
                     'status' => 'error',
                     'message' => 'course not found',
                 ];
             }
-        }
-        else 
-        {
+        } else {
             $courses = Cources::paginate(5);
+
+            if ($translator) {
+                foreach ($courses as $course) {
+                    $course->title = $translator->translate($course->title);
+                    $course->description = $translator->translate($course->description);
+                    $course->course_outline=$translator->translate($course->course_outline);
+                    $course->teacher = $translator->translate($course->teacher);
+                }
+            }
+
             $jsonData = [
                 'status' => 'success',
                 'data' => $courses,
-            ];   
+            ];
         }
-        return response()->json([$jsonData]);
-}
+
+        return response()->json($jsonData);
+    }
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create(Request $request)
     {   
-        
+        $translator = new GoogleTranslate();
+        $translator->setTarget('en');
         $request->validate([
             'title' => 'required',
             'description' => 'required',
+            'teacher' => 'required',
+            'imagePath' => 'required',
+            'price' => 'required',
+            'course_outline' => 'required',
+            'duration_in_session' => 'required',
+            'course_start_date' => 'required',
+            'min_age' => 'required',
+            'max_age' => 'required',
+            
         ]);
-        /*
-        $file_extintion = $request->image->getClientOriginalExtension();
-        $file_name = time() . '.' . $file_extintion;
-        $path = 'images/courses/' . $file_name;   
-        Storage::disk('public')->put($path, $request->image);
-        $imageUrl = asset($path); 
-        */
+        
         $course = Cources::create([
-            'title' => $request->title,
-            'teacher' => $request->teacher,
-            'description' => $request->description,
+            'title' => $translator->translate($request->title),
+            'teacher' => $translator->translate($request->teacher),
+            'description' => $translator->translate($request->description),
             'imagePath'=>$request->imagePath,
             'price'=>$request->price,
-            'course_outline'=>$request->course_outline,
+            'course_outline'=>$translator->translate($request->course_outline),
             'duration_in_session'=>$request->duration_in_session,
             'course_start_date'=>$request->course_start_date,
             'min_age'=>$request->min_age,
             'max_age'=>$request->max_age,
+            'payment_url'=>$request->payment_url
             
         ]);
         return response()->json([
@@ -108,7 +142,9 @@ class CourcesController extends Controller
      */
     public function update(Request $request,$id)
     {   
-        
+        $translator = new GoogleTranslate();
+        $translator->setTarget('en');
+
         $course = Cources::find($id);
         if (!$course) {
             return response()->json(['message' => 'course not found'], 404);
@@ -117,34 +153,26 @@ class CourcesController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required',
+            'teacher' => 'required',
+            'imagePath' => 'required',
+            'price' => 'required',
+            'course_outline' => 'required',
+            'duration_in_session' => 'required',
+            'course_start_date' => 'required',
+            'min_age' => 'required',
+            'max_age' => 'required',
         ]);
-        /*
-        if ($request->hasFile('image')) {
-            if ($course->image) {
-                $oldImagePath = public_path('images/courses/' . $course->image);
-                if (file_exists($oldImagePath)) {
-                    unlink($oldImagePath);
-                    Storage::delete($oldImagePath);
-                    $course->image = null;
-                    $course->save();
-                }
-            }
-        }
-        $file_extintion = $request->image->getClientOriginalExtension();
-        $file_name = time() . '.' . $file_extintion;
-        $path = 'images/courses';
-        Storage::disk('public')->put($path, $request->image);
-        */
         $course->imagePath = $request->imagePath;
-        $course->title = $request->title;
-        $course->teacher=$request->teacher;
-        $course->description = $request->description;
+        $course->title = $translator->translate($request->title);
+        $course->teacher=$translator->translate($request->teacher);
+        $course->description =$translator->translate($request->description);
         $course->price=$request->price;
-        $course->course_outline=$request->course_outline;
+        $course->course_outline=$translator->translate($request->course_outline);
         $course->duration_in_session=$request->duration_in_session;
         $course->course_start_date=$request->course_start_date;
         $course->min_age=$request->min_age;
         $course->max_age=$request->max_age;
+        $course->payment_url=$request->payment_url;
     
         $course->save();
         return response()->json([
@@ -158,21 +186,44 @@ class CourcesController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
      */
+
     public function getCoursesByAge(Request $request)
     {
         $age = $request->input('age');
-     
+        $language=$request->input('language');
+        
+        
+        if ($language) {
+            $translator = new GoogleTranslate();
+            $translator->setTarget($language);
+    
+        }
         $courses = Cources::where('min_age', '<=', $age)
-                         ->where('max_age', '>=', $age)
-                         ->get();
+                             ->where('max_age', '>=', $age)
+                             ->get();
+        
+        
+        if ($language) {
+            foreach ($courses as $course) {
+                $course->title = $translator->translate($course->title);
+                $course->description = $translator->translate($course->description);
+            }
+        }
+    
+        
         return response()->json($courses);
+        
     }
+    
 
         public function getCourseHaveTime(Request $request)
     {
     
         $timezone = $request->input('timezone', config('app.timezone'));
-
+        if ($request->has('language')) {
+            $translator = new GoogleTranslate();
+            $translator->setTarget($request->input('language')); 
+        }
         $currentDateTime = Carbon::now($timezone);
 
         $coursesWithTimes = Cources::whereHas('cources_times', function ($query) use ($currentDateTime, $timezone) {
@@ -187,6 +238,12 @@ class CourcesController extends Controller
 
         if ($coursesWithTimes->isEmpty()) {
             return response()->json(['message' => 'No courses with upcoming times found'], 404);
+        }
+        if ($request->has('language')) {
+            foreach ($coursesWithTimes as $course) {
+                $course->title = $translator->translate($course->title);
+                $course->description = $translator->translate($course->description);
+            }
         }
 
         return response()->json([

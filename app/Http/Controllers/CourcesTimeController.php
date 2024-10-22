@@ -220,11 +220,11 @@ class CourcesTimeController extends Controller
 
         $timezone = $request->timezone;
 
-        // الحصول على الوقت الحالي في المنطقة الزمنية المطلوبة
+        
         $nowInRequestedTimeZone = Carbon::now($timezone);
         $nowUTC = $nowInRequestedTimeZone->copy()->setTimezone('UTC');
 
-        // استعلام لجلب الأوقات المتاحة
+       
         $availableTimes = Cources_time::where('courseId', $request->course_id)
             ->where('studentsCount', '<', 3)
             ->where(function ($query) use ($nowUTC) {
@@ -236,20 +236,20 @@ class CourcesTimeController extends Controller
             })
             ->get(['SessionTimings', 'startTime', 'endTime', 'studentsCount', 'id']);
 
-        // تحويل الأوقات المتاحة إلى المنطقة الزمنية المطلوبة
+       
         $availableTimesInRequestedTimeZone = $availableTimes->map(function ($time) use ($timezone) {
-            // دمج SessionTimings مع startTime للتاريخ والوقت الكامل
+            
             $startDateTimeUTC = Carbon::parse($time->SessionTimings . ' ' . $time->startTime, 'UTC');
             $endDateTimeUTC = Carbon::parse($time->SessionTimings . ' ' . $time->endTime, 'UTC');
 
-            // تحويل التوقيتات إلى المنطقة الزمنية المطلوبة
+           
             $startDateTimeInRequestedTimezone = $startDateTimeUTC->setTimezone($timezone);
             $endDateTimeInRequestedTimezone = $endDateTimeUTC->setTimezone($timezone);
 
             return [
-                'SessionTimings' => $startDateTimeInRequestedTimezone->toDateString(), // التاريخ
-                'startTime' => $startDateTimeInRequestedTimezone->toTimeString(), // وقت البدء
-                'endTime' => $endDateTimeInRequestedTimezone->toTimeString(), // وقت النهاية
+                'SessionTimings' => $startDateTimeInRequestedTimezone->toDateString(), 
+                'startTime' => $startDateTimeInRequestedTimezone->toTimeString(), 
+                'endTime' => $endDateTimeInRequestedTimezone->toTimeString(), 
                 'studentsCount' => $time->studentsCount,
                 'id' => $time->id
             ];
@@ -305,7 +305,7 @@ class CourcesTimeController extends Controller
 
     $timezone=$request->timezone;
     $availableTimes = Cources_time::with(['course:id,title'])
-        ->paginate(10, ['SessionTimings', 'startTime', 'endTime', 'id', 'courseId']);
+        ->paginate(10, ['SessionTimings', 'startTime', 'endTime', 'id', 'courseId', 'studentsCount']);
 
     if ($availableTimes->isEmpty()) {
         return response()->json([
@@ -331,7 +331,8 @@ class CourcesTimeController extends Controller
             'startTime' => $startDateTimeInRequestedTimezone->toTimeString(),
             'endTime' => $endDateTimeInRequestedTimezone->toTimeString(),
             'courseId' => $time->courseId,
-            'courseName' => $time->course->title, 
+            'courseName' => $time->course->title,
+            'studentsCount' => $time->studentsCount,
             'id' => $time->id
         ];
     });

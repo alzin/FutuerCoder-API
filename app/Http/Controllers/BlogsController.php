@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+require_once base_path('vendor/autoload.php');
+
 
 use App\Models\Blogs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Stichoza\GoogleTranslate\GoogleTranslate;
 use Illuminate\Support\Facades\File;
 
 class BlogsController extends Controller
@@ -16,120 +19,100 @@ class BlogsController extends Controller
 
     public function index(Request $request)
     {   
-        if ($request->has('id')) {
-            $blog = Blogs::find($request->id);
-        
-            if ($blog) {
+        $id = $request->input('id');
+        $language = $request->input('language');
+
+        $translator = null;
+    
+        if ($language!=null) {
+            $translator = new GoogleTranslate();
+            $translator->setTarget($language);
+        }
+    
+        if ($id) {
+            $blog = Blogs::find($id);
+    
+            if ($blog)
+             {
+                if ($translator) {
+                    $blog->title = $translator->translate($blog->title);
+                    $blog->description = $translator->translate($blog->description);
+                }
+    
                 $jsonData = [
                     'status' => 'success',
                     'data' => $blog,
                 ];
-            } else {
-                $jsonData = [
-                    'status' => 'error',
-                    'message' => 'blog not found',
-                ];
+                } 
+                else 
+                {
+                    $jsonData = [
+                        'status' => 'error',
+                        'message' => 'Blog not found',
+                    ];
+                }
+    
+            return response()->json($jsonData);
+        }
+        else
+        {
+            $blogs = Blogs::paginate(5);
+        
+            if ($translator) {
+                foreach ($blogs as $blog) {
+                    
+                    if (!empty($blog->title)) {
+                        $blog->title = $translator->translate($blog->title);
+                    }
+                    if (!empty($blog->description)) {
+                        $blog->description = $translator->translate($blog->description);
+                    }
+                }
             }
-        } else {
-            $blog = Blogs::paginate(5);
+        
             $jsonData = [
                 'status' => 'success',
-                'data' => $blog,
+                'data' => $blogs,
             ];
-        }
         
-        return response()->json($blog);
+            return response()->json($jsonData);
+        }
     }
+    
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
+        public function create(Request $request)
     {
+    
         $request->validate([
             'title' => 'required',
             'description' => 'required',
         ]);
-        
-        /*
-        if ($request->hasFile('image')) {
-            $directory = 'uploads';
-            if (!Storage::disk('public')->exists($directory)) {
-                Storage::disk('public')->makeDirectory($directory);
-            }
-            if (Storage::disk('public')->exists($directory)) {
-                echo 'file exists';
-            }
-            $image = $request->file('image');
-        
-            $fileName = time() . '.' . $image->getClientOriginalExtension();
-            $path = $directory . '/' . $fileName;
-            Storage::disk('public')->put($path, file_get_contents($image));
-        }
-        */
-        
-        /*
-        if ($request->hasFile('image')) {
-            // Get the file from the request
-            $directory = public_path('images');
 
-            // Create the directory if it doesn't exist
-            if (!file_exists($directory)) {
-                mkdir($directory, 0775, true);
-            }
-            // Get the file from the request
-            $image = $request->file('image');
-            // Define a file name
-            $fileName = time() . '.' . $image->getClientOriginalExtension();
-            // Save the file to the public folder
-            $path = $image->move($directory, $fileName);
-        }
-        */
-        
-        /*
-        $file_extension = $request->file('image')->getClientOriginalExtension();
-        $file_name = time() . '.' . $file_extension;
-        $path = 'blogs/' . $file_name;
-        Storage::disk('public')->put($path, file_get_contents($request->file('image')));
-        */
-        
+        $translator = new GoogleTranslate();
+        $translator->setTarget('en'); 
+
+        $translatedTitle = $translator->translate($request->title);
+        $translatedDescription = $translator->translate($request->description);
+
         Blogs::create([
-            'title' => $request->title,
-            'description' => $request->description,
+            'title' => $translatedTitle,
+            'description' => $translatedDescription,
             'ImagePath' => $request->imagePath,
         ]);
-        return response()->json(['message' => 'blog created successfully']);
+
+        return response()->json(['message' => 'Blog created successfully']);
     }
+
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
 
-        if ($request->file('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $ImagePath = $image->storeAs('blogs', $imageName, 'uploads');
-            $url = Storage::disk('uploads')->url($ImagePath);
-
-            $blog = new Blogs();
-            $blog->title = $request->title;
-            $blog->description = $request->description;
-            $blog->ImagePath = $url;
-            $blog->save();
-
-            return response()->json([
-                'success' => 'Image uploaded successfully.',
-                'image_name' => $imageName,
-                'image_path' => $blog->ImagePath,
-            ]);
-        }
-
-        return response()->json(['error' => 'Image upload failed.'], 400);
     }
 
     /**
@@ -153,48 +136,54 @@ class BlogsController extends Controller
      */
     public function update(Request $request, $id)
     {   
+        
         $blog = Blogs::find($id);
         if (!$blog) {
             return response()->json(['message' => 'Blog not found'], 404);
         }
-
+    
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required',
         ]);
-
-        /*
-        if ($request->hasFile('image') && $blog->ImagePath) {
-            Storage::disk('public')->delete('blogs/' . $blog->ImagePath);
-        }
-
-        if ($request->hasFile('image')) {
-            $path = 'blogs/' . time() . '.' . $request->image->getClientOriginalExtension();
-            Storage::disk('public')->put($path, $request->image);
-
-            $blog->ImagePath = Storage::disk('public')->url($path);
-        }
-        */
-
+    
+        $translator = new GoogleTranslate();
+        $translator->setTarget('en'); 
+        
+        $translatedTitle = $translator->translate($request->title);
+        $translatedDescription = $translator->translate($request->description);
+    
         $blog->ImagePath = $request->imagePath;
-        $blog->title = $request->title;
-        $blog->description = $request->description;
-
+        $blog->title = $translatedTitle;
+        $blog->description = $translatedDescription;
+    
         $blog->save();
+    
         return response()->json([
             'message' => 'Blog updated successfully',
             'blog' => $blog
         ]);
     }
+    
     //this function use to get the last three blogs from database
-    public function getLastThreeBlogs()
-{
-    // الحصول على آخر ثلاث منشورات من قاعدة البيانات
-    $blogs = Blogs::orderBy('created_at', 'desc')->take(3)->get();
+        public function getLastThreeBlogs(Request $request)
+    {   $language=$request->input('language');
+        $blogs = Blogs::orderBy('created_at', 'desc')->take(3)->get();
 
-    // إعادة البيانات
-    return response()->json($blogs);
-}
+        if ($language) {
+            
+            $translator = new GoogleTranslate();
+            $translator->setTarget($language); 
+            
+            foreach ($blogs as $blog) {
+                $blog->title = $translator->translate($blog->title);
+                $blog->description = $translator->translate($blog->description);
+            }
+        }
+
+        return response()->json($blogs);
+    }
+
 
     /**
      * Remove the specified resource from storage.
