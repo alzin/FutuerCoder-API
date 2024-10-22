@@ -5,30 +5,47 @@ namespace App\Http\Controllers;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Stichoza\GoogleTranslate\GoogleTranslate;
 
 class TestimonialController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
     public function index(Request $request)
-    {   
-            if($request->has("id"))
-            {
-                
-                $testimonial = Testimonial::find($request->id);
-                if (!$testimonial) {
-                    return response()->json([
-                        'status' => 'error',
-                        'message' => 'Testimonial not found'
-                    ], 404);
-                }
-            }   
-            else
-            {
-                $testimonial = Testimonial::paginate(5);
+    {
+        
+        if ($request->has('language')) {
+            $translator = new GoogleTranslate();
+            $translator->setTarget($request->input('language')); 
+        }
+        if ($request->has("id")) {
+            $testimonial = Testimonial::find($request->id);
+            if (!$testimonial) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Testimonial not found'
+                ], 404);
             }
-        return response()->json(["status"=>"success","data"=> $testimonial]);
+            if ($request->has('language')) {
+                $testimonial->title = $translator->translate($testimonial->title);
+                $testimonial->description = $translator->translate($testimonial->description);
+            }
+        } 
+        else {
+            $testimonials = Testimonial::paginate(5);
+            if ($request->has('language')) {
+                foreach ($testimonials as $testimonial) {
+                    $testimonial->title = $translator->translate($testimonial->title);
+                    $testimonial->description = $translator->translate($testimonial->description);
+                }
+            }
+        }
+        return response()->json([
+            "status" => "success",
+            "data" => $testimonial ?? $testimonials
+        ]);
     }
 
     /**
@@ -44,9 +61,11 @@ class TestimonialController extends Controller
             $user=User::find($request->userId);
             if($user)
             {
+                $translator = new GoogleTranslate();
+                $translator->setTarget('en');
                 $testimonial = Testimonial::create([
                     "userId"=>$user->id,
-                    "description"=> $request->description,
+                    "description"=>$translator->translate($request->description),
                     "rating"=> $request->rating
                 ]);
                 return response()->json(["status"=>"success","data"=> $testimonial]);
@@ -55,8 +74,6 @@ class TestimonialController extends Controller
             {
             return response()->json(["status"=> "error","data"=> "user not found"]);
             }
-
-    
     }
 
     /**
@@ -65,15 +82,21 @@ class TestimonialController extends Controller
     public function update(Request $request,$id)
     {
         $testimonial= Testimonial::find($id);
+        $translator = new GoogleTranslate();
+        $translator->setTarget('en');
         $testimonial->update([
-            "description"=>$request->description,
+            "description"=>$translator->translate($request->description),
             "rating"=>$request->rating,
         ]);
         $testimonial->save();
         return response()->json(["status"=> "update successfuly","data"=> $testimonial]);
     }
-        public function validTestimonial()
+        public function validTestimonial(Request $request)
     {
+        $language = $request->input('language');
+    
+        $translator = new GoogleTranslate();
+        $translator->setTarget($language);
         
         $testimonials = Testimonial::with('user:id,firstName,lastName')
             ->whereHas('user', function ($query) {
@@ -83,14 +106,27 @@ class TestimonialController extends Controller
             ->latest() 
             ->limit(10)
             ->get();
-
+            foreach ($testimonials as $testimonial) {
+                $testimonial->description = $translator->translate($testimonial->description);
+                $testimonial->user->firstName = $translator->translate($testimonial->user->firstName);
+                $testimonial->user->lastName = $translator->translate($testimonial->user->lastName);
+            }
+        
         return response()->json($testimonials);
     }
 
-    public function getAllTestimonialsForAdmin()
-    {
+    public function getAllTestimonialsForAdmin(Request $request)
+    {   
+        $language = $request->input('language');
+        $translator = new GoogleTranslate();
+        $translator->setTarget($language);
         $testimonials = Testimonial::with('user:id,email,firstName,lastName')
             ->paginate(6); 
+            foreach ($testimonials as $testimonial) {
+                $testimonial->description = $translator->translate($testimonial->description);
+                $testimonial->user->firstName = $translator->translate($testimonial->user->firstName);
+                $testimonial->user->lastName = $translator->translate($testimonial->user->lastName);
+            }
         $data = [
             'current_page' => $testimonials->currentPage(),
             'last_page' => $testimonials->lastPage(),
