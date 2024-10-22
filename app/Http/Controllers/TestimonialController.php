@@ -31,6 +31,10 @@ class TestimonialController extends Controller
             if ($request->has('language')) {
                 $testimonial->description = $translator->translate($testimonial->description);
             }
+            return response()->json([
+                "status" => "success",
+                "data" => $testimonial
+            ]);
         } 
         else {
             $testimonials = Testimonial::paginate(5);
@@ -39,11 +43,12 @@ class TestimonialController extends Controller
                     $testimonial->description = $translator->translate($testimonial->description);
                 }
             }
+        
+            return response()->json([
+                "status" => "success",
+                "data" => $testimonials
+            ]);
         }
-        return response()->json([
-            "status" => "success",
-            "data" => $testimonial ?? $testimonials
-        ]);
     }
 
     /**
