@@ -13,43 +13,49 @@ class TestimonialController extends Controller
      * Display a listing of the resource.
      */
 
-    public function index(Request $request)
-    {
+     public function index(Request $request)
+     {
         
-        if ($request->has('language')) {
-            $translator = new GoogleTranslate();
-            $translator->setTarget($request->input('language')); 
-        }
-        if ($request->has("id")) {
-            $testimonial = Testimonial::find($request->id);
-            if (!$testimonial) {
-                return response()->json([
-                    'status' => 'error',
-                    'message' => 'Testimonial not found'
-                ], 404);
-            }
-            if ($request->has('language')) {
-                $testimonial->description = $translator->translate($testimonial->description);
-            }
-            return response()->json([
-                "status" => "success",
-                "data" => $testimonial
-            ]);
-        } 
-        else {
-            $testimonials = Testimonial::paginate(5);
-            if ($request->has('language')) {
-                foreach ($testimonials as $testimonial) {
-                    $testimonial->description = $translator->translate($testimonial->description);
-                }
-            }
+         if ($request->has('language')) {
+             $translator = new GoogleTranslate();
+             $translator->setTarget($request->input('language')); 
+         }
+     
         
-            return response()->json([
-                "status" => "success",
-                "data" => $testimonials
-            ]);
-        }
-    }
+         if ($request->has("id")) {
+             $testimonial = Testimonial::find($request->id);
+     
+             if (!$testimonial) {
+                 return response()->json([
+                     'status' => 'error',
+                     'message' => 'Testimonial not found'
+                 ], 404);
+             }
+     
+             if ($request->has('language')) {
+                 $testimonial->description = $translator->translate($testimonial->description);
+             }
+     
+             return response()->json([
+                 "status" => "success",
+                 "data" => $testimonial
+             ]);
+         } 
+         else {
+             $testimonials = Testimonial::paginate(5);
+     
+             if ($request->has('language')) {
+                 foreach ($testimonials as $testimonial) {
+                     $testimonial->description = $translator->translate($testimonial->description);
+                 }
+             }
+             return response()->json([
+                 "status" => "success",
+                 "data" => $testimonials
+             ]);
+         }
+     }
+     
 
     /**
      * Show the form for creating a new resource.
