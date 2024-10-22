@@ -29,7 +29,6 @@ class TestimonialController extends Controller
                 ], 404);
             }
             if ($request->has('language')) {
-                $testimonial->title = $translator->translate($testimonial->title);
                 $testimonial->description = $translator->translate($testimonial->description);
             }
         } 
@@ -37,7 +36,6 @@ class TestimonialController extends Controller
             $testimonials = Testimonial::paginate(5);
             if ($request->has('language')) {
                 foreach ($testimonials as $testimonial) {
-                    $testimonial->title = $translator->translate($testimonial->title);
                     $testimonial->description = $translator->translate($testimonial->description);
                 }
             }
