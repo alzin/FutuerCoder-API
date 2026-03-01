@@ -29,6 +29,11 @@ class GoogleCalendarService
         $client = new Google_Client();
         $accessToken = env('GOOGLEACCESSTOKEN');
         $refreshToken = env('GOOGLEREFRESHTOKEN');
+        $client->setClientId(env('GOOGLE_CLIENT_ID'));
+        $client->setClientSecret(env('GOOGLE_CLIENT_SECRET'));
+        $client->setRedirectUri(env('GOOGLE_REDIRECT_URI'));
+        $client->setScopes(Google_Service_Calendar::CALENDAR);
+        $client->setAccessType('offline');
         $client->setAccessToken([
             'access_token' => $accessToken,
             'refresh_token' => $refreshToken,
@@ -41,22 +46,14 @@ class GoogleCalendarService
                 $accessToken = $newToken['access_token'];
                 $client->setAccessToken($newToken);
             }
-        } else {
-            return response()->json(['error' => 'Unable to refresh access token'], 500);
         }
     
         $client->setApplicationName('laravelcalendar');
-        $client->setClientId('145095079689-plpg2bu6b8s1e1ktbhf0ph9hoieuqdks.apps.googleusercontent.com');
-        $client->setClientSecret('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');
-        $client->setRedirectUri('https://future-coder.vercel.app');
-        $client->setScopes(Google_Service_Calendar::CALENDAR);
-        $client->setAccessType('offline');
-        $client->setApprovalPrompt('force');
         $service = new Google_Service_Calendar($client);
     
         
         if ($eventId == 0) {
-            $calendarId = 'b8913a0fc91696496e801350a53e347f62008e4daf3bf91b45cd7067ded46563@group.calendar.google.com';
+            $calendarId = 'primary'; // Use the user's primary calendar
     
             $existingEvents = $service->events->listEvents($calendarId, [
                 'timeMin' => Carbon::parse($date . $startTime, 'UTC')->toRfc3339String(),
@@ -154,7 +151,7 @@ class GoogleCalendarService
             }
     
         } else {
-            $calendarId = 'b8913a0fc91696496e801350a53e347f62008e4daf3bf91b45cd7067ded46563@group.calendar.google.com';
+            $calendarId = 'primary'; // Use the user's primary calendar
             $event = $service->events->get($calendarId, $eventId);
     
             $attendees = $event->getAttendees();
