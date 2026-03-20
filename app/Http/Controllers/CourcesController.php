@@ -224,15 +224,11 @@ class CourcesController extends Controller
             $translator = new GoogleTranslate();
             $translator->setTarget($request->input('language')); 
         }
-        $currentDateTime = Carbon::now($timezone);
+        // Convert current time to UTC for comparison (avoids MySQL CONVERT_TZ which needs timezone tables)
+        $currentDateTimeUTC = Carbon::now('UTC');
 
-        $coursesWithTimes = Cources::whereHas('cources_times', function ($query) use ($currentDateTime, $timezone) {
-            $query->where(function($query) use ($currentDateTime, $timezone) {
-                $query->whereRaw("DATE_ADD(SessionTimings, INTERVAL TIME_TO_SEC(CONVERT_TZ(startTime, '+00:00', ?)) SECOND) > ?", [$timezone, $currentDateTime->toDateTimeString()])
-                    ->orWhere(function($query) use ($currentDateTime, $timezone) {
-                        $query->whereRaw("DATE_ADD(SessionTimings, INTERVAL TIME_TO_SEC(CONVERT_TZ(endTime, '+00:00', ?)) SECOND) > ?", [$timezone, $currentDateTime->toDateTimeString()]);
-                    });
-            });
+        $coursesWithTimes = Cources::whereHas('cources_times', function ($query) use ($currentDateTimeUTC) {
+            $query->whereRaw("CONCAT(SessionTimings, ' ', endTime) > ?", [$currentDateTimeUTC->toDateTimeString()]);
         })
         ->paginate(10, ['id', 'title', 'teacher', 'description', 'price', 'min_age', 'max_age', 'imagePath']);
 

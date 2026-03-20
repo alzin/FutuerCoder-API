@@ -93,7 +93,7 @@ class GuestUserService
                             ->setTimezone($timeZone);
         $endDateTime = Carbon::createFromFormat('Y-m-d H:i:s', $time->SessionTimings . ' ' . $time->endTime, 'UTC')
                             ->setTimezone($timeZone);
-        return redirect("https://future-coder.vercel.app/");
+        return redirect("http://localhost:3000/");
             /*->with([
                 'status' => 'success',
                 'guestUser' => $guestUser,

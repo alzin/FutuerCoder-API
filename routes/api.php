@@ -11,6 +11,7 @@ use App\Http\Controllers\GuestUsersController;
 use App\Http\Controllers\FreeLessonsController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\GoogleOAuthController;
 use Spatie\GoogleCalendar\Event;
 use App\Http\Middleware\VerifyCsrfToken;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -58,17 +59,60 @@ Route::middleware('web')->get('/home', function () {
 
 
 
+// ==========================================
+// Public routes (no auth required)
+// ==========================================
+Route::get('/google/redirect', [GoogleOAuthController::class, 'redirect']);
+Route::get('/google/callback', [GoogleOAuthController::class, 'callback']);
+
+
+Route::prefix('blogs')->group(function () {
+    Route::get('/lastThree', [BlogsController::class, 'getLastThreeBlogs']);
+    Route::get('/', [BlogsController::class, 'index']);
+});
+
+Route::prefix('courses')->group(function () {
+    Route::get('/', [CourcesController::class, 'index']);
+    Route::get('/courseById', [CourcesController::class, 'getCoursesByAge']);
+    Route::post('/getCourseHaveTime', [CourcesController::class, 'getCourseHaveTime']);
+});
+
+Route::prefix('courses_time')->group(function () {
+    Route::get('/{userId}', [CourcesTimeController::class, 'index']);
+    Route::get('/courseDays/{id}/{courseId}', [CourcesTimeController::class, 'getDaysByCourseId']);
+    Route::get('/availableTimes/{course_id}/{sessionTimie}/{userId}', [CourcesTimeController::class, 'getAvailableTimes']);
+    Route::post('/timezone', [CourcesTimeController::class, 'getAvailableTimeZone']);
+});
+
+Route::prefix('Testimonial')->group(function () {
+    Route::get('/validTestimonial', [TestimonialController::class, 'validTestimonial']);
+    Route::get('/', [TestimonialController::class, 'index']);
+});
+
+Route::prefix('guest_users')->group(function () {
+    Route::post('/', [GuestUsersController::class, 'create']);
+});
+
+Route::prefix('free_lessons')->group(function () {
+    Route::post('/getFreeLesson', [FreeLessonsController::class, 'index']);
+    Route::post('/createSession', [FreeLessonsController::class, 'createSession']);
+});
+
+Route::prefix('subscribers')->group(function () {
+    Route::post('/', [SubscribersController::class, 'create']);
+});
+
+// ==========================================
+// Protected routes (auth required)
+// ==========================================
 Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('blogs')->group(function () {
         Route::post('/', [BlogsController::class, 'create']);
-        Route::get('/', [BlogsController::class, 'index']);
         Route::put('/{id}', [BlogsController::class, 'update']);
-        Route::get('/lastThree', [BlogsController::class, 'getLastThreeBlogs']);
         Route::delete('/', [BlogsController::class, 'destroy']);
     });
 
     Route::prefix('subscribers')->group(function () {
-        Route::post('/', [SubscribersController::class, 'create']);
         Route::get('/', [SubscribersController::class, 'index']);
         Route::put('/{id}', [SubscribersController::class, 'update']);
         Route::delete('/', [SubscribersController::class, 'destroy']);
@@ -76,19 +120,12 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('courses')->group(function () {
         Route::post('/', [CourcesController::class, 'create']);
-        Route::get('/', [CourcesController::class, 'index']);
-        Route::get('/courseById', [CourcesController::class, 'getCoursesByAge']);    
         Route::put('/{id}', [CourcesController::class, 'update']);
-        Route::post('/getCourseHaveTime', [CourcesController::class,'getCourseHaveTime']);
         Route::delete('/', [CourcesController::class, 'destroy']);
     });
 
     Route::prefix('courses_time')->group(function () {
         Route::post('/', [CourcesTimeController::class, 'create']);
-        Route::get('/{userId}', [CourcesTimeController::class, 'index']);
-        Route::get('/courseDays/{id}/{courseId}', [CourcesTimeController::class, 'getDaysByCourseId']);
-        Route::get('/availableTimes/{course_id}/{sessionTimie}/{userId}', [CourcesTimeController::class, 'getAvailableTimes']);
-        route::post('/timezone',[CourcesTimeController::class,'getAvailableTimeZone']);
         Route::post('/getAvailableTimeZoneForAdmin', [CourcesTimeController::class, 'getAvailableTimeZoneForAdmin']);
         Route::put('/{id}', [CourcesTimeController::class, 'update']);
         Route::post('/getAlltimes', [CourcesTimeController::class, 'getAlltimes']);
@@ -96,38 +133,34 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::prefix('guest_users')->group(function () {
-        Route::post('/', [GuestUsersController::class, 'create']);
         Route::get('/', [GuestUsersController::class, 'index']);
         Route::put('/{id}', [GuestUsersController::class, 'update']);
         Route::delete('/', [GuestUsersController::class, 'destroy']);
     });
 
-        Route::prefix('free_lessons')->group(function () {
+    Route::prefix('free_lessons')->group(function () {
         Route::post('/', [FreeLessonsController::class, 'create']);
-        Route::post('/createSession', [FreeLessonsController::class,'createSession']);
-        Route::post('/getFreeLesson', [FreeLessonsController::class, 'index']);
         Route::put('/{id}', [FreeLessonsController::class, 'update']);
         Route::delete('/', [FreeLessonsController::class, 'destroy']);
     });
-        Route::prefix('Testimonial')->group(function () {
+
+    Route::prefix('Testimonial')->group(function () {
         Route::post('/', [TestimonialController::class, 'create']);
         Route::post('/changeVisibility', [TestimonialController::class, 'changeVisibility']);
-        Route::get('/', [TestimonialController::class, 'index']);
         Route::put('/{id}', [TestimonialController::class, 'update']);
-        Route::get('/validTestimonial', [TestimonialController::class, 'validTestimonial']);
         Route::get('/getAllTestimonialsForAdmin', [TestimonialController::class, 'getAllTestimonialsForAdmin']);
         Route::delete('/', [TestimonialController::class, 'destroy']);
     });
+
     Route::group(['prefix' => 'users'], function () {
-        Route::get('/', [UserController::class, 'index']);    
-        Route::get('/{id}', [UserController::class, 'show']); 
+        Route::get('/', [UserController::class, 'index']);
+        Route::get('/{id}', [UserController::class, 'show']);
         Route::post('/signIn', [UserController::class, 'create']);
         Route::put('/{id}', [UserController::class, 'update']);
         Route::delete('/{id}', [UserController::class, 'destroy']);
     });
 
-    Route::get('create_event',[FreeLessonsController::class,'createEvent']);
-   
+    Route::get('create_event', [FreeLessonsController::class, 'createEvent']);
 });
 
 Route::post('register1', [RegisteredUserController::class,'store'])
